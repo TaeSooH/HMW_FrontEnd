@@ -1,0 +1,34 @@
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+.btn{
+    height: 60%;
+    margin: 7% 10%;
+    display: grid;
+    column-gap:8%;
+    grid-template-columns: repeat(auto-fill, minmax(30%, auto));
+}
+
+.ser_word, .memo_word{
+    height: 100%;
+    background-color: #9EDDF4;
+    border-radius: 25px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ser_word:hover, .memo_word:hover{
+    transform: scale(1.1,1.1);
+    transition : all 400ms ease-in;
+}
+
+.ser_bt, .memo_bt{
+    background-color:transparent;
+    font-size: 10vh;
+    color: #1F2C30;
+    border: none;
+}

@@ -1,0 +1,53 @@
+.container {
+    width: 100%;
+    height: 100vh;
+}
+
+.back{
+    width: 4%;
+    height: 10vh;
+    padding-left: 2%;
+}
+
+.ser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;    
+}
+
+.ser_title{
+    width: 28%;
+    font-size: 6vh;
+}
+
+.ser_bar{
+    width: 30%;
+    height: 8vh;
+    font-size: 3vh;
+    margin-top: 1%;
+    box-shadow: 3px 3px 3px gray;
+    border: 0.5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ser_ck{
+    width: 8%;
+    height: 65%;
+    margin-left: 1%;
+}
+
+.ser_input{
+    border: none;
+    width: 85%;
+    height: 90%;
+    font-size: 110%;
+}
+.wordMean{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #CCECF9;
+    height: 50%;
+}
