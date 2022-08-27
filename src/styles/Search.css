@@ -30,7 +30,8 @@
     border: 0.5px solid black;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
+    background-color:transparent;
 }
 .ser_ck{
     width: 8%;
@@ -41,8 +42,9 @@
 .ser_input{
     border: none;
     width: 85%;
-    height: 90%;
-    font-size: 110%;
+    height: 100%;
+    font-size: 100%;
+    background-color:transparent;
 }
 .wordMean{
     position: fixed;
@@ -50,4 +52,41 @@
     width: 100%;
     background-color: #CCECF9;
     height: 50%;
+    display: flex;
+    flex-direction: column;    
+}
+
+.loading{
+    margin-top: 10%;
+    font-size: 230%;
+    text-align: center;
+}
+
+
+.exandmean{
+    font-size: 170%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+}
+
+.mean{
+    line-height: 130%;
+    text-align: start;
+    width: 25%;
+    margin-left: 15%;
+}
+.example{
+    margin-right: 5%;
+    width: 55%;
+}
+
+.prText{
+    width: 100%;
+    font-size: 400%;
+    margin-top: 0.8%;
+    padding-left: 15%;
+    padding-bottom: 1%;
+    border-bottom: 3px solid black;
 }
