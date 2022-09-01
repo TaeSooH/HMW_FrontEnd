@@ -21,9 +21,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 93px;
-    margin-left: 60px;
-    margin-right: 60px;
+    margin-top: 96px;
+    margin-left: auto;
+    margin-right: auto;
     cursor: pointer;
 }
 .popup_input {
@@ -43,7 +43,12 @@
     font-size: 3vh;
     margin-bottom: 3%;
 }
-.popup_input input {
+.no_input {
+    position: fixed;
+    z-index: 1;
+    color: red;
+}
+.setNameInput {
     padding-left: 5%;
     height: 40%;
     width: 80%;
@@ -64,4 +69,12 @@
     text-align: center;
     line-height: 250%;
     font-size: 3vh;
+    cursor: pointer;
+}
+.pop_submit {
+    width: fit-content;
+    font-size: 70px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
