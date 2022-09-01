@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import "../styles/Search.css"
 
 export default function Search(){
+    const location = useLocation();
+    const username = location.state?.username;
+    console.log(username);
     const [isLoading, setIsLoading] = useState(false);
     const [ser_text, setText] = useState("");
     const [prText, setPrText] = useState("");
@@ -12,7 +15,7 @@ export default function Search(){
     const [mean, setMean] = useState("");
     async function searchWord(){
         setIsLoading(true);
-        const response = await axios.get("http://localhost:8080/test?word=" + ser_text);
+        const response = await axios.get("http://localhost:8080/search?word=" + ser_text);
         response.data[0] = response.data[0].replace(/\(Edu times\)/g, '');
         response.data[0] = response.data[0].replace(/\(Kids Edu times\)/g, '');
         response.data[0] = response.data[0].replace(/\n/g, '<br/>');
@@ -31,7 +34,7 @@ export default function Search(){
     }
     return (
         <div className="container">
-            <Header />
+            <Header username={username} />
              <Link to="/" >
                 <img src="back.png" className="back" alt="사진이 없음" />
              </Link>
@@ -48,13 +51,17 @@ export default function Search(){
                 <div className="loading">로딩중 ...</div>
                 : 
                 <>
+                    {prText === "" ? <></> :
+                    <>
                     <div className="prWord">
                         <div className="prText">{prText}</div>
                     </div>
                     <div className="exandmean">
                     <div className="mean" dangerouslySetInnerHTML={{__html:mean}}></div>
                     <div className="example" dangerouslySetInnerHTML={{__html:example}}></div>
-                    </div> 
+                    </div>
+                    </> 
+                    }
                 </> 
                 }
                 </div>

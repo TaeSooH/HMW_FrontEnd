@@ -19,7 +19,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     transition: 0.4s;
+=======
+    transition: 0.3s;
+>>>>>>> e23c4adbc7d598d3d2825e8fb1b6d776e24d9bf8
 }
 
 .ser_word:hover, .memo_word:hover{

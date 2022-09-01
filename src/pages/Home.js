@@ -8,16 +8,20 @@ export default function Home(){
         <div className="container">
         <MainHeader />
         <div className="main">
-            <button className="log_bt">
-                <Link to="/login" style={{ textDecoration: 'none' }}>
+            <Link to="/login" style={{ textDecoration: 'none' }} className="log_bt">
+            <button className="inbt">
+                
                 로그인
-                </Link>
+                
             </button>
-            <button className="reg_bt">
-                <Link to="/register" style={{ textDecoration: 'none' }}>
+            </Link>
+            <Link to="/register" style={{ textDecoration: 'none' }} className="reg_bt">
+            <button className="inbt">
+                
                 회원가입
-                </Link>
+                
             </button>
+            </Link>
         </div>
         </div>
     );

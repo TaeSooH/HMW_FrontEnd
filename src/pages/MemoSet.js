@@ -5,8 +5,11 @@ import { useForm } from "react-hook-form"
 import Popup from "reactjs-popup";
 import "../styles/MemoSet.css"
 import { IoAddOutline } from "react-icons/io5"
+import { useLocation } from "react-router-dom";
 
 export default function MemoSet() {
+    const location = useLocation();
+    const username = location.state?.username;
     const [names, setNames] = useState([])
     const [listName, setListName] = useState("");
     const nameList = names.map((name, idx) => (<WordSet key={idx} index={idx} name={name} />))
@@ -15,7 +18,7 @@ export default function MemoSet() {
     // const { listName, handleSubmit } = useForm();
     return (
         <div className="container">
-            <Header />
+            <Header username={username} />
             <div className="memoSet_box">
                 {nameList}
                 <Popup
@@ -47,5 +50,5 @@ export default function MemoSet() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
