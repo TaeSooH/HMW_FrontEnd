@@ -18,3 +18,8 @@ header{
     padding-left: 2%;
     font-size: 6vh;
 }
+
+.user{
+    margin-left: 80%;
+    cursor: pointer;
+}

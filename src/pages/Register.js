@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import MainHeader from "../components/MainHeader";
 import "../styles/Register.css";
@@ -6,9 +7,15 @@ export default function Register(){
     const [id, setId] = useState();
     const [password1, setPassword1] = useState();
     const [password2, setPassword2] = useState();
-    function register(e){
+    async function register(e){
         e.preventDefault();
-        
+        const form = new FormData();
+        form.append('name', id);
+        form.append('password1', password1);
+        form.append('password2', password2);
+        const response = await axios.post("http://127.0.0.1:8080/user/signup", form)
+        alert(response.data);
+        window.location.replace("/");
     }
     return (
         <div className="container">
