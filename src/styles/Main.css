@@ -19,6 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.4s;
 }
 
 .ser_word:hover, .memo_word:hover{
