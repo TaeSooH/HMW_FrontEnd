@@ -23,6 +23,11 @@ export default function MemoSet() {
                 {nameList}
                 <Popup
                     open={modalOpened}
+                    onClose={()=>{
+                        setModalOpened(false);
+                        setListName("");
+                    }
+                    }
                 >
                     <div className="popup_input">
                         <p>단어장의 이름을 입력해주세요.</p>
