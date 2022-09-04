@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import "../styles/Search.css"
@@ -13,6 +13,15 @@ export default function Search(){
     const [prText, setPrText] = useState("");
     const [example, setExample] = useState("");
     const [mean, setMean] = useState("");
+    useEffect(() => {
+        const isLogged = localStorage.getItem("isLogged");
+        console.log("enter", isLogged);
+        if(isLogged === 'false'){
+            console.log("enter");
+            alert(isLogged);
+            window.location.replace("/");
+        }
+    }, []);
     async function searchWord(){
         setIsLoading(true);
         const response = await axios.get("http://localhost:8080/search?word=" + ser_text);
