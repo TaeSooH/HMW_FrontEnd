@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+}
+.wordList_container {
+    width: 100%;
+    height: 88%;
+    display: flex;
+    justify-content: center;
+}
+.wordList_box {
+    width: 80%;
+    height: auto;
+    margin-top: 40px;
+}
+.wordList_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.wordList_header div {
+    font-size: 40px;
+    margin-right: 10px;
+}
+.wordList_header hr {
+    height: 5px;
+    width: 100%;
+    background-color: black;
+    border-radius: 1000px;
+}
+.wordList_footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wordList_footer hr {
+    width: 100%;
+    height: 5px;
+    border-radius: 1000px;
+    background-color: black;
+}
+.wordList_addIcon {
+    background-color: transparent;
+    border: none;
+}

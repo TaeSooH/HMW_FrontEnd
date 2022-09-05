@@ -12,7 +12,7 @@ export default function MemoSet() {
     const username = location.state?.username;
     const [names, setNames] = useState([])
     const [listName, setListName] = useState("");
-    const nameList = names.map((name, idx) => (<WordSet key={idx} index={idx} name={name} />))
+    const nameList = names.map((data, idx) => (<WordSet key={idx} index={idx} name={data}/>))
     const [data, setData] = useState();
     const [modalOpened, setModalOpened] = useState(false);
     // const { listName, handleSubmit } = useForm();
