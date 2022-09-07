@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { GrAddCircle } from 'react-icons/gr'
 import Header from '../components/Header';
 import "../styles/wordList.css"
+import Word from '../components/Word';
 
 const WordList = () => {
   const location = useLocation();
@@ -17,10 +18,16 @@ const WordList = () => {
             <div>{name}</div>
             <hr></hr>
           </div>
-          <div></div>
+          <div className='wordList_content'>
+            <div className='word_classification'>
+              <span>단어</span>
+              <span>의미</span>
+            </div>
+            <Word />
+          </div>
           <div className='wordList_footer'>
             <hr></hr>
-            <GrAddCircle size='100' color='white' className='wordList_addIcon'/>
+            <GrAddCircle size='120' color='white' className='wordList_addIcon'/>
             <hr></hr>
           </div>
         </div>
