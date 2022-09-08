@@ -13,6 +13,7 @@ export default function MemoSet() {
     const [names, setNames] = useState([])
     const [listName, setListName] = useState("");
     const nameList = names.slice(0).reverse().map((data, idx) => (<WordSet key={idx} index={idx} name={data.title} id={data.id} />))
+    const [data, setData] = useState();
     const [modalOpened, setModalOpened] = useState(false);
     useEffect(() => {
         const isLogged = localStorage.getItem("isLogged");
@@ -51,29 +52,6 @@ export default function MemoSet() {
         }
         
     }
-    async function test(){
-        const word = new FormData();
-        
-        const wordandMeaningList =[
-                        {"word": "hi",
-                        "meaning": "안녕",
-                        },
-                        {"word": "important",
-                        "meaning": "중요한",
-                        }
-                    ]
-        const id =  1
-        word.append("wordandMeaningList", wordandMeaningList);
-                        
-        const headers = {'contentType': 'application/json'};
-        await axios.put(`http://127.0.0.1:8080/word/setWords/${id}`, wordandMeaningList, headers)
-        .then(response => {
-            alert(response);
-        })
-        .catch(error => {
-            alert(error);
-        })
-    }
     return (
         <div className="container">
             <Header username={username} />
@@ -81,6 +59,11 @@ export default function MemoSet() {
                 {nameList}
                 <Popup
                     open={modalOpened}
+                    onClose={()=>{
+                        setModalOpened(false);
+                        setListName("");
+                    }
+                    }
                 >
                     <div className="popup_input">
                         <p>단어장의 이름을 입력해주세요.</p>
@@ -88,7 +71,7 @@ export default function MemoSet() {
                             <input className="setNameInput" value={listName} onChange={(e) => { setListName(e.target.value) }} type='text' />
                             <input
                                 className="pop_submit"
-                                type={"submit"}
+                                type="submit"
                                 value="enter"
                             />
                         </form>
@@ -98,7 +81,6 @@ export default function MemoSet() {
                     <IoAddOutline size='150' />
                 </div>
             </div>
-            <button onClick={test}>test</button>
         </div>
     );
 }
