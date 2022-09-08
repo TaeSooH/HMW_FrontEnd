@@ -14,7 +14,16 @@ const WordList = () => {
   const [modalOpened, setModalOpened] = useState(false);
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
-  const [words, setWords] = useState([]);
+  const [words, setWords] = useState([
+    {
+      word: "coffee",
+      meaning: '커피'
+    },
+    {
+      word: "coffee",
+      meaning: '커피'
+    },
+  ]);
   const resultList = words.map((word, idx) => (<Word word={word.word} mean={word.meaning} idx={idx} />))
   useEffect(() => {
     async function getWords(){
