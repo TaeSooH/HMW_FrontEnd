@@ -1,12 +1,14 @@
 import React from 'react'
 import "../styles/Word.css"
 
-const Word = () => {
+const Word = (props) => {
   return (
     <div className='word_container'>
-      <span>1</span>
-      <div>coffee</div>
-      <div>커피</div>
+      <span>{props.idx + 1}</span>
+      <div className='word_box'>
+        <div>{props.word}</div>
+        <div>{props.mean}</div>
+      </div>
     </div>
   )
 }

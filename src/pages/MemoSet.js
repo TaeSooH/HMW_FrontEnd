@@ -44,7 +44,7 @@ export default function MemoSet() {
                             <input className="setNameInput" value={listName} onChange={(e) => { setListName(e.target.value) }} type='text' />
                             <input
                                 className="pop_submit"
-                                type={"submit"}
+                                type="submit"
                                 value="enter"
                             />
                         </form>
