@@ -31,3 +31,22 @@
     top: 17px;
     font-size: 25px;
 }
+.word_right_side {
+    position: relative;
+    right: 35px;
+    bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 5%;
+}
+.word_right_side span {
+    font-size: 20px;
+    height: 25px;
+    line-height: 25px;
+    background-color: rgb(113, 182, 255);
+    text-align: center;
+    border-radius: 1000px;
+    color: white;
+    cursor: pointer;
+}

@@ -98,3 +98,8 @@
     background-color: transparent;
     font-size: 40px;
 }
+.noWords {
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+}
