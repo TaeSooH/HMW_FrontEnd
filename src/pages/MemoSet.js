@@ -39,7 +39,6 @@ export default function MemoSet() {
             form.append('owner', username)
             await axios.post("http://127.0.0.1:8080/wordSet/setWordSet", form)
             .then(response =>{
-                alert(response.data);
                 setListName("");
                 setModalOpened(false);
                 window.location.replace("/memoset");
@@ -47,6 +46,14 @@ export default function MemoSet() {
             .catch(error => {
                 alert(error);
             });
+            async function GetWordSet(){
+                await axios.get(`http://127.0.0.1:8080/wordSet/getWordSet?owner=${username}`)
+                .then(response =>{
+                    console.log(response.data);
+                    setNames(response.data);
+                })
+            }
+            GetWordSet();
         } else {
             alert('이름이 입력되지 않았습니다.')
         }
@@ -67,7 +74,9 @@ export default function MemoSet() {
                 >
                     <div className="popup_input">
                         <p>단어장의 이름을 입력해주세요.</p>
-                        <form onSubmit={setWordSet}>
+                        <form 
+                        onSubmit={setWordSet}
+                        >
                             <input className="setNameInput" value={listName} onChange={(e) => { setListName(e.target.value) }} type='text' />
                             <input
                                 className="pop_submit"

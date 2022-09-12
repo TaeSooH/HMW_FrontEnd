@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "../styles/Header.css"
 
 export default function Header({username}){
-    console.log(username);
     function logout(){
         localStorage.removeItem('token');
         window.location.replace("/");

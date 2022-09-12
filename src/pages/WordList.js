@@ -7,39 +7,40 @@ import Word from '../components/Word';
 import Popup from 'reactjs-popup';
 import axios from 'axios';
 
-const WordList = () => {
+const WordList = ({name}) => {
   const location = useLocation();
   const id = location.state?.id;
-  const name = location.state?.set_name;
+  const set_name = location.state?.set_name;
   const [modalOpened, setModalOpened] = useState(false);
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
-  const [words, setWords] = useState([
-    {
-      word: "coffee",
-      meaning: '커피'
-    },
-    {
-      word: "coffee",
-      meaning: '커피'
-    },
-  ]);
-  const resultList = words.map((word, idx) => (<Word word={word.word} mean={word.meaning} idx={idx} />))
+  const [modifiedSetName, setModifiedSetName] = useState(set_name);
+  // const [words, setWords] = useState([
+  //   {
+  //     word: "coffee",
+  //     meaning: '커피'
+  //   },
+  //   {
+  //     word: "coffee",
+  //     meaning: '커피'
+  //   },
+  // ]);
+  const [words, setWords] = useState([]);
+  const resultList = words.map((word, idx) => (<Word word={word.word} mean={word.meaning} id={word.id} idx={idx} />))
   useEffect(() => {
     async function getWords(){
       const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
       setWords(response.data);
     }
     getWords();
-  }, [modalOpened]);
-
+  }, []);
   return (
     <div className='container'>
-      <Header />
+      <Header username={name} />
       <div className='wordList_container'>
         <div className='wordList_box'>
           <div className='wordList_header'>
-            <div>{name}</div>
+            <div>{set_name}</div>
             <hr></hr>
           </div>
           {words.length > 0 ? <div className='wordList_content'>
@@ -50,7 +51,7 @@ const WordList = () => {
             { resultList }
           </div>
           :
-          <div>단어가 아직 없습니다.</div>
+          <div className='noWords'>단어가 아직 없습니다.</div>
           }
           
           <div className='wordList_footer'>
@@ -59,7 +60,9 @@ const WordList = () => {
             <hr></hr>
           </div>
         </div>
+        {/* <button className='moBt'>세트이름 변경</button> */}
       </div>
+      
       <Popup 
         open={modalOpened} 
         onClose={() => {
@@ -77,6 +80,11 @@ const WordList = () => {
             const response = await axios.put(`http://127.0.0.1:8080/word/setWords/${id}`, form);
             setModalOpened(false);
             alert(response.data);
+            async function getWords(){
+              const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
+              setWords(response.data);
+            }
+            getWords();
           }}  
         >
           <p>암기할 단어 입력</p>

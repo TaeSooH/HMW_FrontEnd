@@ -37,15 +37,15 @@ function App() {
     else{
       setIsLogged(false);
     }
-  }, [isLogged, userName]); 
+  }, []); 
   return (
     <Routes>
       <Route exact path='/' element={ isLogged ? <Main name={userName} /> : <Home />} />
       <Route exact path='/login' element={<Login />} />
       <Route exact path='/register' element={<Register />} />
-      <Route exact path='/search' element={<Search />} />
-      <Route exact path='/memoset' element={<MemoSet />} />
-      <Route exact path='/memoset/wordlist' element={<WordList />} />
+      <Route exact path='/search' element={<Search name={userName} />} />
+      <Route exact path='/memoset' element={<MemoSet name={userName} />} />
+      <Route exact path='/memoset/wordlist' element={<WordList name={userName} />} />
     </Routes>
   );
 }

@@ -54,6 +54,7 @@ header{
     background-color: transparent;
     border: none;
     font-size: 100%;
+    cursor: pointer;
 }
 
 a{

@@ -4,10 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import "../styles/Search.css"
 
-export default function Search(){
-    const location = useLocation();
-    const username = location.state?.username;
-    console.log(username);
+export default function Search({name}){
     const [isLoading, setIsLoading] = useState(false);
     const [ser_text, setText] = useState("");
     const [prText, setPrText] = useState("");
@@ -43,7 +40,7 @@ export default function Search(){
     }
     return (
         <div className="container">
-            <Header username={username} />
+            <Header username={name} />
              <Link to="/" >
                 <img src="back.png" className="back" alt="사진이 없음" />
              </Link>
