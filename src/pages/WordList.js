@@ -14,7 +14,6 @@ const WordList = ({name}) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
-  const [modifiedSetName, setModifiedSetName] = useState(set_name);
   // const [words, setWords] = useState([
   //   {
   //     word: "coffee",
@@ -34,11 +33,15 @@ const WordList = ({name}) => {
     }
     getWords();
   }, []);
+  
+  
+
   return (
     <div className='container'>
       <Header username={name} />
       <div className='wordList_container'>
         <div className='wordList_box'>
+        
           <div className='wordList_header'>
             <div>{set_name}</div>
             <hr></hr>
@@ -60,13 +63,14 @@ const WordList = ({name}) => {
             <hr></hr>
           </div>
         </div>
-        {/* <button className='moBt'>세트이름 변경</button> */}
+        
       </div>
       
       <Popup 
         open={modalOpened} 
         onClose={() => {
           setModalOpened(false)
+          
         }}
       >
         <form 
@@ -100,8 +104,7 @@ const WordList = ({name}) => {
           </div>
           <input className='popup_word_submit' type='submit' value='추가하기'/>
         </form>
-      </Popup>
-      
+      </Popup>      
     </div>
   )
 }

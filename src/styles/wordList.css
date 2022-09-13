@@ -103,3 +103,18 @@
     text-align: center;
     font-size: 25px;
 }
+.setInput{
+    width: 50%;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 25px;
+    padding-left: 20px;
+}
+
+.moBt{
+    width: 7%;
+    height: 5%;
+    font-size: 15px;
+    background-color: #CCECF9;
+    padding-left: 0;
+}
