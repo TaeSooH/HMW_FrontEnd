@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Main from './pages/Main';
+import Memorize from './pages/Memorize';
 import MemoSet from './pages/MemoSet';
 import Register from './pages/Register';
 import Search from './pages/Search';
@@ -46,6 +47,7 @@ function App() {
       <Route exact path='/search' element={<Search name={userName} />} />
       <Route exact path='/memoset' element={<MemoSet name={userName} />} />
       <Route exact path='/memoset/wordlist' element={<WordList name={userName} />} />
+      <Route exact path='/memoset/wordlist/memorize' element={<Memorize/>} />
     </Routes>
   );
 }
