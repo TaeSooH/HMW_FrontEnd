@@ -27,7 +27,7 @@
     position: fixed;
     left: 37.5%;
     width: 25%;
-    height: 50%;
+    height: 70%;
     bottom: 25%;
     background-color: rgb(186, 216, 242);
     display: flex;
@@ -42,8 +42,8 @@
     height: 15%;
     background-color: white;
     border-radius: 1000px;
-    text-align: center;
-    line-height: 250%;
+    text-align: center; 
+    line-height: 350%;
     font-size: 3vh;
     cursor: pointer;
     text-decoration: none;
