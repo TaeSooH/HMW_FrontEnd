@@ -15,6 +15,7 @@ function App() {
   const [userName, setUserName] = useState("");
   useEffect(() =>{
     if(localStorage.getItem('token') != null){
+      console.log(localStorage.getItem('token'));
       async function checkLogged(){
         const token = localStorage.getItem("token");
         await axios.get("http://127.0.0.1:8080/user/getUser", {params: {
@@ -36,7 +37,9 @@ function App() {
       checkLogged();
     }
     else{
+      console.log("here")
       setIsLogged(false);
+      localStorage.setItem("isLogged", false);
     }
   }, []); 
   return (

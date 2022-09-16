@@ -2,29 +2,45 @@
     margin: 0;
     padding: 0;
 }
-.container {
+.memoset_container {
     width: 100%;
     height: 100vh;
+    background-color: #f5f7fb;
+    
 }
-.memoSet_box {                             
-    width: 100%;
-    height: 82%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(25%, auto));
+.memoSet_box {      
+    margin-top: 130px;                       
+    width: auto;
+    height: 45%;
+    display: flex;
+    justify-content: center;
+    overflow: scroll;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     /* background-color: aqua; */
 }
-.add_memoSet {
-    width: 180px;
-    height: 180px;
-    border: 7px solid #000;
-    border-radius: 20px;
+
+.memoSet_box::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+.wordSet_box{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 96px;
+    margin: 30px;
+    margin-bottom: 0;
+}
+.add_memoSet {
+    width: 180px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
+    font-size: 40px;
 }
 .popup_input {
     position: fixed;
@@ -77,4 +93,12 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+}
+
+.noset{
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
 }

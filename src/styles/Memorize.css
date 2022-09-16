@@ -26,6 +26,17 @@
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.inner_box {
+    width: 100%;
+    height: 65%;
+    background-color: white;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
@@ -42,7 +53,7 @@
     background-color: #9EDDF4;
     width: 65%;
     height: 33%;
-    top: 50.4%;
+    top: 55.4%;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
 }
@@ -61,7 +72,7 @@
 @keyframes slidein {
     from {
         position: fixed;
-        top: 50.4%;
+        top: 55.4%;
         height: 33%;
     }
     50% {
@@ -69,7 +80,7 @@
     }
     to {
         position: fixed;
-        top: 83.4%;
+        top: 88.4%;
         width: 56%;
         height: 0;
     }
@@ -88,4 +99,50 @@
     position: fixed;
     right: 12%;
     top: 46%;
+}
+
+.before_word_button {
+    position: fixed;
+    left: 12%;
+    top: 46%;
+    z-index: 7;
+}
+
+.backTo{
+    font-size: 30px;
+}
+
+.finish{
+    justify-content: space-around;
+}
+
+.non{
+    justify-content: space-around;
+}
+
+.finish span {
+    font-size: 80px;
+    color: black;
+}
+
+
+.bts {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 40px;
+    width: 100%;
+}
+.bts a{
+    height: 70px;
+    background-color: #9EDDF4;
+    text-align: center;
+    width: 40%;
+    line-height: 70px;
+    border-radius: 1000px;
+}
+.voicebtn{
+    background-color: transparent;
+    margin-top:30px;
 }

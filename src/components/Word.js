@@ -45,6 +45,7 @@ const Word = (props) => {
             const response = await axios.put(`http://127.0.0.1:8080/word/modifyWord/${props.id}`, form);
             setModalOpened(false);
             alert(response.data);
+            window.location.replace("/memoset/wordlist");
           }}  
         >
           <p>수정할 단어 입력</p>

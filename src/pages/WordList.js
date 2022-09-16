@@ -43,7 +43,7 @@ const WordList = ({name}) => {
         <div className='wordList_box'>
         
           <div className='wordList_header'>
-            <div>{set_name}</div>
+            <div className='setName'>{set_name}</div>
             <hr></hr>
           </div>
           {words.length > 0 ? <div className='wordList_content'>

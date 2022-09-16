@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { set } from "react-hook-form";
 import { Link, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import "../styles/Search.css"
@@ -21,7 +22,15 @@ export default function Search({name}){
     }, []);
     async function searchWord(){
         setIsLoading(true);
-        const response = await axios.get("http://localhost:8080/search?word=" + ser_text);
+        const response = await axios.get("http://localhost:8080/search?word=" + ser_text)
+        .catch(err => {
+            alert("잘못된 단어");
+            setIsLoading(false);
+            setPrText("");
+            setMean("");
+            setExample("");
+            setText("");
+        })
         response.data[0] = response.data[0].replace(/\(Edu times\)/g, '');
         response.data[0] = response.data[0].replace(/\(Kids Edu times\)/g, '');
         response.data[0] = response.data[0].replace(/\n/g, '<br/>');

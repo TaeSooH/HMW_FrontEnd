@@ -23,17 +23,18 @@ const WordSet = (props) => {
     window.location.replace("/memoset");
   }
   return (
-    <div className='wordSet_box'>
-      <span>{props.name}</span>
-      <div onClick={() => {
-        setModalOpened(true);
-      }}>
-        
+    <div className='wordSet_box' >
+      <div className='main_box' onClick={() => {
+      setModalOpened(true);
+    }}>
+      <p>{props.name}</p>
       </div>
+      <div className='bottom_box'></div>
+      
       <Popup open={modalOpened} onClose={()=>{setModalOpened(false)}}>
           <div className='option_list'>
             <Link className='set_modify' state={{set_name: props.name, id: props.id}} to={'/memoset/wordlist'}>세트 수정하기</Link>
-            <Link className='start_memorizing' state={{id:props.id}} to={'/memoset/wordlist/memorize'}>암기 시작하기</Link>
+            <Link className='start_memorizing' state={{set_name: props.name, id:props.id}} to={'/memoset/wordlist/memorize'}>암기 시작하기</Link>
             <button className='set_delete' onClick={deleteSet}>세트 삭제하기</button>
             <button onClick={() => {
                 setSet_nameModal(true);

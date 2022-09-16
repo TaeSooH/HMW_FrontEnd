@@ -3,23 +3,35 @@
     padding: 0;
 }
 .wordSet_box {
-    width: 100%;
-    height: 240px;
+    width: 200px;
+    height: 200px;    
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
+    box-shadow: 10px 10px 10px 10px #dcdcdc;
+    background-color: white;
 }
-.wordSet_box span {
-    font-size: 40px;
-    margin-bottom: 10px;
+.wordSet_box p {
+    font-size: 40px !important;
+    width: 80%;
+    text-align: center;
+    word-wrap: break-word;
 }
-.wordSet_box div {
-    border-radius: 25px;
+
+.main_box {
     width: 200px;
-    height: 100%;
-    border: 5px solid black;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
+
+.bottom_box{
+    width: 100%;
+    height:25px;
+    background-color: #1f8bf7;
+}
+
 .wordSet_link {
     height: 100%;
 }

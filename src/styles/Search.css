@@ -19,6 +19,7 @@
 .ser_title{
     width: 28%;
     font-size: 6vh;
+    font-weight: bold;
 }
 
 .ser_bar{
@@ -50,7 +51,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #CCECF9;
+    background-color: #1f8bf7;
     height: 50%;
     display: flex;
     flex-direction: column;    
@@ -64,6 +65,7 @@
 
 
 .exandmean{
+    color: white;
     font-size: 170%;
     width: 100%;
     display: flex;
@@ -83,10 +85,11 @@
 }
 
 .prText{
+    color:white;
     width: 100%;
     font-size: 400%;
     margin-top: 0.8%;
     padding-left: 15%;
     padding-bottom: 1%;
-    border-bottom: 3px solid black;
+    /* border-bottom: 3px solid white; */
 }
