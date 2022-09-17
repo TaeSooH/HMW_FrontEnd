@@ -11,25 +11,30 @@ export default function MemoSet({name}) {
     const [names, setNames] = useState([])
     const [listName, setListName] = useState("");
     const nameList = names.map((data, idx) => (<WordSet key={idx} index={idx} name={data.title} id={data.id} />))
-    const [data, setData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
     const [modalOpened, setModalOpened] = useState(false);
+    const [isLogged, setIsLogged] = useState(false);
     useEffect(() => {
-        const isLogged = localStorage.getItem("isLogged");
+        setIsLoading(true);
         console.log(name);
-        if(isLogged === 'true'){
+        if(localStorage.getItem("isLogged") === 'true'){
+        setIsLogged(true);
         async function GetWordSet(){
             await axios.get(`http://127.0.0.1:8080/wordSet/getWordSet?owner=${name}`)
             .then(response =>{
                 console.log(response.data);
+                const wordSets = response.data;
                 setNames(response.data);
             })
+            setIsLoading(false);
         }
         GetWordSet();
         }
         else{
             alert("로그인이 필요한 작업입니다.")
-            window.location.href("/");
+            window.location.replace("/login");
         }
+        
     }, [name]);
     async function setWordSet(e){
         e.preventDefault();
@@ -59,10 +64,13 @@ export default function MemoSet({name}) {
         }
         
     }
+    if(isLoading || !isLogged) return <div>...</div>
     return (
+        <>
         <div className="memoset_container">
             <Header username={name} />
-            {names.length < 1 ? <div className="noset"> 아직 세트가 없습니다 . . .</div>:<div className="memoSet_box">
+            {names.length < 1 ? <div className="noset"> 아직 세트가 없습니다 . . .</div>
+            :<div className={names.length <= 5 ? "memoSet_box" : "long_memoSet_box"} >
                 {nameList}
                 
             </div>}
@@ -89,8 +97,8 @@ export default function MemoSet({name}) {
                     </div>
                 </Popup>
             <div className="add_memoSet" onClick={() => {setModalOpened(true)}}>
-                    추가하기
+                새로 만들기
             </div>
         </div>
-    );
+        </>);
 }

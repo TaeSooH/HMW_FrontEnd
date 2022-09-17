@@ -22,7 +22,7 @@ export default function Login(){
         window.location.replace("/");
     }
     return (
-        <div className="container">
+        <div className="login_container">
             <MainHeader />
             <form onSubmit={login}>
                 <input value={id} type={'text'} placeholder="아이디" className="id" onChange={(e) => {setId(e.target.value)}} />

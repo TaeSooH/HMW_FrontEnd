@@ -18,19 +18,21 @@ const Memorize = () => {
     const id = location.state?.id;
     const set_name = location.state?.set_name;
     const [wordList, setWordList] = useState([]);
-    const [load, setLoad] = useState(false);
+    const [load, setLoad] = useState(true);
     var voices = [];
     useEffect(() => {
-        setLoad(false);
         async function getWords(){
             console.log('enter')
             const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
-            console.log(response.data);
             setWordList(response.data);
+            console.log(wordList);
+            console.log(load);
+            setLoad(false);
+            console.log(wordList)
         }
         getWords();
         document.addEventListener('keydown', space, true);
-        setLoad(true);
+        
         voices = window.speechSynthesis.getVoices();
     }, []);
     const space = (e) => {
@@ -48,9 +50,10 @@ const Memorize = () => {
        });
        setPlaying(false);
     }
+    if(load) return <div>...</div>
   return (
     <>
-    {load ? wordList.length !== 0 ? 
+    {wordList.length !== 0 ? 
     <Carousel showThumbs={false} showIndicators={false} showStatus={false} 
     renderArrowNext={(clickHandler, hasNext, labelNext) => 
         hasNext && ( <MdOutlineNavigateNext onClick={()=>{
@@ -105,7 +108,7 @@ const Memorize = () => {
     </div>
     </div>
 </div> 
-: <div>로딩중...</div> }
+}
 </>
   )
 }

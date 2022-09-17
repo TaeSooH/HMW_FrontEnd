@@ -20,8 +20,22 @@
     scrollbar-width: none; /* Firefox */
     /* background-color: aqua; */
 }
+.long_memoSet_box {      
+    margin-top: 130px;                       
+    width: auto;
+    height: 45%;
+    display: flex;
+    overflow: scroll;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    /* background-color: aqua; */
+}
 
 .memoSet_box::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+.long_memoSet_box::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
 }
 .wordSet_box{
@@ -32,7 +46,7 @@
     margin-bottom: 0;
 }
 .add_memoSet {
-    width: 180px;
+    width: auto;
     height: 50px;
     display: flex;
     align-items: center;
@@ -48,15 +62,16 @@
     width: 40%;
     height: 40%;
     bottom: 30%;
-    background-color: rgb(186, 216, 242);
+    background-color: #1f8bf7;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 30px;
+    border-radius: 10px;
 }
 .popup_input p {
-    font-size: 3vh;
+    font-size: 3.5vh;
+    font-weight: 700;
     margin-bottom: 3%;
 }
 .no_input {

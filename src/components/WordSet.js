@@ -30,7 +30,7 @@ const WordSet = (props) => {
       <p>{props.name}</p>
       </div>
       <div className='bottom_box'></div>
-      
+    
       <Popup open={modalOpened} onClose={()=>{setModalOpened(false)}}>
           <div className='option_list'>
             <Link className='set_modify' state={{set_name: props.name, id: props.id}} to={'/memoset/wordlist'}>세트 수정하기</Link>

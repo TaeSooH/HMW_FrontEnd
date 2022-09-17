@@ -50,7 +50,7 @@
 }
 .nonClick {
     position: fixed;
-    background-color: #9EDDF4;
+    background-color: #1f8bf7;
     width: 65%;
     height: 33%;
     top: 55.4%;
@@ -59,7 +59,7 @@
 }
 .content_box_onClick {
     position: fixed;
-    background-color: #9EDDF4;
+    background-color: #1f8bf7;
     width: 65%;
     height: 33%;
     top: 50.4%;

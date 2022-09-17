@@ -1,10 +1,11 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "../styles/Main.css"
 
-export default function Main({name}){
-    console.log(name);
+export default function Main({name}){ 
     return(
         <div className="container">
             <Header username={name} />
@@ -16,6 +17,13 @@ export default function Main({name}){
                 <div className="sec1_content">
                     쉽고,<br/>빠르게,<br/>영어 단어 성적 올리자!
                 </div>
+                </div>
+                <div className="right_sec">
+                    <div className="ex_text">
+                    Helping<br/>
+                    Memorize<br/>
+                    Words<br/>
+                    </div>
                 </div>
             </div>
             <div className="section2">

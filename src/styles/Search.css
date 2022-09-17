@@ -29,6 +29,7 @@
     margin-top: 1%;
     box-shadow: 3px 3px 3px gray;
     border: 0.5px solid black;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center; 
@@ -65,7 +66,7 @@
 
 
 .exandmean{
-    color: white;
+    color: black;
     font-size: 170%;
     width: 100%;
     display: flex;
@@ -85,7 +86,7 @@
 }
 
 .prText{
-    color:white;
+    color:black;
     width: 100%;
     font-size: 400%;
     margin-top: 0.8%;

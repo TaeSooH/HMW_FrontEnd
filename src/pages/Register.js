@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import MainHeader from "../components/MainHeader";
 import "../styles/Register.css";
 
@@ -18,13 +19,14 @@ export default function Register(){
         window.location.replace("/");
     }
     return (
-        <div className="container">
+        <div className="register_container">
             <MainHeader />
             <form onSubmit={register}>
                 <input type={'text'} placeholder="아이디" className="id" value={id} onChange={(e) => {setId(e.target.value)}} />
                 <input type={'password'} placeholder="비밀번호" className="pw" value={password1} onChange={(e) => {setPassword1(e.target.value)}} />
                 <input type={'password'} placeholder="비밀번호 재입력" className="ckpw"  value={password2} onChange={(e) => {setPassword2(e.target.value)}} />
                 <input type={'submit'} value="회원가입" className="submit" />
+                <Link to="/login"><p className="toJoin">계정이 이미 있으신가요? 로그인 하기</p></Link>
             </form>
         </div>
     );

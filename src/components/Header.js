@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Header.css"
 
@@ -18,7 +19,14 @@ export default function Header({username}){
                 <Link to="/memoset" state={{username: username}} className="memo_word2" style={{ textDecoration: 'none' }}>
                     단어 세트
                 </Link>
-                <div className="user" onClick={logout}>{username}(로그아웃)</div>
+                {username !== '' ? 
+                <div className="user" onClick={logout}>{username}(로그아웃)</div> 
+                : 
+                <>
+                <Link to="/login" className="login">로그인</Link>
+                <Link to="/register" className="join">회원가입</Link>
+                </>
+                }
         </header>
     );
 }

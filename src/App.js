@@ -11,7 +11,7 @@ import Search from './pages/Search';
 import WordList from './pages/WordList';
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useState("");
   useEffect(() =>{
     if(localStorage.getItem('token') != null){
@@ -23,13 +23,9 @@ function App() {
         }})
         .then(response => {
           setUserName(response.data.name);
-          setIsLogged(true);
           localStorage.setItem("isLogged", true);
         })
         .catch(error => {
-          console.log(error);
-          setIsLogged(false); 
-          console.log(isLogged);
           localStorage.setItem("isLogged", false);
           localStorage.removeItem("token");
         });
@@ -37,14 +33,14 @@ function App() {
       checkLogged();
     }
     else{
-      console.log("here")
-      setIsLogged(false);
       localStorage.setItem("isLogged", false);
     }
+    setLoading(false);
   }, []); 
+  if(loading) return <div>. . .</div>
   return (
     <Routes>
-      <Route exact path='/' element={ isLogged ? <Main name={userName} /> : <Home />} />
+      <Route exact path='/' element={<Main name={userName} />} />
       <Route exact path='/login' element={<Login />} />
       <Route exact path='/register' element={<Register />} />
       <Route exact path='/search' element={<Search name={userName} />} />
