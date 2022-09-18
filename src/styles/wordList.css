@@ -68,7 +68,7 @@
 .popup_word_container {
     width: 800px;
     height: 250px;
-    background-color: rgb(186, 216, 242);
+    background-color: #1f8bf7;
     display: flex;
     justify-content: space-evenly;
     border-radius: 30px;
