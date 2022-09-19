@@ -14,16 +14,6 @@ const WordList = ({name}) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
-  // const [words, setWords] = useState([
-  //   {
-  //     word: "coffee",
-  //     meaning: '커피'
-  //   },
-  //   {
-  //     word: "coffee",
-  //     meaning: '커피'
-  //   },
-  // ]);
   const [words, setWords] = useState([]);
   const resultList = words.map((word, idx) => (<Word word={word.word} mean={word.meaning} id={word.id} idx={idx} />))
   useEffect(() => {
