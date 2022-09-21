@@ -11,6 +11,7 @@ const WordSet = (props) => {
   async function deleteSet(){
     const check = window.confirm("정말로 삭제하시겠습니까?")
     if(check){
+      console.log(props.id);
       const response = await axios.put(`http://127.0.0.1:8080/wordSet/deleteWordSet/${props.id}`);
       setModalOpened(false);
       window.location.replace("/memoset");

@@ -21,10 +21,15 @@ const WordList = ({name}) => {
       const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
       setWords(response.data);
     }
+    document.addEventListener('keydown', enter, true);
     getWords();
   }, []);
   
-  
+  const enter = (e) => {
+    if(e.key === 'Enter'){
+      setModalOpened(true);
+    }
+  }
 
   return (
     <div className='container'>
@@ -49,7 +54,7 @@ const WordList = ({name}) => {
           
           <div className='wordList_footer'>
             <hr></hr>
-            <GrAddCircle size='120' color='black' className='wordList_addIcon' onClick={() => {setModalOpened(true)}}/>
+            <GrAddCircle size='120' color='black' className='wordList_addIcon' onKeyDown={() => {}} onClick={() => {setModalOpened(true)}}/>
             <hr></hr>
           </div>
         </div>
@@ -67,32 +72,39 @@ const WordList = ({name}) => {
           className='popup_word_container'
           onSubmit={ async (e) => {
             e.preventDefault();
+            if(word !== "" && meaning !== ""){ 
             const form = {
               "word": word,
               "meaning": meaning
             }
             const response = await axios.put(`http://127.0.0.1:8080/word/setWords/${id}`, form);
             setModalOpened(false);
+            setWord("");
+            setMeaning("");
             alert(response.data);
             async function getWords(){
               const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
               setWords(response.data);
             }
             getWords();
+          }
+          else{
+            alert("단어나 의미가 없습니다!");
+          }
           }}  
         >
           <p>암기할 단어 입력</p>
           <div className='popup_bot'>
             <div className='popup_top'>
               <span>단어</span>
-              <input onChange={(e) => {setWord(e.target.value)}} type='text' />
+              <input onChange={(e) => {setWord(e.target.value)}} type='text' value={word} />
             </div>
             <div className='popup_top'>
               <span>의미</span>
-              <input onChange={(e) => {setMeaning(e.target.value)}} type='text' />
+              <input onChange={(e) => {setMeaning(e.target.value)}} type='text' value={meaning} />
             </div>
           </div>
-          <input className='popup_word_submit' type='submit' value='추가하기'/>
+          <input  className='popup_word_submit' type='submit' value='추가하기'/>
         </form>
       </Popup>      
     </div>
