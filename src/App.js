@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Memorize from './pages/Memorize';
+import MemorizeTest from './pages/MemorizeTest';
 import MemoSet from './pages/MemoSet';
 import Register from './pages/Register';
 import Search from './pages/Search';
