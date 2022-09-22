@@ -23,9 +23,9 @@ export default function Main({name}){
                     {/* Helping<br/>
                     Memorize<br/>
                     Words<br/> */}
-                    Helping
-                    Memorize
-                    Words
+                    <p>Helping</p>
+                    <p>Memorize</p>
+                    <p>Words</p>
                     </div>
                 </div>
             </div>

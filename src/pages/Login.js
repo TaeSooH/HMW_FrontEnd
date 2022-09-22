@@ -32,7 +32,6 @@ export default function Login(){
                 <p className="toJoin">회원가입 하기</p>
                 </Link>
             </form>
-            
         </div>
     );
 }

@@ -25,10 +25,36 @@
     font-size: 70px;
     font-weight: bold;
 }
-.ex_text{
+.ex_text {
     width: 30%;
     margin-top: 19%;
     margin-left: 32%;
+}
+.ex_text p:nth-child(1) {
+    opacity: 0;
+    animation: fadein 1s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+.ex_text p:nth-child(2) {
+    opacity: 0;
+    animation: fadein 1s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+}
+.ex_text p:nth-child(3) {
+    opacity: 0;
+    animation: fadein 1s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 .sec1_content{
     font-size: 50px;
