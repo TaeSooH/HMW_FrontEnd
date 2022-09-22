@@ -8,6 +8,8 @@ const WordSet = (props) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [set_nameModal, setSet_nameModal] = useState(false);
   const [modifiedSetName, setModifiedSetName] = useState(props.name);
+  const [memorizeWay, setMemorizeWay] = useState();
+
   async function deleteSet(){
     const check = window.confirm("정말로 삭제하시겠습니까?")
     if(check){
@@ -34,8 +36,7 @@ const WordSet = (props) => {
     
       <Popup open={modalOpened} onClose={()=>{setModalOpened(false)}}>
           <div className='option_list'>
-            <Link className='set_modify' state={{set_name: props.name, id: props.id}} to={'/memoset/wordlist'}>세트 수정하기</Link>
-            <Link className='start_memorizing' state={{set_name: props.name, id:props.id}} to={'/memoset/wordlist/memorize'}>암기 시작하기</Link>
+            <Link className='set_modify' state={{set_name: props.name, id: props.id}} to={'/memoset/wordlist'}>세트 확인하기</Link>
             <button className='set_delete' onClick={deleteSet}>세트 삭제하기</button>
             <button onClick={() => {
                 setSet_nameModal(true);

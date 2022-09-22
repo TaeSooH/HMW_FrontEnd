@@ -5,10 +5,10 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Memorize from './pages/Memorize';
-import MemorizeTest from './pages/MemorizeTest';
 import MemoSet from './pages/MemoSet';
 import Register from './pages/Register';
 import Search from './pages/Search';
+import Spelling from './pages/Spelling';
 import WordList from './pages/WordList';
 
 function App() {
@@ -48,6 +48,7 @@ function App() {
       <Route exact path='/memoset' element={<MemoSet name={userName} />} />
       <Route exact path='/memoset/wordlist' element={<WordList name={userName} />} />
       <Route exact path='/memoset/wordlist/memorize' element={<Memorize/>} />
+      <Route exact path='/memoset/wordlist/spelling' element={<Spelling/>} />
     </Routes>
   );
 }

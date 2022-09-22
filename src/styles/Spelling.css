@@ -1,0 +1,53 @@
+.Spelling_input {
+    width: 70%;
+    height: 15%;
+    border: 1px solid grey;
+    border-radius: 10px;
+    font-size: 20px;
+    padding-left: 10px;
+}
+.Spelling_right {
+    width: 70%;
+    height: 15%;
+    border: 1px solid #1f8bf7;
+    color: #1f8bf7;
+    border-radius: 10px;
+    font-size: 20px;
+    padding-left: 10px;
+}
+.Spelling_wrong {
+    width: 70%;
+    height: 15%;
+    border: 1px solid red;
+    color: red;
+    border-radius: 10px;
+    font-size: 20px;
+    padding-left: 10px;
+    animation: wrong 0.3s;
+}
+@keyframes wrong {
+    from {
+        transform: translateX(-10px);
+    }
+    20% {
+        transform: translateX(20px);
+    }
+    40% {
+        transform: translateX(-20px);
+    }
+    60% {
+        transform: translateX(20px);
+    }
+    80% {
+        transform: translateX(-20px);
+    }
+    to {
+        transform: translateX(10px);
+    }
+}
+.inner_box span {
+    position: absolute;
+    top: 73%;
+    font-size: 30px;
+    color: #1f8bf7;
+}

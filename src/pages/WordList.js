@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { GrAddCircle } from 'react-icons/gr'
 import Header from '../components/Header';
 import "../styles/wordList.css"
@@ -22,6 +22,7 @@ const WordList = ({name}) => {
       setWords(response.data);
     }
     document.addEventListener('keydown', enter, true);
+    console.log(id);
     getWords();
   }, []);
   
@@ -57,6 +58,7 @@ const WordList = ({name}) => {
             <GrAddCircle size='120' color='black' className='wordList_addIcon' onKeyDown={() => {}} onClick={() => {setModalOpened(true)}}/>
             <hr></hr>
           </div>
+        <div className="Bottom_box"></div>
         </div>
         
       </div>
@@ -106,7 +108,17 @@ const WordList = ({name}) => {
           </div>
           <input  className='popup_word_submit' type='submit' value='추가하기'/>
         </form>
-      </Popup>      
+      </Popup>
+      <div className="Bottom_menu">
+        <div className='Menu_inner_box'>
+          <Link className='start_memorizing' state={{set_name: set_name, id:id}} to={'/memoset/wordlist/memorize'}>암기학습</Link>
+          <p>단어 또는 의미를 보고 맞추기</p>
+        </div>
+        <div className='Menu_inner_box'>
+          <Link className='start_memorizing' state={{set_name: set_name, id:id}} to={'/memoset/wordlist/spelling'}>스펠학습</Link>
+          <p>의미를 보고 단어의 스펠링을 맞추기</p>
+        </div>
+      </div>
     </div>
   )
 }

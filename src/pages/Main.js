@@ -20,9 +20,12 @@ export default function Main({name}){
                 </div>
                 <div className="right_sec">
                     <div className="ex_text">
-                    Helping<br/>
+                    {/* Helping<br/>
                     Memorize<br/>
-                    Words<br/>
+                    Words<br/> */}
+                    Helping
+                    Memorize
+                    Words
                     </div>
                 </div>
             </div>

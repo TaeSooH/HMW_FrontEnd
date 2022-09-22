@@ -132,7 +132,12 @@ const Memorize = () => {
     <span>{set_name}</span>
     <span>{index+1}/{wordList.length}</span>
     <div className='content_box'>
-        <button className='voicebtn' onClick={() => (speech(data.word))}>{playing? <CgPlayPause size="30" /> : <GiSpeaker size="30" />}</button>
+        {
+            way === 'meaning' ? !isClick ?
+            <button className='voicebtn'><GiSpeaker size="30" color='grey' /></button>
+            : <button className='voicebtn' onClick={() => (speech(data.word))}>{playing? <CgPlayPause size="30" /> : <GiSpeaker size="30" />}</button>
+            :<button className='voicebtn' onClick={() => (speech(data.word))}>{playing? <CgPlayPause size="30" /> : <GiSpeaker size="30" />}</button>
+        }
         <div className="inner_box">
         <p>{way === 'word' ? data.word : data.meaning}</p>
         <div
@@ -155,7 +160,12 @@ const Memorize = () => {
     <span>{set_name}</span>
     <span>{index+1}/{wordList.length}</span>
     <div className='content_box'>
-        <button className='voicebtn' onClick={() => (speech(data.word))}>{playing? <CgPlayPause size="30" /> : <GiSpeaker size="30" />}</button>
+        {
+            way === 'meaning' ? !isClick ?
+            <button className='voicebtn'><GiSpeaker color='grey' size="30" /></button>
+            : <button className='voicebtn' onClick={() => (speech(data.word))}>{playing? <CgPlayPause size="30" /> : <GiSpeaker size="30" />}</button>
+            :<button className='voicebtn' onClick={() => (speech(data.word))}>{playing? <CgPlayPause size="30" /> : <GiSpeaker size="30" />}</button>
+        }
         <div className="inner_box">
         <p>{way === 'word' ? data.word : data.meaning}</p>
         <div
