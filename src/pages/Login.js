@@ -12,14 +12,19 @@ export default function Login(){
         const form = new FormData();
         form.append('name', id);
         form.append('password', password);
-        const response = await axios.post("http://127.0.0.1:8080/user/login", form);
-        if(response.data.result !== "error") {
+        await axios.post("http://127.0.0.1:8080/user/login", form)
+        .then(response => {
+             if(response.data.result !== "error") {
             localStorage.setItem('token', response.data.result);
-        }
-        else {
-            alert("error");
-        }
-        window.location.replace("/");
+            window.location.replace("/");
+            }
+            else {
+              alert("아이디 또는 비밀번호를 확인하세요");
+            }
+        })
+        .catch(err => {
+            alert(err);
+        })
     }
     return (
         <div className="login_container">

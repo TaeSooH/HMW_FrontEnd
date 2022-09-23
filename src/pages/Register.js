@@ -14,9 +14,14 @@ export default function Register(){
         form.append('name', id);
         form.append('password1', password1);
         form.append('password2', password2);
-        const response = await axios.post("http://127.0.0.1:8080/user/signup", form)
-        alert(response.data);
-        window.location.replace("/");
+        await axios.post("http://127.0.0.1:8080/user/signup", form)
+        .then(response => {
+            alert(response.data);
+            window.location.replace("/");
+        })
+        .catch(err => {
+            alert("사용자가 이미 있습니다!");
+        })
     }
     return (
         <div className="register_container">
