@@ -33,19 +33,19 @@
 .ex_text p:nth-child(1) {
     opacity: 0;
     animation: fadein 1s;
-    animation-delay: 1s;
+    animation-delay: 0.5s;
     animation-fill-mode: forwards;
 }
 .ex_text p:nth-child(2) {
     opacity: 0;
     animation: fadein 1s;
-    animation-delay: 2s;
+    animation-delay: 1s;
     animation-fill-mode: forwards;
 }
 .ex_text p:nth-child(3) {
     opacity: 0;
     animation: fadein 1s;
-    animation-delay: 3s;
+    animation-delay: 1.5s;
     animation-fill-mode: forwards;
 }
 @keyframes fadein {
