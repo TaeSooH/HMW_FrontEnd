@@ -73,22 +73,12 @@ const Spelling = () => {
   }
   function inspect(ans, target){
       console.log("asdasdadasda");
-      if(way === 'word'){
-        if(ans === target){
-          setIsClick(true)
-          setFirst(false)
-        }
-        else setIsClick(false)
+      if(ans === target){
+        setIsClick(true)
         setFirst(false)
       }
-      else{
-        if(ans === target){
-          setIsClick(true)
-          setFirst(false)
-        }
-        else setIsClick(false)
-        setFirst(false)
-      }
+      else setIsClick(false)
+      setFirst(false)
   }
   if(load) return <div>...</div>
   if(!start) return (
@@ -135,6 +125,7 @@ return (
       hasNext && ( <MdOutlineNavigateNext onClick={()=>{
           clickHandler();
           setIsClick(false);
+          setFirst(true);
       }} className='next_word_button' color='white' size='70' />
       )}
   renderArrowPrev={(clickHandler, hasPrev, labelPrev) => 
@@ -165,9 +156,10 @@ return (
         onChange={(e) => {
           setAnswer(e.target.value)
         }}
-        className='Spelling_input' 
+        className={first ? "Spelling_input" : isClick ? "Spelling_right" : "Spelling_wrong"}
         type='text' 
       />  
+      {!first && (isClick ? <span>정답입니다!</span> : <span style={{color:"red"}}>틀렸습니다!</span>)}
       </div> 
   </div>
   <div onClick={()=> {
