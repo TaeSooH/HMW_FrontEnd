@@ -14,8 +14,10 @@
     border-radius: 10px;
     font-size: 20px;
     padding-left: 10px;
-    animation: right 0.5s;
+    animation: right 0.8s;
 }
+
+
 .Spelling_wrong {
     width: 70%;
     height: 15%;
@@ -48,11 +50,16 @@
 }
 @keyframes right {
     from {
-        transform: scale(1.5);
-        
-    }   
+        transform: scale(1)
+    }
+    25% {
+        transform: scale(1.2, 1.45);
+    }
+    38% {
+        transform: scale(1.2, 1.45);
+    }
     to {
-        transform: scale(1.5);
+        transform: scale(1);
     }
 }
 .inner_box span {

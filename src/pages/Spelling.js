@@ -159,7 +159,7 @@ return (
         onChange={(e) => {
           setAnswer(e.target.value)
         }}
-        className={first ? "Spelling_input" : isClick ? "animate__animated animate__heartBeat Spelling_right" : "Spelling_wrong"}
+        className={first ? "Spelling_input" : isClick ? "Spelling_right" : "Spelling_wrong"}
         type='text' 
         value={answer}
       />  
@@ -196,7 +196,7 @@ return (
           onChange={(e) => {
             setAnswer(e.target.value)
           }}
-          className={first ? "Spelling_input" : isClick ? "animate__animated animate__heartBeat Spelling_right" : "Spelling_wrong"}
+          className={first ? "Spelling_input" : isClick ? "Spelling_right" : "Spelling_wrong"}
           type='text' 
           value={answer}
         /> 
