@@ -126,6 +126,7 @@ return (
           clickHandler();
           setIsClick(false);
           setFirst(true);
+          setAnswer("");
       }} className='next_word_button' color='white' size='70' />
       )}
   renderArrowPrev={(clickHandler, hasPrev, labelPrev) => 
@@ -133,6 +134,7 @@ return (
        <MdOutlineNavigateBefore onClick={()=>{
           clickHandler();
           setIsClick(false);
+          setAnswer("");
       }}  className='before_word_button' color='white' size='70' />
       )
   }
@@ -158,6 +160,7 @@ return (
         }}
         className={first ? "Spelling_input" : isClick ? "Spelling_right" : "Spelling_wrong"}
         type='text' 
+        value={answer}
       />  
       {!first && (isClick ? <span>정답입니다!</span> : <span style={{color:"red"}}>틀렸습니다!</span>)}
       </div> 
@@ -194,6 +197,7 @@ return (
           }}
           className={first ? "Spelling_input" : isClick ? "Spelling_right" : "Spelling_wrong"}
           type='text' 
+          value={answer}
         /> 
 
         {!first && (isClick ? <span>정답입니다!</span> : <span style={{color:"red"}}>틀렸습니다!</span>)}

@@ -14,7 +14,7 @@
     border-radius: 10px;
     font-size: 20px;
     padding-left: 10px;
-    animation: right 0.7s;
+    animation: right 0.5s;
 }
 .Spelling_wrong {
     width: 70%;
@@ -48,22 +48,11 @@
 }
 @keyframes right {
     from {
-        transform: translateY(10px);
-    }  
-    20% {
-        transform: translateY(-20px);
-    }
-    40% {
-        transform: translateY(20px);
-    }
-    60% {
-        transform: translateY(-20px);
-    }
-    80% {
-        transform: translateY(20px);
-    }  
+        transform: scale(1.5);
+        
+    }   
     to {
-        transform: translateY(-10px);
+        transform: scale(1.5);
     }
 }
 .inner_box span {

@@ -70,7 +70,7 @@ export default function MemoSet({name}) {
         <div className="memoset_container">
             <Header username={name} />
             {names.length < 1 ? <div className="noset"> 아직 세트가 없습니다 . . .</div>
-            :<div className={names.length <= 5 ? "memoSet_box" : "long_memoSet_box"} >
+            :<div className={names.length <= 6 ? "memoSet_box" : "long_memoSet_box"} >
                 {nameList}
                 
             </div>}
