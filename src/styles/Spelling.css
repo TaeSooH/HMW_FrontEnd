@@ -5,6 +5,7 @@
     border-radius: 10px;
     font-size: 20px;
     padding-left: 10px;
+    margin-bottom: 10%;
 }
 .Spelling_right {
     width: 70%;
@@ -15,9 +16,8 @@
     font-size: 20px;
     padding-left: 10px;
     animation: right 0.8s;
+    margin-bottom: 10%;
 }
-
-
 .Spelling_wrong {
     width: 70%;
     height: 15%;
@@ -27,6 +27,7 @@
     font-size: 20px;
     padding-left: 10px;
     animation: wrong 0.3s;
+    margin-bottom: 10%;
 }
 @keyframes wrong {
     from {
@@ -62,9 +63,9 @@
         transform: scale(1);
     }
 }
-.inner_box span {
+.inner_span {
     position: absolute;
     top: 73%;
-    font-size: 30px;
+    font-size: 30px !important;
     color: #1f8bf7;
 }

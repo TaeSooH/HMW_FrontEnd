@@ -139,13 +139,13 @@ const Memorize = () => {
             :<button className='voicebtn' onClick={() => (speech(data.word))}>{playing? <CgPlayPause size="30" /> : <GiSpeaker size="30" />}</button>
         }
         <div className="inner_box">
-        <p>{way === 'word' ? data.word : data.meaning}</p>
-        <div
-            className={
-                isClick ? "content_box_onClick" : "nonClick"
-            }
-        ></div>
-        <span>{way === 'word' ? data.meaning : data.word}</span>  
+            <p>{way === 'word' ? data.word : data.meaning}</p>
+            <span className='content_box_span'>{way === 'word' ? data.meaning : data.word}</span> 
+            <div
+                className={
+                    isClick ? "content_box_onClick" : "nonClick"
+                }
+            ></div> 
         </div> 
     </div>
     <div onClick={()=> {
@@ -173,7 +173,7 @@ const Memorize = () => {
                 isClick ? "content_box_onClick" : "nonClick"
             }
         ></div>
-        <span>{way === 'word' ? data.meaning : data.word}</span>  
+        <span className='content_box_span'>{way === 'word' ? data.meaning : data.word}</span>  
         </div> 
     </div>
     <div onClick={()=> {

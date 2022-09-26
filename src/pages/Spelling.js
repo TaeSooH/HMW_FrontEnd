@@ -135,6 +135,7 @@ return (
        <MdOutlineNavigateBefore onClick={()=>{
           clickHandler();
           setIsClick(false);
+          setFirst(true);
           setAnswer("");
       }}  className='before_word_button' color='white' size='70' />
       )
@@ -153,17 +154,18 @@ return (
           :<button className='voicebtn' onClick={() => (speech(data.word))}>{playing? <CgPlayPause size="30" /> : <GiSpeaker size="30" />}</button>
       }
       <div className="inner_box">
-      <p>{way === 'word' ? data.word : data.meaning}</p>
-      <hr style={{width:"100%", height:"1px", backgroundColor: "grey"}}></hr>
-      <input 
-        onChange={(e) => {
-          setAnswer(e.target.value)
-        }}
-        className={first ? "Spelling_input" : isClick ? "Spelling_right" : "Spelling_wrong"}
-        type='text' 
-        value={answer}
-      />  
-      {!first && (isClick ? <span>정답입니다!</span> : <span style={{color:"red"}}>틀렸습니다!</span>)}
+        <p>{way === 'word' ? data.word : data.meaning}</p>
+        <hr style={{width:"100%", height:"1px", backgroundColor: "grey"}}></hr>
+        <input 
+          onChange={(e) => {
+            setAnswer(e.target.value)
+          }}
+          className={first ? "Spelling_input" : isClick ? "Spelling_right" : "Spelling_wrong"}
+          type='text' 
+          value={answer}
+        />  
+        {!first && (isClick ? <span className='inner_span'>정답입니다!</span> : <span className='inner_span' style={{color:"red"}}>틀렸습니다!</span>)}
+        {/* {isClick ? <span>정답입니다!</span> : <span style={{color:"red"}}>틀렸습니다!</span>} */}
       </div> 
   </div>
   <div onClick={()=> {
@@ -201,7 +203,8 @@ return (
           value={answer}
         /> 
 
-        {!first && (isClick ? <span>정답입니다!</span> : <span style={{color:"red"}}>틀렸습니다!</span>)}
+        {/* {isClick ? <span className='inner_span'>정답입니다!</span> : <span className='inner_span' style={{color:"red"}}>틀렸습니다!</span>} */}
+        {!first && (isClick ? <span className='inner_span'>정답입니다!</span> : <span className='inner_span' style={{color:"red"}}>틀렸습니다!</span>)}
       </div> 
   </div>
   <div onClick={()=> {
