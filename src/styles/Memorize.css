@@ -73,6 +73,13 @@
     transform: translateX(20px);
 }
 
+.go_to_back{
+    color: white;
+    font-size: 150%;
+    align-self: flex-start;
+    margin-left: 2%;
+}
+
 .memorize_way, .setlist{
     margin-left: 20px;
     margin-right: 20px;
@@ -153,7 +160,7 @@
     background-color: #1f8bf7;
     width: 65%;
     height: 33%;
-    top: 55.4%;
+    top: 57.5%;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
 }
@@ -162,7 +169,7 @@
     background-color: #1f8bf7;
     width: 65%;
     height: 33%;
-    top: 50.4%;
+    top: 52.5%;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     animation-duration: 1s;
@@ -172,7 +179,7 @@
 @keyframes slidein {
     from {
         position: fixed;
-        top: 55.4%;
+        top: 57.5%;
         height: 33%;
     }
     50% {
@@ -180,7 +187,7 @@
     }
     to {
         position: fixed;
-        top: 88.4%;
+        top: 90.5%;
         width: 59%;
         height: 0;
     }

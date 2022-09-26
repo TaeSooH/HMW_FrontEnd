@@ -73,6 +73,7 @@ const Memorize = () => {
     if(load) return <div>...</div>
     if(!start) return (
     <div className="memorize_container">
+        <Link className="go_to_back" to="/memoset">학습 종료</Link>
         <div className="check">
             <p className='box_title'>적절한 모드와 방법으로 단어를 효율적으로 외우세요!</p>
             <div className="setlist">
@@ -129,6 +130,7 @@ const Memorize = () => {
     {shuffle ? 
     shuffleList.map((data, index) => (
     <div className='memorize_container'>
+        <Link className="go_to_back" to="/memoset">학습 종료</Link>
     <span>{set_name}</span>
     <span>{index+1}/{wordList.length}</span>
     <div className='content_box'>
@@ -157,6 +159,7 @@ const Memorize = () => {
     : 
     wordList.map((data, index) => (
     <div className='memorize_container'>
+    <Link className="go_to_back" to="/memoset">학습 종료</Link>
     <span>{set_name}</span>
     <span>{index+1}/{wordList.length}</span>
     <div className='content_box'>
