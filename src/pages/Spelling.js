@@ -121,7 +121,7 @@ const Spelling = () => {
           </div>
           <button className='startMemo' onClick={() => {
               setStart(true)
-              }} >암기 학습 시작</button>
+              }} >스펠 학습 시작</button>
       </div>
   </div>
   )
@@ -204,7 +204,7 @@ return (
         inspect(answer, data.word);
       }
   }}}
-  className='space_button'>space</div>
+  className='space_button'></div>
   </div>)
   )
   : 
@@ -252,7 +252,7 @@ return (
       inspect(answer, data.word);
     }
   }}  
-  className='space_button'>space</div>
+  className='space_button'>enter</div>
   </div>
   ))
   }
