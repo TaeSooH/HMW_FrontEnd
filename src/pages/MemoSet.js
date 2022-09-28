@@ -10,7 +10,7 @@ import axios from "axios";
 export default function MemoSet({name}) {
     const [names, setNames] = useState([])
     const [listName, setListName] = useState("");
-    const nameList = names.map((data, idx) => (<WordSet key={idx} index={idx} name={data.title} id={data.id} />))
+    const nameList = names.map((data, idx) => (<WordSet key={idx} index={idx} name={data.title} id={data.id} length={data.word_length} />))
     const [isLoading, setIsLoading] = useState(true);
     const [modalOpened, setModalOpened] = useState(false);
     const [isLogged, setIsLogged] = useState(false);

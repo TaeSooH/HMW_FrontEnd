@@ -31,6 +31,7 @@ const WordSet = (props) => {
       setModalOpened(true);
     }}>
       <p>{props.name}</p>
+      <spna>단어 {props.length}개</spna>
       </div>
       <div className='bottom_box'></div>
     
