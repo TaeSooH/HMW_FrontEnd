@@ -9,7 +9,7 @@ import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { useSpeech } from 'react-web-voice';
-
+import { IoMdArrowRoundBack } from "react-icons/io";
 import MemoWord from '../components/MemoWord';
 
 const Memorize = () => {
@@ -73,7 +73,6 @@ const Memorize = () => {
     if(load) return <div>...</div>
     if(!start) return (
     <div className="memorize_container">
-        <Link className="go_to_back" to="/memoset">학습 종료</Link>
         <div className="check">
             <p className='box_title'>적절한 모드와 방법으로 단어를 효율적으로 외우세요!</p>
             <div className="setlist">
@@ -110,6 +109,7 @@ const Memorize = () => {
     )
   return (
     <>
+    <Link className="go_to_back" to="/memoset"><IoMdArrowRoundBack size='20'/>  학습 종료</Link>
     {wordList.length !== 0 ? 
     <Carousel showThumbs={false} showIndicators={false} showStatus={false} 
     renderArrowNext={(clickHandler, hasNext, labelNext) => 
@@ -130,7 +130,6 @@ const Memorize = () => {
     {shuffle ? 
     shuffleList.map((data, index) => (
     <div className='memorize_container'>
-        <Link className="go_to_back" to="/memoset">학습 종료</Link>
     <span>{set_name}</span>
     <span>{index+1}/{wordList.length}</span>
     <div className='content_box'>
@@ -159,7 +158,6 @@ const Memorize = () => {
     : 
     wordList.map((data, index) => (
     <div className='memorize_container'>
-    <Link className="go_to_back" to="/memoset">학습 종료</Link>
     <span>{set_name}</span>
     <span>{index+1}/{wordList.length}</span>
     <div className='content_box'>

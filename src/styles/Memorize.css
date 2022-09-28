@@ -74,10 +74,12 @@
 }
 
 .go_to_back{
+    position: fixed;
     color: white;
     font-size: 150%;
-    align-self: flex-start;
-    margin-left: 2%;
+    top: 2%;
+    left: 2%;
+    z-index: 7;
 }
 
 .memorize_way, .setlist{
@@ -160,7 +162,7 @@
     background-color: #1f8bf7;
     width: 65%;
     height: 33%;
-    top: 57.5%;
+    top: 55.5%;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
 }
@@ -169,7 +171,7 @@
     background-color: #1f8bf7;
     width: 65%;
     height: 33%;
-    top: 52.5%;
+    top: 50.5%;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     animation-duration: 1s;
@@ -179,7 +181,7 @@
 @keyframes slidein {
     from {
         position: fixed;
-        top: 57.5%;
+        top: 55.5%;
         height: 33%;
     }
     50% {
@@ -187,7 +189,7 @@
     }
     to {
         position: fixed;
-        top: 90.5%;
+        top: 88.5%;
         width: 59%;
         height: 0;
     }

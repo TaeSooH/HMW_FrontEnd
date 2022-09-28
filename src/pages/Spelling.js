@@ -10,6 +10,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { useSpeech } from 'react-web-voice';
 import "../styles/Spelling.css"
+import { IoMdArrowRoundBack } from "react-icons/io";
 import "animate.css"
 
 const Spelling = () => {
@@ -63,7 +64,13 @@ const Spelling = () => {
   }
   const space = (e) => {
       if(e.key === ' '){
-          setIsClick(true);
+      //   if(way === "word"){
+      //     inspect(answer, data.meaning);
+      //   }
+      //   else{
+      //     inspect(answer, data.word);
+      //   }
+      // }
       }
   }
   const implShuffle = (array) => {
@@ -120,6 +127,7 @@ const Spelling = () => {
   )
 return (
   <>
+  <Link className="go_to_back" to="/memoset"><IoMdArrowRoundBack size='20'/>  학습 종료</Link>
   {wordList.length !== 0 ? 
   <Carousel showThumbs={false} showIndicators={false} showStatus={false} 
   renderArrowNext={(clickHandler, hasNext, labelNext) => 
@@ -176,6 +184,16 @@ return (
       inspect(answer, data.word);
     }
   }} 
+  onKeyDown={(e) => {
+    console.log(e.key);
+    if(e.key === ' '){
+      if(way === "word"){
+        inspect(answer, data.meaning);
+      }
+      else{
+        inspect(answer, data.word);
+      }
+  }}}
   className='space_button'>space</div>
   </div>)
   )
