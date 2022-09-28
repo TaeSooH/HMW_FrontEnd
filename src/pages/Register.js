@@ -10,18 +10,23 @@ export default function Register(){
     const [password2, setPassword2] = useState();
     async function register(e){
         e.preventDefault();
-        const form = new FormData();
-        form.append('name', id);
-        form.append('password1', password1);
-        form.append('password2', password2);
-        await axios.post("http://127.0.0.1:8080/user/signup", form)
-        .then(response => {
-            alert(response.data);
-            window.location.replace("/");
-        })
-        .catch(err => {
-            alert("사용자가 이미 있습니다!");
-        })
+        if(password1 !== password2){
+            alert("패스워드가 일치하지 않습니다.");
+        }
+        else{
+            const form = new FormData();
+            form.append('name', id);
+            form.append('password1', password1);
+            form.append('password2', password2);
+            await axios.post("http://127.0.0.1:8080/user/signup", form)
+            .then(response => {
+                alert(response.data);
+                window.location.replace("/");
+            })
+            .catch(err => {
+                alert("사용자가 이미 있습니다!");
+            })
+        }
     }
     return (
         <div className="register_container">
