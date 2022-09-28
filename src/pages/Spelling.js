@@ -164,6 +164,15 @@ return (
       <div className="inner_box">
         <p>{way === 'word' ? data.word : data.meaning}</p>
         <hr style={{width:"100%", height:"1px", backgroundColor: "grey"}}></hr>
+        <form className='word_submit_form' onSubmit={(e) => {
+          e.preventDefault();
+          if(way === "word"){
+            inspect(answer, data.meaning);
+          }
+          else{
+            inspect(answer, data.word);
+          }
+        }}>
         <input 
           onChange={(e) => {
             setAnswer(e.target.value)
@@ -172,6 +181,7 @@ return (
           type='text' 
           value={answer}
         />  
+        </form>
         {!first && (isClick ? <span className='inner_span'>정답입니다!</span> : <span className='inner_span' style={{color:"red"}}>틀렸습니다!</span>)}
         {/* {isClick ? <span>정답입니다!</span> : <span style={{color:"red"}}>틀렸습니다!</span>} */}
       </div> 
@@ -212,6 +222,15 @@ return (
       <div className="inner_box">
         <p>{way === 'word' ? data.word : data.meaning}</p>
         <hr style={{width:"100%", height:"1px", backgroundColor: "grey"}}></hr>
+        <form className='word_submit_form' onSubmit={(e) => {
+          e.preventDefault();
+          if(way === "word"){
+            inspect(answer, data.meaning);
+          }
+          else{
+            inspect(answer, data.word);
+          }
+        }}>
         <input 
           onChange={(e) => {
             setAnswer(e.target.value)
@@ -220,7 +239,7 @@ return (
           type='text' 
           value={answer}
         /> 
-
+        </form>
         {/* {isClick ? <span className='inner_span'>정답입니다!</span> : <span className='inner_span' style={{color:"red"}}>틀렸습니다!</span>} */}
         {!first && (isClick ? <span className='inner_span'>정답입니다!</span> : <span className='inner_span' style={{color:"red"}}>틀렸습니다!</span>)}
       </div> 
