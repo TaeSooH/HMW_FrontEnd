@@ -4,7 +4,7 @@ import { MdOutlineNavigateNext } from "react-icons/md"
 import { MdOutlineNavigateBefore } from "react-icons/md";
 import { GiSpeaker } from "react-icons/gi";
 import { CgPlayPause } from "react-icons/cg";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -20,9 +20,9 @@ const Spelling = () => {
   const [way, setWay] = useState("word");
   const [start, setStart] = useState(false);
   const [shuffle, setShuffle] = useState(false);
-  const location = useLocation();
-  const id = location.state?.id;
-  const set_name = location.state?.set_name;
+  const params = useParams();
+  const id = params.setId;
+  const [set_name, setSet_name] = useState('');
   const [wordList, setWordList] = useState([]);
   const [load, setLoad] = useState(true);
   const [shuffleList, setShuffleList] = useState([]);
@@ -48,7 +48,14 @@ const Spelling = () => {
           console.log(wordList);
           console.log(shuffle);
       }
-      document.addEventListener('keydown', space, true);
+      axios.get(`http://127.0.0.1:8080/wordSet/getWordSetTitle/?setId=${id}`)
+      .then(response => {
+          setSet_name(response.data);
+      })
+      .catch(err => {
+          alert("서버 오류");
+          window.location.replace("/");
+      })
       getWords();
       getShuffles();
   }, []);
@@ -62,17 +69,6 @@ const Spelling = () => {
      });
      setPlaying(false);
   }
-  const space = (e) => {
-      if(e.key === ' '){
-      //   if(way === "word"){
-      //     inspect(answer, data.meaning);
-      //   }
-      //   else{
-      //     inspect(answer, data.word);
-      //   }
-      // }
-      }
-  }
   const implShuffle = (array) => {
       for (let index = array.length - 1; index > 0; index--) {
         const randomPosition = Math.floor(Math.random() * (index + 1));
@@ -80,7 +76,6 @@ const Spelling = () => {
       }
   }
   function inspect(ans, target){
-      console.log("asdasdadasda");
       if(ans === target){
         setIsClick(true)
         setFirst(false)

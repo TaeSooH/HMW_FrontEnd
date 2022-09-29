@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { GrAddCircle } from 'react-icons/gr'
 import Header from '../components/Header';
 import "../styles/wordList.css"
@@ -8,19 +8,27 @@ import Popup from 'reactjs-popup';
 import axios from 'axios';
 
 const WordList = ({name}) => {
-  const location = useLocation();
-  const id = location.state?.id;
-  const set_name = location.state?.set_name;
+  const params = useParams();
+  const id = params.setId;
   const [modalOpened, setModalOpened] = useState(false);
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
   const [words, setWords] = useState([]);
+  const [set_name, setSet_name] = useState('');
   const resultList = words.map((word, idx) => (<Word word={word.word} mean={word.meaning} id={word.id} idx={idx} />))
   useEffect(() => {
     async function getWords(){
       const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
       setWords(response.data);
     }
+    axios.get(`http://127.0.0.1:8080/wordSet/getWordSetTitle/?setId=${id}`)
+    .then(response => {
+      setSet_name(response.data);
+    })
+    .catch(err => {
+      alert("서버 오류");
+      window.location.replace("/");
+    })
     document.addEventListener('keydown', enter, true);
     console.log(id);
     getWords();
@@ -111,11 +119,11 @@ const WordList = ({name}) => {
       </Popup>
       <div className="Bottom_menu">
         <div className='Menu_inner_box'>
-          <Link className='start_memorizing' state={{set_name: set_name, id:id}} to={'/memoset/wordlist/memorize'}>암기학습</Link>
+          <Link className='start_memorizing' to={`/memoset/wordlist/memorize/${id}/`}>암기학습</Link>
           <p>단어 또는 의미를 보고 맞추기</p>
         </div>
         <div className='Menu_inner_box'>
-          <Link className='start_memorizing' state={{set_name: set_name, id:id}} to={'/memoset/wordlist/spelling'}>스펠학습</Link>
+          <Link className='start_memorizing' to={`/memoset/wordlist/spelling/${id}/`}>스펠학습</Link>
           <p>의미를 보고 단어의 스펠링을 맞추기</p>
         </div>
       </div>

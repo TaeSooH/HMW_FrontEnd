@@ -46,9 +46,9 @@ function App() {
       <Route exact path='/register' element={<Register />} />
       <Route exact path='/search' element={<Search name={userName} />} />
       <Route exact path='/memoset' element={<MemoSet name={userName} />} />
-      <Route exact path='/memoset/wordlist' element={<WordList name={userName} />} />
-      <Route exact path='/memoset/wordlist/memorize' element={<Memorize/>} />
-      <Route exact path='/memoset/wordlist/spelling' element={<Spelling/>} />
+      <Route exact path='/memoset/wordlist/:setId' element={<WordList name={userName} />} />
+      <Route exact path='/memoset/wordlist/memorize/:setId' element={<Memorize/>} />
+      <Route exact path='/memoset/wordlist/spelling/:setId' element={<Spelling/>} />
     </Routes>
   );
 }

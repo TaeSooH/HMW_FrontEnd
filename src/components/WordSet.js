@@ -37,7 +37,7 @@ const WordSet = (props) => {
     
       <Popup open={modalOpened} onClose={()=>{setModalOpened(false)}}>
           <div className='option_list'>
-            <Link className='set_modify' state={{set_name: props.name, id: props.id}} to={'/memoset/wordlist'}>세트 확인하기</Link>
+            <Link className='set_modify' to={`/memoset/wordlist/${props.id}/`}>세트 확인하기</Link>
             <button className='set_delete' onClick={deleteSet}>세트 삭제하기</button>
             <button onClick={() => {
                 setSet_nameModal(true);

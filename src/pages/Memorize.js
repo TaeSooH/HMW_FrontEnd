@@ -4,7 +4,7 @@ import { MdOutlineNavigateNext } from "react-icons/md"
 import { MdOutlineNavigateBefore } from "react-icons/md";
 import { GiSpeaker } from "react-icons/gi";
 import { CgPlayPause } from "react-icons/cg";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -19,9 +19,9 @@ const Memorize = () => {
     const [way, setWay] = useState("word");
     const [start, setStart] = useState(false);
     const [shuffle, setShuffle] = useState(false);
-    const location = useLocation();
-    const id = location.state?.id;
-    const set_name = location.state?.set_name;
+    const params = useParams();
+    const id = params.setId;
+    const [set_name, setSet_name] = useState('');
     const [wordList, setWordList] = useState([]);
     const [load, setLoad] = useState(true);
     const [shuffleList, setShuffleList] = useState([]);
@@ -45,6 +45,14 @@ const Memorize = () => {
             console.log(wordList);
             console.log(shuffle);
         }
+        axios.get(`http://127.0.0.1:8080/wordSet/getWordSetTitle/?setId=${id}`)
+        .then(response => {
+            setSet_name(response.data);
+        })
+        .catch(err => {
+            alert("서버 오류");
+            window.location.replace("/");
+        })
         document.addEventListener('keydown', space, true);
         getWords();
         getShuffles();
