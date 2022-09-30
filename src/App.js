@@ -19,7 +19,7 @@ function App() {
       console.log(localStorage.getItem('token'));
       async function checkLogged(){
         const token = localStorage.getItem("token");
-        await axios.get("http://127.0.0.1:8080/user/getUser", {params: {
+        await axios.get("http://3.39.253.142/user/getUser", {params: {
             "token": token
         }})
         .then(response => {

@@ -15,11 +15,13 @@ const WordList = ({name}) => {
   const [meaning, setMeaning] = useState('');
   const [words, setWords] = useState([]);
   const [set_name, setSet_name] = useState('');
+  const [loading, setLoading] = useState(true);
   const resultList = words.map((word, idx) => (<Word word={word.word} mean={word.meaning} id={word.id} idx={idx} />))
   useEffect(() => {
     async function getWords(){
       const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
       setWords(response.data);
+      setLoading(false);
     }
     axios.get(`http://127.0.0.1:8080/wordSet/getWordSetTitle/?setId=${id}`)
     .then(response => {
@@ -39,7 +41,7 @@ const WordList = ({name}) => {
       setModalOpened(true);
     }
   }
-
+  if(loading) return (<div>...</div>)
   return (
     <div className='container'>
       <Header username={name} />

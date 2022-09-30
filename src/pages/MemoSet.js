@@ -20,7 +20,7 @@ export default function MemoSet({name}) {
         if(localStorage.getItem("isLogged") === 'true'){
         setIsLogged(true);
         async function GetWordSet(){
-            await axios.get(`http://127.0.0.1:8080/wordSet/getWordSet?owner=${name}`)
+            await axios.get(`http://3.39.253.142/wordSet/getWordSet?owner=${name}`)
             .then(response =>{
                 console.log(response.data);
                 const wordSets = response.data;
@@ -42,7 +42,7 @@ export default function MemoSet({name}) {
             const form = new FormData();
             form.append('title', listName);
             form.append('owner', name)
-            await axios.post("http://127.0.0.1:8080/wordSet/setWordSet", form)
+            await axios.post("http://3.39.253.142/wordSet/setWordSet", form)
             .then(response =>{
                 setListName("");
                 setModalOpened(false);
@@ -52,7 +52,7 @@ export default function MemoSet({name}) {
                 alert(error);
             });
             async function GetWordSet(){
-                await axios.get(`http://127.0.0.1:8080/wordSet/getWordSet?owner=${name}`)
+                await axios.get(`http://3.39.253.142/getWordSet?owner=${name}`)
                 .then(response =>{
                     console.log(response.data);
                     setNames(response.data);

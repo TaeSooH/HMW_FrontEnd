@@ -4,7 +4,7 @@ import { MdOutlineNavigateNext } from "react-icons/md"
 import { MdOutlineNavigateBefore } from "react-icons/md";
 import { GiSpeaker } from "react-icons/gi";
 import { CgPlayPause } from "react-icons/cg";
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
@@ -28,7 +28,7 @@ const Memorize = () => {
     useEffect(() => {
         async function getWords(){
             console.log('enter')
-            const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
+            const response = await axios.get(`http://3.39.253.142/word/getWords/?setId=${id}`);
             console.log(response.data);
             setWordList(response.data);
             console.log(load);
@@ -37,7 +37,7 @@ const Memorize = () => {
         }
         async function getShuffles(){
             console.log('enter')
-            const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
+            const response = await axios.get(`http://3.39.253.142/word/getWords/?setId=${id}`);
             console.log(response.data);
             setShuffleList(response.data);
             console.log(load);
@@ -45,7 +45,7 @@ const Memorize = () => {
             console.log(wordList);
             console.log(shuffle);
         }
-        axios.get(`http://127.0.0.1:8080/wordSet/getWordSetTitle/?setId=${id}`)
+        axios.get(`http://3.39.253.142/wordSet/getWordSetTitle/?setId=${id}`)
         .then(response => {
             setSet_name(response.data);
         })
