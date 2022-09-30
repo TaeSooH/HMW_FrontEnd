@@ -28,7 +28,7 @@ const Memorize = () => {
     useEffect(() => {
         async function getWords(){
             console.log('enter')
-            const response = await axios.get(`http://3.39.253.142/word/getWords/?setId=${id}`);
+            const response = await axios.get(`https://helpingmemo.ga/word/getWords/?setId=${id}`);
             console.log(response.data);
             setWordList(response.data);
             console.log(load);
