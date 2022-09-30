@@ -31,7 +31,7 @@ const Spelling = () => {
   useEffect(() => {
       async function getWords(){
           console.log('enter')
-          const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
+          const response = await axios.get(`https://helpingmemo.ga/word/getWords/?setId=${id}`);
           console.log(response.data);
           setWordList(response.data);
           console.log(load);
@@ -40,7 +40,7 @@ const Spelling = () => {
       }
       async function getShuffles(){
           console.log('enter')
-          const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
+          const response = await axios.get(`https://helpingmemo.ga/word/getWords/?setId=${id}`);
           console.log(response.data);
           setShuffleList(response.data);
           console.log(load);
@@ -48,7 +48,7 @@ const Spelling = () => {
           console.log(wordList);
           console.log(shuffle);
       }
-      axios.get(`http://127.0.0.1:8080/wordSet/getWordSetTitle/?setId=${id}`)
+      axios.get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
       .then(response => {
           setSet_name(response.data);
       })

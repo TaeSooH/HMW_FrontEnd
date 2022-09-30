@@ -19,11 +19,11 @@ const WordList = ({name}) => {
   const resultList = words.map((word, idx) => (<Word word={word.word} mean={word.meaning} id={word.id} idx={idx} />))
   useEffect(() => {
     async function getWords(){
-      const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
+      const response = await axios.get(`https://helpingmemo.ga/word/getWords/?setId=${id}`);
       setWords(response.data);
       setLoading(false);
     }
-    axios.get(`http://127.0.0.1:8080/wordSet/getWordSetTitle/?setId=${id}`)
+    axios.get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
     .then(response => {
       setSet_name(response.data);
     })
@@ -89,13 +89,13 @@ const WordList = ({name}) => {
               "word": word,
               "meaning": meaning
             }
-            const response = await axios.put(`http://127.0.0.1:8080/word/setWords/${id}`, form);
+            const response = await axios.put(`https://helpingmemo.ga/word/setWords/${id}`, form);
             setModalOpened(false);
             setWord("");
             setMeaning("");
             alert(response.data);
             async function getWords(){
-              const response = await axios.get(`http://127.0.0.1:8080/word/getWords/?setId=${id}`);
+              const response = await axios.get(`https://helpingmemo.ga/word/getWords/?setId=${id}`);
               setWords(response.data);
             }
             getWords();

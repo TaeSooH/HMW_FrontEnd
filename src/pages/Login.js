@@ -12,7 +12,7 @@ export default function Login(){
         const form = new FormData();
         form.append('name', id);
         form.append('password', password);
-        await axios.post("http://3.39.253.142/user/login", form)
+        await axios.post("https://helpingmemo.ga/user/login", form)
         .then(response => {
              if(response.data.result !== "error") {
             localStorage.setItem('token', response.data.result);

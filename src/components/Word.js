@@ -9,7 +9,7 @@ const Word = (props) => {
   const [modifiedMeaning, setModifiedMeaning] = useState(props.mean);
 
   async function deleteWord(){
-    const response = await axios.put(`http://127.0.0.1:8080/word/deleteWord/${props.id}`);
+    const response = await axios.put(`https://helpingmemo.ga/word/deleteWord/${props.id}`);
     alert(response.data);
     window.location.replace("/memoset/wordlist");
   }
@@ -43,7 +43,7 @@ const Word = (props) => {
               "word": modifiedWord,
               "meaning": modifiedMeaning
             }
-            const response = await axios.put(`http://127.0.0.1:8080/word/modifyWord/${props.id}`, form);
+            const response = await axios.put(`https://helpingmemo.ga/word/modifyWord/${props.id}`, form);
             setModalOpened(false);
             alert(response.data);
             window.location.replace("/memoset/wordlist");

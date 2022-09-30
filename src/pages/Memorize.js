@@ -37,7 +37,7 @@ const Memorize = () => {
         }
         async function getShuffles(){
             console.log('enter')
-            const response = await axios.get(`http://3.39.253.142/word/getWords/?setId=${id}`);
+            const response = await axios.get(`https://helpingmemo.ga/word/getWords/?setId=${id}`);
             console.log(response.data);
             setShuffleList(response.data);
             console.log(load);
@@ -45,7 +45,7 @@ const Memorize = () => {
             console.log(wordList);
             console.log(shuffle);
         }
-        axios.get(`http://3.39.253.142/wordSet/getWordSetTitle/?setId=${id}`)
+        axios.get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
         .then(response => {
             setSet_name(response.data);
         })

@@ -18,7 +18,7 @@ export default function Register(){
             form.append('name', id);
             form.append('password1', password1);
             form.append('password2', password2);
-            await axios.post("http://3.39.253.142/user/signup", form)
+            await axios.post("https://helpingmemo.ga/user/signup", form)
             .then(response => {
                 alert(response.data);
                 window.location.replace("/");

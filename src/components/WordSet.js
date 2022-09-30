@@ -14,14 +14,14 @@ const WordSet = (props) => {
     const check = window.confirm("정말로 삭제하시겠습니까?")
     if(check){
       console.log(props.id);
-      const response = await axios.put(`http://3.39.253.142/wordSet/deleteWordSet/${props.id}`);
+      const response = await axios.put(`https://helpingmemo.ga/wordSet/deleteWordSet/${props.id}`);
       setModalOpened(false);
       window.location.replace("/memoset");
     }
   }
   async function modifySetName(e){
     e.preventDefault();
-    const response = await axios.put(`http://3.39.253.142/wordSet/modifyWordSet/${props.id}`, {title: modifiedSetName});
+    const response = await axios.put(`https://helpingmemo.ga/wordSet/modifyWordSet/${props.id}`, {title: modifiedSetName});
     setSet_nameModal(false);
     window.location.replace("/memoset");
   }

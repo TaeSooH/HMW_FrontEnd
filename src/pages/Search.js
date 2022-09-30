@@ -13,7 +13,7 @@ export default function Search({name}){
     const [mean, setMean] = useState("");
     async function searchWord(){
         setIsLoading(true);
-        const response = await axios.get("http://3.39.253.142/search?word=" + ser_text)
+        const response = await axios.get("https://helpingmemo.ga/search?word=" + ser_text)
         .catch(err => {
             alert("잘못된 단어");
             setIsLoading(false);
