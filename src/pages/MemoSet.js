@@ -20,7 +20,7 @@ export default function MemoSet({name}) {
         if(localStorage.getItem("isLogged") === 'true'){
         setIsLogged(true);
         async function GetWordSet(){
-            await axios.get(`hhttps://helpingmemo.ga/wordSet/getWordSet?owner=${name}`)
+            await axios.get(`https://helpingmemo.ga/wordSet/getWordSet?owner=${name}`)
             .then(response =>{
                 console.log(response.data);
                 const wordSets = response.data;
