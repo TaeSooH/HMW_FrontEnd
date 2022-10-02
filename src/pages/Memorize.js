@@ -202,7 +202,7 @@ const Memorize = () => {
 : 
 <div className='memorize_container'>
     <div className='content_box non'>
-    <p>단어가 아직 없습니다!</p>
+    <p>단어가 아직 없습니다...</p>
     <div className='bts'>
     <Link className='back' to="/memoset">돌아가기</Link>
     <Link state={{set_name: set_name, id: id}} to="/memoset/wordlist">단어 추가하러 가기</Link>

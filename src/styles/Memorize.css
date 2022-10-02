@@ -226,7 +226,7 @@
 }
 
 .non{
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .finish span {
@@ -242,10 +242,10 @@
     justify-content: space-evenly;
     font-size: 40px;
     width: 100%;
+    margin-top: 50px;
 }
 .bts a{
-    height: 70px;
-    background-color: #9EDDF4;
+    background-color: #1f8bf7;
     text-align: center;
     width: 40%;
     line-height: 70px;
