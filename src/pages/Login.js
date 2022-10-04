@@ -14,12 +14,12 @@ export default function Login(){
         form.append('password', password);
         await axios.post("https://helpingmemo.ga/user/login", form)
         .then(response => {
-             if(response.data.result !== "error") {
-            localStorage.setItem('token', response.data.result);
-            window.location.replace("/");
+            if(response.data.result !== "error") {
+                localStorage.setItem('token', response.data.result);
+                window.location.replace("/");
             }
             else {
-              alert("아이디 또는 비밀번호를 확인하세요");
+                alert("아이디 또는 비밀번호를 확인하세요");
             }
         })
         .catch(err => {

@@ -37,7 +37,7 @@ export default function Main({name}){
                         바로가기
                 </Link>
                 <div className="sec2_content">
-                    <img src="/addSet.png"/>
+                    <img src="/addSet.png" alt="사진이 없음" />
                 </div>
             </div>
             <div className="section3">
@@ -49,13 +49,13 @@ export default function Main({name}){
                         <div className="reg_title">
                             단어 등록
                         </div>
-                        <img src="/reg.png" />
+                        <img src="/reg.png" alt="사진이 없음" />
                     </div>
                     <div className="memo_content">
                         <div className="memo_title">
                             단어 암기
                         </div>
-                        <img src="/memo.png" />
+                        <img src="/memo.png" alt="사진이 없음" />
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@ export default function Main({name}){
                     바로가기
                 </Link>
                 <div className="sec4_content">
-                    <img src="/search_content.png"  />
+                    <img src="/search_content.png"  alt="사진이 없음" />
                 </div>
             </div>
         </div>
