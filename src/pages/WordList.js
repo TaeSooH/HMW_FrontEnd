@@ -35,7 +35,6 @@ const WordList = ({name}) => {
     console.log(id);
     getWords();
   }, []);
-  
   const enter = (e) => {
     if(e.key === 'Enter'){
       setModalOpened(true);

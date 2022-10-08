@@ -196,11 +196,11 @@
 }
 .space_button {
     width: 20%;
-    height: 7%;
+    height: 7vh;
     background-color: #CCD6F9;
     border-radius: 100000px;
     text-align: center;
-    line-height: 170%;
+    line-height: 7vh;
     font-size: 30px;
     cursor: pointer;
 }
