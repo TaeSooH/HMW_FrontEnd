@@ -199,7 +199,7 @@ return (
         inspect(answer, data.word);
       }
   }}}
-  className='space_button'></div>
+  className='space_button'>enter</div>
   </div>)
   )
   : 
