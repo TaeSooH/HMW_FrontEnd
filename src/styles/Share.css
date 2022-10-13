@@ -1,0 +1,17 @@
+.Share_container {
+  width: 100%;
+  min-height: 100vh;
+  /* background-color: aliceblue; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: space-evenly; */
+}
+.fl_box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
