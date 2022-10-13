@@ -21,6 +21,7 @@ const WordSet = (props) => {
   }
   async function shareSet(){
     const response = await axios.put(`https://helpingmemo.ga/wordSet/shareWordSet/${props.id}`);
+    alert(response.data);
     window.location.replace("/memoset");
   }
   async function modifySetName(e){
@@ -47,7 +48,7 @@ const WordSet = (props) => {
                 setSet_nameModal(true);
                 setModalOpened(false);
             }} className='moBt'>세트이름 변경</button>
-            <button>세트 공유하기</button>
+            <button onClick={shareSet}>세트 공유하기</button>
             <button onClick={() => {setModalOpened(false)}}>돌아가기</button>
           </div>
         </Popup>
