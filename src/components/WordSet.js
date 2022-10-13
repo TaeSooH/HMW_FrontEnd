@@ -19,6 +19,10 @@ const WordSet = (props) => {
       window.location.replace("/memoset");
     }
   }
+  async function shareSet(){
+    const response = await axios.put(`https://helpingmemo.ga/wordSet/shareWordSet/${props.id}`);
+    window.location.replace("/memoset");
+  }
   async function modifySetName(e){
     e.preventDefault();
     const response = await axios.put(`https://helpingmemo.ga/wordSet/modifyWordSet/${props.id}`, {title: modifiedSetName});
@@ -28,8 +32,8 @@ const WordSet = (props) => {
   return (
     <div className='wordSet_box' >
       <div className='main_box' onClick={() => {
-      setModalOpened(true);
-    }}>
+        setModalOpened(true);
+      }}>
       <p>{props.name}</p>
       <spna>단어 {props.length}개</spna>
       </div>
@@ -43,6 +47,7 @@ const WordSet = (props) => {
                 setSet_nameModal(true);
                 setModalOpened(false);
             }} className='moBt'>세트이름 변경</button>
+            <button>세트 공유하기</button>
             <button onClick={() => {setModalOpened(false)}}>돌아가기</button>
           </div>
         </Popup>
