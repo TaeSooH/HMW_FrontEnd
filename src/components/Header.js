@@ -19,6 +19,9 @@ export default function Header({username}){
                 <Link to="/memoset" state={{username: username}} className="memo_word2" style={{ textDecoration: 'none' }}>
                     단어 세트
                 </Link>
+                <Link to="/share" state={{username: username}} className="memo_word2" style={{ textDecoration: 'none' }}>
+                    단어 세트 공유
+                </Link>
                 {username !== '' ? 
                 <div className="user" onClick={logout}>{username}(로그아웃)</div> 
                 : 
