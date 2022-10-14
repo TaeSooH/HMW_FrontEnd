@@ -13,7 +13,7 @@ const SharedSet = ({id, title, word_length, owner}) => {
     else {
       const form = {"owner": userName};
       console.log(userName);
-      axios.post(`http://127.0.0.1:8080/wordSet/downloadSharedWordSet/${id}?owner=${userName}`)
+      axios.post(`https://helpingmemo.ga/wordSet/downloadSharedWordSet/${id}?owner=${userName}`)
       .then(res => {
         alert(res.data);
       })
