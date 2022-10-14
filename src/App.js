@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { user } from './components/states';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Main from './pages/Main';
@@ -14,7 +16,7 @@ import WordList from './pages/WordList';
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useRecoilState(user);
   useEffect(() =>{
     if(localStorage.getItem('token') != null){
       console.log(localStorage.getItem('token'));
