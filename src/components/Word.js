@@ -11,7 +11,7 @@ const Word = (props) => {
   async function deleteWord(){
     const response = await axios.put(`https://helpingmemo.ga/word/deleteWord/${props.id}`);
     alert(response.data);
-    window.location.replace("/memoset/wordlist");
+    window.location.replace(`/memoset/wordlist/${props.setId}`);
   }
 
   return (

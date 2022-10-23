@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { user } from './components/states';
-import Home from './pages/Home';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Memorize from './pages/Memorize';

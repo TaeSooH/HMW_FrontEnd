@@ -16,7 +16,7 @@ const WordList = ({name}) => {
   const [words, setWords] = useState([]);
   const [set_name, setSet_name] = useState('');
   const [loading, setLoading] = useState(true);
-  const resultList = words.map((word, idx) => (<Word word={word.word} mean={word.meaning} id={word.id} idx={idx} />))
+  const resultList = words.map((word, idx) => (<Word word={word.word} mean={word.meaning} id={word.id} idx={idx} setId={id} />))
   useEffect(() => {
     async function getWords(){
       const response = await axios.get(`https://helpingmemo.ga/word/getWords/?setId=${id}`);
@@ -64,7 +64,11 @@ const WordList = ({name}) => {
           
           <div className='wordList_footer'>
             <hr></hr>
-            <GrAddCircle size='120' color='black' className='wordList_addIcon' onKeyDown={() => {}} onClick={() => {setModalOpened(true)}}/>
+            <GrAddCircle size='120' color='black' className='wordList_addIcon' onKeyDown={() => {}} onClick={() => {
+              setModalOpened(true);
+              setWord('');
+              setMeaning('');
+              }}/>
             <hr></hr>
           </div>
         <div className="Bottom_box"></div>
