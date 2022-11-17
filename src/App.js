@@ -10,6 +10,7 @@ import MemoSet from './pages/MemoSet';
 import Register from './pages/Register';
 import Search from './pages/Search';
 import Share from './pages/Share';
+import SharedSetWord from './pages/SharedSetWord';
 import Spelling from './pages/Spelling';
 import WordList from './pages/WordList';
 
@@ -52,6 +53,7 @@ function App() {
       <Route exact path='/memoset/wordlist/memorize/:setId' element={<Memorize/>} />
       <Route exact path='/memoset/wordlist/spelling/:setId' element={<Spelling/>} />
       <Route exact path='/share' element={<Share name={userName}/>} />
+      <Route exact path='/share/sharedSetWord/:setId' element={<SharedSetWord />} />
     </Routes>
   );
 }

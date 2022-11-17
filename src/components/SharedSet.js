@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import "../styles/SharedSet.css"
 import { user } from './states';
@@ -26,13 +27,15 @@ const SharedSet = ({id, title, word_length, owner}) => {
     <>
     <div className='ShareSet_container'>
       <div className='row_box'>
-        <div className='set_box1'>
+        <Link to={`/share/sharedSetWord/${id}/`}>
+        <div className='set_box1' >
           <div className='main_box1'>
             <p>세트이름: {title}</p>
             <span>단어 개수: {word_length}개</span>
           </div>
           <div className='bottom_box'></div>
         </div>
+        </Link>
         <div className='right_set_box'>
           <p>세트이름 : {title}</p>
           <span>유저이름 : {owner}</span>
