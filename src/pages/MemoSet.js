@@ -46,7 +46,7 @@ export default function MemoSet({name}) {
             .then(response =>{
                 setListName("");
                 setModalOpened(false);
-                window.location.replace("/memoset");
+                // window.location.replace("/memoset");
             })
             .catch(error => {
                 alert(error);
@@ -72,7 +72,6 @@ export default function MemoSet({name}) {
             {names.length < 1 ? <div className="noset"> 아직 세트가 없습니다 . . .</div>
             :<div className={names.length <= 6 ? "memoSet_box" : "long_memoSet_box"} >
                 {nameList}
-                
             </div>}
             <Popup
                     open={modalOpened}

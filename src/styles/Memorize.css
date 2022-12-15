@@ -45,6 +45,7 @@
     left: 0;
     right: 0;
     height: 4vh !important;
+    width: 4vw;
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
@@ -53,10 +54,10 @@
 .slider_round:before{
     position: absolute;
     content: "";
-    height: 70%;
+    height: 80%;
     width: 40%;
     left: 4px;
-    bottom: 4px;
+    bottom: 10%;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -68,9 +69,9 @@
 }
 
 .switch input:checked + .slider_round::before {
-    -webkit-transform: translateX(20px);
-    -ms-transform: translateX(20px);
-    transform: translateX(20px);
+    -webkit-transform: translateX(1.8vw);
+    -ms-transform: translateX(1.8vw);
+    transform: translateX(1.8vw);
 }
 
 .go_to_back{
