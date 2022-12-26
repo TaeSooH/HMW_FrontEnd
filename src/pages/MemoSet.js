@@ -5,7 +5,9 @@ import Popup from "reactjs-popup";
 import "../styles/MemoSet.css"
 import { IoAddOutline } from "react-icons/io5"
 import { Link, useHref, useLocation } from "react-router-dom";
+import { useHorizontalScroll } from "../hooks/useSideScroll";
 import axios from "axios";
+import HorizontalScroll from "react-scroll-horizontal";
 
 export default function MemoSet({name}) {
     const [names, setNames] = useState([])
@@ -14,6 +16,7 @@ export default function MemoSet({name}) {
     const [isLoading, setIsLoading] = useState(true);
     const [modalOpened, setModalOpened] = useState(false);
     const [isLogged, setIsLogged] = useState(false);
+    const scrollRef = useHorizontalScroll();
     useEffect(() => {
         setIsLoading(true);
         console.log(name);
@@ -23,7 +26,6 @@ export default function MemoSet({name}) {
             await axios.get(`https://helpingmemo.ga/wordSet/getWordSet?owner=${name}`)
             .then(response =>{
                 console.log(response.data);
-                const wordSets = response.data;
                 setNames(response.data);
             })
             setIsLoading(false);
@@ -35,30 +37,29 @@ export default function MemoSet({name}) {
             window.location.replace("/login");
         }
         
-    }, [name]);
-    async function setWordSet(e){
+    }, []);
+    function setWordSet(e){
         e.preventDefault();
         if (listName) {
             const form = new FormData();
             form.append('title', listName);
             form.append('owner', name)
-            await axios.post("https://helpingmemo.ga/wordSet/setWordSet", form)
+            axios.post("https://helpingmemo.ga/wordSet/setWordSet", form)
             .then(response =>{
                 setListName("");
                 setModalOpened(false);
-                window.location.replace("/memoset");
-            })
-            .catch(error => {
-                alert(error);
-            });
-            async function GetWordSet(){
-                await axios.get(`https://helpingmemo.ga/getWordSet?owner=${name}`)
+                axios.get(`https://helpingmemo.ga/wordSet/getWordSet?owner=${name}`)
                 .then(response =>{
                     console.log(response.data);
                     setNames(response.data);
                 })
-            }
-            GetWordSet();
+                .catch(err => {
+                    console.log(err);
+                })
+            })
+            .catch(error => {
+                alert(error);
+            });
         } else {
             alert('이름이 입력되지 않았습니다.')
         }
@@ -67,10 +68,11 @@ export default function MemoSet({name}) {
     if(isLoading || !isLogged) return <div>...</div>
     return (
         <>
-        <div className="memoset_container">
+        <div className="memoset_container" >
             <Header username={name} />
             {names.length < 1 ? <div className="noset"> 아직 세트가 없습니다 . . .</div>
-            :<div className={names.length <= 6 ? "memoSet_box" : "long_memoSet_box"} >
+            :<div className={names.length <= 6 ? "memoSet_box" : "long_memoSet_box"} ref={scrollRef} >
+                
                 {nameList}
                 
             </div>}
