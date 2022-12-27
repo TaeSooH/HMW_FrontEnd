@@ -5,10 +5,14 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import "../styles/Main.css";
 
-export default function Main({ name }) {
+interface IProp {
+  name: string;
+}
+
+export default function Main(props: IProp) {
   return (
     <div className="container">
-      <Header username={name} />
+      <Header username={props.name} />
       <div className="section1">
         <div className="left_sec">
           <div className="sec1_title">영어 단어 암기를 편하게!</div>
@@ -33,7 +37,11 @@ export default function Main({ name }) {
       </div>
       <div className="section2">
         <div className="sec2_title">단어 세트를 편하게 등록해보세요</div>
-        <Link to="/memoset" state={{ username: name }} className="sec2_goSet">
+        <Link
+          to="/memoset"
+          state={{ username: props.name }}
+          className="sec2_goSet"
+        >
           바로가기
         </Link>
         <div className="sec2_content">
@@ -57,7 +65,11 @@ export default function Main({ name }) {
       </div>
       <div className="section4">
         <div className="sec4_title">모르는 단어는 검색해보기!</div>
-        <Link to="/search" state={{ username: name }} className="sec4_goSearch">
+        <Link
+          to="/search"
+          state={{ username: props.name }}
+          className="sec4_goSearch"
+        >
           바로가기
         </Link>
         <div className="sec4_content">
