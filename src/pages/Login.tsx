@@ -4,16 +4,20 @@ import { Link } from "react-router-dom";
 import MainHeader from "../components/MainHeader";
 import "../styles/Login.css";
 
+interface ILoginData {
+  id: string;
+  password: string;
+}
+
 export default function Login() {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  async function login(e) {
+  const [loginData, setLoginData] = useState<ILoginData>({
+    id: "",
+    password: "",
+  });
+  async function login(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = new FormData();
-    form.append("name", id);
-    form.append("password", password);
     await axios
-      .post("https://helpingmemo.ga/user/login", form)
+      .post("https://helpingmemo.ga/user/login", loginData)
       .then((response) => {
         if (response.data.result !== "error") {
           localStorage.setItem("token", response.data.result);
@@ -31,22 +35,20 @@ export default function Login() {
       <MainHeader />
       <form onSubmit={login}>
         <input
-          value={id}
+          value={loginData.id}
           type={"text"}
           placeholder="아이디"
           className="id"
-          onChange={(e) => {
-            setId(e.target.value);
-          }}
+          onChange={(e) => setLoginData({ ...loginData, id: e.target.value })}
         />
         <input
-          value={password}
+          value={loginData.password}
           type={"password"}
           placeholder="비밀번호"
           className="pw"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          onChange={(e) =>
+            setLoginData({ ...loginData, password: e.target.value })
+          }
         />
         <input type={"submit"} value="로그인" className="submit" />
         <Link to="/register">

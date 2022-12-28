@@ -12,6 +12,11 @@ import { useSpeech } from "react-web-voice";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import MemoWord from "../components/MemoWord";
 
+interface IData {
+  word: string;
+  meaning: string;
+}
+
 const Memorize = () => {
   const [playing, setPlaying] = useState(false);
   const { messages, speak } = useSpeech();
@@ -27,27 +32,18 @@ const Memorize = () => {
   const [shuffleList, setShuffleList] = useState([]);
   useEffect(() => {
     async function getWords() {
-      console.log("enter");
       const response = await axios.get(
         `https://helpingmemo.ga/word/getWords/?setId=${id}`
       );
-      console.log(response.data);
       setWordList(response.data);
-      console.log(load);
-      console.log(wordList);
-      console.log(shuffle);
     }
     async function getShuffles() {
       console.log("enter");
       const response = await axios.get(
         `https://helpingmemo.ga/word/getWords/?setId=${id}`
       );
-      console.log(response.data);
       setShuffleList(response.data);
-      console.log(load);
       setLoad(false);
-      console.log(wordList);
-      console.log(shuffle);
     }
     axios
       .get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
@@ -62,7 +58,7 @@ const Memorize = () => {
     getWords();
     getShuffles();
   }, []);
-  async function speech(text) {
+  async function speech(text: string) {
     setPlaying(true);
     const utterance = await speak({
       text: text,
@@ -72,12 +68,12 @@ const Memorize = () => {
     });
     setPlaying(false);
   }
-  const space = (e) => {
+  const space = (e: KeyboardEvent) => {
     if (e.key === " ") {
       setIsClick(true);
     }
   };
-  const implShuffle = (array) => {
+  const implShuffle = (array: IData[]) => {
     for (let index = array.length - 1; index > 0; index--) {
       const randomPosition = Math.floor(Math.random() * (index + 1));
       [array[index], array[randomPosition]] = [
@@ -101,9 +97,6 @@ const Memorize = () => {
                 type={"checkbox"}
                 onClick={() => {
                   implShuffle(shuffleList);
-                  console.log(shuffle);
-                  console.log(shuffleList);
-                  console.log(wordList);
                   setShuffle(!shuffle);
                 }}
               />
@@ -172,19 +165,32 @@ const Memorize = () => {
             )
           }
         >
-          {shuffle
-            ? shuffleList.map((data, index) => (
-                <div className="memorize_container">
-                  <span>{set_name}</span>
-                  <span>
-                    {index + 1}/{wordList.length}
-                  </span>
-                  <div className="content_box">
-                    {way === "meaning" ? (
-                      !isClick ? (
-                        <button className="voicebtn">
-                          <GiSpeaker size="30" color="grey" />
-                        </button>
+          <>
+            {shuffle
+              ? shuffleList.map((data: IData, index: number) => (
+                  <div className="memorize_container">
+                    <span>{set_name}</span>
+                    <span>
+                      {index + 1}/{wordList.length}
+                    </span>
+                    <div className="content_box">
+                      {way === "meaning" ? (
+                        !isClick ? (
+                          <button className="voicebtn">
+                            <GiSpeaker size="30" color="grey" />
+                          </button>
+                        ) : (
+                          <button
+                            className="voicebtn"
+                            onClick={() => speech(data.word)}
+                          >
+                            {playing ? (
+                              <CgPlayPause size="30" />
+                            ) : (
+                              <GiSpeaker size="30" />
+                            )}
+                          </button>
+                        )
                       ) : (
                         <button
                           className="voicebtn"
@@ -196,51 +202,53 @@ const Memorize = () => {
                             <GiSpeaker size="30" />
                           )}
                         </button>
-                      )
-                    ) : (
-                      <button
-                        className="voicebtn"
-                        onClick={() => speech(data.word)}
-                      >
-                        {playing ? (
-                          <CgPlayPause size="30" />
-                        ) : (
-                          <GiSpeaker size="30" />
-                        )}
-                      </button>
-                    )}
-                    <div className="inner_box">
-                      <p>{way === "word" ? data.word : data.meaning}</p>
-                      <span className="content_box_span">
-                        {way === "word" ? data.meaning : data.word}
-                      </span>
-                      <div
-                        className={isClick ? "content_box_onClick" : "nonClick"}
-                      ></div>
+                      )}
+                      <div className="inner_box">
+                        <p>{way === "word" ? data.word : data.meaning}</p>
+                        <span className="content_box_span">
+                          {way === "word" ? data.meaning : data.word}
+                        </span>
+                        <div
+                          className={
+                            isClick ? "content_box_onClick" : "nonClick"
+                          }
+                        ></div>
+                      </div>
+                    </div>
+                    <div
+                      onClick={() => {
+                        setIsClick(true);
+                      }}
+                      className="space_button"
+                    >
+                      space
                     </div>
                   </div>
-                  <div
-                    onClick={() => {
-                      setIsClick(true);
-                    }}
-                    className="space_button"
-                  >
-                    space
-                  </div>
-                </div>
-              ))
-            : wordList.map((data, index) => (
-                <div className="memorize_container">
-                  <span>{set_name}</span>
-                  <span>
-                    {index + 1}/{wordList.length}
-                  </span>
-                  <div className="content_box">
-                    {way === "meaning" ? (
-                      !isClick ? (
-                        <button className="voicebtn">
-                          <GiSpeaker color="grey" size="30" />
-                        </button>
+                ))
+              : wordList.map((data: IData, index: number) => (
+                  <div className="memorize_container">
+                    <span>{set_name}</span>
+                    <span>
+                      {index + 1}/{wordList.length}
+                    </span>
+                    <div className="content_box">
+                      {way === "meaning" ? (
+                        !isClick ? (
+                          <button className="voicebtn">
+                            <GiSpeaker color="grey" size="30" />
+                          </button>
+                        ) : (
+                          <button
+                            className="voicebtn"
+                            onClick={() => speech(data.word)}
+                          >
+                            {playing ? (
+                              <CgPlayPause size="30" />
+                            ) : (
+                              <GiSpeaker size="30" />
+                            )}
+                          </button>
+                        )
                       ) : (
                         <button
                           className="voicebtn"
@@ -252,39 +260,30 @@ const Memorize = () => {
                             <GiSpeaker size="30" />
                           )}
                         </button>
-                      )
-                    ) : (
-                      <button
-                        className="voicebtn"
-                        onClick={() => speech(data.word)}
-                      >
-                        {playing ? (
-                          <CgPlayPause size="30" />
-                        ) : (
-                          <GiSpeaker size="30" />
-                        )}
-                      </button>
-                    )}
-                    <div className="inner_box">
-                      <p>{way === "word" ? data.word : data.meaning}</p>
-                      <div
-                        className={isClick ? "content_box_onClick" : "nonClick"}
-                      ></div>
-                      <span className="content_box_span">
-                        {way === "word" ? data.meaning : data.word}
-                      </span>
+                      )}
+                      <div className="inner_box">
+                        <p>{way === "word" ? data.word : data.meaning}</p>
+                        <div
+                          className={
+                            isClick ? "content_box_onClick" : "nonClick"
+                          }
+                        ></div>
+                        <span className="content_box_span">
+                          {way === "word" ? data.meaning : data.word}
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      onClick={() => {
+                        setIsClick(true);
+                      }}
+                      className="space_button"
+                    >
+                      space
                     </div>
                   </div>
-                  <div
-                    onClick={() => {
-                      setIsClick(true);
-                    }}
-                    className="space_button"
-                  >
-                    space
-                  </div>
-                </div>
-              ))}
+                ))}
+          </>
           <div className="memorize_container">
             <div className="content_box finish">
               <span>finish!</span>

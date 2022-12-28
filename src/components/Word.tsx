@@ -8,7 +8,7 @@ interface IWord {
   word: string;
   mean: string;
   id: number;
-  setId: number;
+  setId?: string;
 }
 
 const Word = (props: IWord) => {

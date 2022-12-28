@@ -1,16 +1,16 @@
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect, FormEvent } from "react";
 
 export function useHorizontalScroll() {
-  const elRef = useRef();
+  const elRef = useRef<any>();
   useEffect(() => {
     const el = elRef.current;
     if (el) {
-      const onWheel = e => {
+      const onWheel = (e: WheelEvent) => {
         if (e.deltaY == 0) return;
         e.preventDefault();
         el.scrollTo({
           left: el.scrollLeft + e.deltaY,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       };
       el.addEventListener("wheel", onWheel);
