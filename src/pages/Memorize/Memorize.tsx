@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Memorize.css";
+import "./Memorize.css";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdOutlineNavigateBefore } from "react-icons/md";
 import { GiSpeaker } from "react-icons/gi";
@@ -10,7 +10,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useSpeech } from "react-web-voice";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import MemoWord from "../components/MemoWord";
+import MemoWord from "../../components/MemoWord";
 
 interface IData {
   word: string;

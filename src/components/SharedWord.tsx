@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
-import "../styles/Word.css";
+import "../components/Word/Word.css";
 
 interface IWord {
   idx: number;

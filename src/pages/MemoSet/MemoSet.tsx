@@ -2,7 +2,7 @@ import React, { LegacyRef, RefObject, useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import WordSet from "../../components/WordSet/WordSet";
 import Popup from "reactjs-popup";
-import "../styles/MemoSet.css";
+import "./MemoSet.css";
 import { IoAddOutline } from "react-icons/io5";
 import { Link, useHref, useLocation } from "react-router-dom";
 import { useHorizontalScroll } from "../../hooks/useSideScroll";

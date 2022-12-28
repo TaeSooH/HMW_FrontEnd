@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { set } from "react-hook-form";
 import { Link, useLocation } from "react-router-dom";
 import Header from "../../components/Header/Header";
-import "../styles/Search.css";
+import "./Search.css";
 
 interface IProp {
   name: string;

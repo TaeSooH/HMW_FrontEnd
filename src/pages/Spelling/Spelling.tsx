@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Memorize.css";
+import "../Memorize/Memorize.css";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdOutlineNavigateBefore } from "react-icons/md";
 import { GiSpeaker } from "react-icons/gi";
@@ -9,7 +9,7 @@ import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useSpeech } from "react-web-voice";
-import "../styles/Spelling.css";
+import "./Spelling.css";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import "animate.css";
 

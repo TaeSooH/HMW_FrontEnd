@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../styles/WordSet.css";
+import "./WordSet.css";
 import Popup from "reactjs-popup";
 import axios from "axios";
 

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import Header from "../../components/Header/Header";
 import SharedSet from "../../components/SharedSet/SharedSet";
-import "../styles/Share.css";
+import "./Share.css";
 
 interface IProp {
   name: string;
