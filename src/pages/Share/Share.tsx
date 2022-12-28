@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import Header from "../components/Header";
-import SharedSet from "../components/SharedSet";
+import Header from "../../components/Header/Header";
+import SharedSet from "../../components/SharedSet/SharedSet";
 import "../styles/Share.css";
 
 interface IProp {

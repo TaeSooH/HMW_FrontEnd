@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import MainHeader from "../components/MainHeader";
+import MainHeader from "../../components/MainHeader/MainHeader";
 import "../styles/Register.css";
 
 export default function Register() {
