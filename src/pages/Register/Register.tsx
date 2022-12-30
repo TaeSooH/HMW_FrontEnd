@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import MainHeader from "../components/MainHeader";
-import "../styles/Register.css";
+import MainHeader from "../../components/MainHeader/MainHeader";
+import "./Register.css";
 
 export default function Register() {
   const [registerData, setRegisterData] = useState({

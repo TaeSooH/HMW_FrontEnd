@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Memorize.css";
+import "../Memorize/Memorize.css";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdOutlineNavigateBefore } from "react-icons/md";
 import { GiSpeaker } from "react-icons/gi";
 import { CgPlayPause } from "react-icons/cg";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useSpeech } from "react-web-voice";
+import "./Spelling.css";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import MemoWord from "../components/MemoWord";
+import "animate.css";
 
 interface IData {
   word: string;
   meaning: string;
 }
 
-const Memorize = () => {
+const Spelling = () => {
   const [playing, setPlaying] = useState(false);
   const { messages, speak } = useSpeech();
   const [isClick, setIsClick] = useState(false);
@@ -30,20 +31,31 @@ const Memorize = () => {
   const [wordList, setWordList] = useState([]);
   const [load, setLoad] = useState(true);
   const [shuffleList, setShuffleList] = useState([]);
+  const [answer, setAnswer] = useState("");
+  const [first, setFirst] = useState(true);
   useEffect(() => {
     async function getWords() {
+      console.log("enter");
       const response = await axios.get(
         `https://helpingmemo.ga/word/getWords/?setId=${id}`
       );
+      console.log(response.data);
       setWordList(response.data);
+      console.log(load);
+      console.log(wordList);
+      console.log(shuffle);
     }
     async function getShuffles() {
       console.log("enter");
       const response = await axios.get(
         `https://helpingmemo.ga/word/getWords/?setId=${id}`
       );
+      console.log(response.data);
       setShuffleList(response.data);
+      console.log(load);
       setLoad(false);
+      console.log(wordList);
+      console.log(shuffle);
     }
     axios
       .get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
@@ -54,7 +66,6 @@ const Memorize = () => {
         alert("서버 오류");
         window.location.replace("/");
       });
-    document.addEventListener("keydown", space, true);
     getWords();
     getShuffles();
   }, []);
@@ -68,11 +79,6 @@ const Memorize = () => {
     });
     setPlaying(false);
   }
-  const space = (e: KeyboardEvent) => {
-    if (e.key === " ") {
-      setIsClick(true);
-    }
-  };
   const implShuffle = (array: IData[]) => {
     for (let index = array.length - 1; index > 0; index--) {
       const randomPosition = Math.floor(Math.random() * (index + 1));
@@ -82,6 +88,13 @@ const Memorize = () => {
       ];
     }
   };
+  function inspect(ans: string, target: string) {
+    if (ans === target) {
+      setIsClick(true);
+      setFirst(false);
+    } else setIsClick(false);
+    setFirst(false);
+  }
   if (load) return <div>...</div>;
   if (!start)
     return (
@@ -123,7 +136,7 @@ const Memorize = () => {
               setStart(true);
             }}
           >
-            암기 학습 시작
+            스펠 학습 시작
           </button>
         </div>
       </div>
@@ -144,6 +157,8 @@ const Memorize = () => {
                 onClick={() => {
                   clickHandler();
                   setIsClick(false);
+                  setFirst(true);
+                  setAnswer("");
                 }}
                 className="next_word_button"
                 color="white"
@@ -157,6 +172,8 @@ const Memorize = () => {
                 onClick={() => {
                   clickHandler();
                   setIsClick(false);
+                  setFirst(true);
+                  setAnswer("");
                 }}
                 className="before_word_button"
                 color="white"
@@ -205,23 +222,74 @@ const Memorize = () => {
                       )}
                       <div className="inner_box">
                         <p>{way === "word" ? data.word : data.meaning}</p>
-                        <span className="content_box_span">
-                          {way === "word" ? data.meaning : data.word}
-                        </span>
-                        <div
-                          className={
-                            isClick ? "content_box_onClick" : "nonClick"
-                          }
-                        ></div>
+                        <hr
+                          style={{
+                            width: "100%",
+                            height: "1px",
+                            backgroundColor: "grey",
+                          }}
+                        ></hr>
+                        <form
+                          className="word_submit_form"
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            if (way === "word") {
+                              inspect(answer, data.meaning);
+                            } else {
+                              inspect(answer, data.word);
+                            }
+                          }}
+                        >
+                          <input
+                            onChange={(e) => {
+                              setAnswer(e.target.value);
+                            }}
+                            className={
+                              first
+                                ? "Spelling_input"
+                                : isClick
+                                ? "Spelling_right"
+                                : "Spelling_wrong"
+                            }
+                            type="text"
+                            value={answer}
+                          />
+                        </form>
+                        {!first &&
+                          (isClick ? (
+                            <span className="inner_span">정답입니다!</span>
+                          ) : (
+                            <span
+                              className="inner_span"
+                              style={{ color: "red" }}
+                            >
+                              틀렸습니다!
+                            </span>
+                          ))}
+                        {/* {isClick ? <span>정답입니다!</span> : <span style={{color:"red"}}>틀렸습니다!</span>} */}
                       </div>
                     </div>
                     <div
                       onClick={() => {
-                        setIsClick(true);
+                        if (way === "word") {
+                          inspect(answer, data.meaning);
+                        } else {
+                          inspect(answer, data.word);
+                        }
+                      }}
+                      onKeyDown={(e) => {
+                        console.log(e.key);
+                        if (e.key === " ") {
+                          if (way === "word") {
+                            inspect(answer, data.meaning);
+                          } else {
+                            inspect(answer, data.word);
+                          }
+                        }
                       }}
                       className="space_button"
                     >
-                      space
+                      enter
                     </div>
                   </div>
                 ))
@@ -263,23 +331,64 @@ const Memorize = () => {
                       )}
                       <div className="inner_box">
                         <p>{way === "word" ? data.word : data.meaning}</p>
-                        <div
-                          className={
-                            isClick ? "content_box_onClick" : "nonClick"
-                          }
-                        ></div>
-                        <span className="content_box_span">
-                          {way === "word" ? data.meaning : data.word}
-                        </span>
+                        <hr
+                          style={{
+                            width: "100%",
+                            height: "1px",
+                            backgroundColor: "grey",
+                          }}
+                        ></hr>
+                        <form
+                          className="word_submit_form"
+                          onSubmit={(e) => {
+                            e.preventDefault();
+                            if (way === "word") {
+                              inspect(answer, data.meaning);
+                            } else {
+                              inspect(answer, data.word);
+                            }
+                          }}
+                        >
+                          <input
+                            onChange={(e) => {
+                              setAnswer(e.target.value);
+                            }}
+                            className={
+                              first
+                                ? "Spelling_input"
+                                : isClick
+                                ? "Spelling_right"
+                                : "Spelling_wrong"
+                            }
+                            type="text"
+                            value={answer}
+                          />
+                        </form>
+                        {/* {isClick ? <span className='inner_span'>정답입니다!</span> : <span className='inner_span' style={{color:"red"}}>틀렸습니다!</span>} */}
+                        {!first &&
+                          (isClick ? (
+                            <span className="inner_span">정답입니다!</span>
+                          ) : (
+                            <span
+                              className="inner_span"
+                              style={{ color: "red" }}
+                            >
+                              틀렸습니다!
+                            </span>
+                          ))}
                       </div>
                     </div>
                     <div
                       onClick={() => {
-                        setIsClick(true);
+                        if (way === "word") {
+                          inspect(answer, data.meaning);
+                        } else {
+                          inspect(answer, data.word);
+                        }
                       }}
                       className="space_button"
                     >
-                      space
+                      enter
                     </div>
                   </div>
                 ))}
@@ -315,4 +424,4 @@ const Memorize = () => {
   );
 };
 
-export default Memorize;
+export default Spelling;

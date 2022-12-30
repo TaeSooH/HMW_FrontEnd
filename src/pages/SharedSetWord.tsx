@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../components/Header";
-import "../styles/wordList.css";
+import Header from "../components/Header/Header";
+import "./WordList/WordList.css";
 import SharedWord from "../components/SharedWord";
 import axios from "axios";
 

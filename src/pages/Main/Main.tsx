@@ -2,8 +2,8 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header";
-import "../styles/Main.css";
+import Header from "../../components/Header/Header";
+import "./Main.css";
 
 interface IProp {
   name: string;

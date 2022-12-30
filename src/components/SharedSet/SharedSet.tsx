@@ -2,8 +2,8 @@ import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import "../styles/SharedSet.css";
-import { user } from "./states";
+import "./SharedSet.css";
+import { user } from ".././states";
 
 interface ISharedSet {
   id: number;
