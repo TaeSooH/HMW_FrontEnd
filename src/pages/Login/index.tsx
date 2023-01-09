@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import MainHeader from "../../components/MainHeader/MainHeader";
-import "./Login.css";
+import * as S from "./style";
 
 interface ILoginData {
   id: string;
@@ -31,17 +31,17 @@ export default function Login() {
       });
   }
   return (
-    <div className="login_container">
+    <S.LoginContainer>
       <MainHeader />
-      <form onSubmit={login}>
-        <input
+      <S.LoginForm onSubmit={login}>
+        <S.LoginInput
           value={loginData.id}
           type={"text"}
           placeholder="아이디"
           className="id"
           onChange={(e) => setLoginData({ ...loginData, id: e.target.value })}
         />
-        <input
+        <S.LoginInput
           value={loginData.password}
           type={"password"}
           placeholder="비밀번호"
@@ -50,11 +50,11 @@ export default function Login() {
             setLoginData({ ...loginData, password: e.target.value })
           }
         />
-        <input type={"submit"} value="로그인" className="submit" />
+        <S.Submit type={"submit"} value="로그인" className="submit" />
         <Link to="/register">
-          <p className="toJoin">회원가입 하기</p>
+          <S.ToJoin>회원가입 하기</S.ToJoin>
         </Link>
-      </form>
-    </div>
+      </S.LoginForm>
+    </S.LoginContainer>
   );
 }
