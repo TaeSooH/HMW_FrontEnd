@@ -1,79 +1,72 @@
-.container {
+import styled from "styled-components";
+
+export const Container = styled.div`
   width: 100%;
   height: 100vh;
-}
-
-.section1 {
+`;
+export const SectionOne = styled.div`
   background-color: #1f8bf7;
   width: 100%;
   height: 85%;
   display: flex;
-}
-.sec1_title {
+`;
+export const Title = styled.div`
   color: white;
   font-size: 30px;
   font-weight: bold;
-}
-.left_sec {
+`;
+export const LeftBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 10%;
   padding-top: 10%;
-}
-.right_sec {
+`;
+export const RightBox = styled.div`
   width: 50%;
   font-size: 70px;
   font-weight: bold;
-}
-.ex_text {
+`;
+export const ExText = styled.div`
   width: 30%;
   margin-top: 19%;
   margin-left: 32%;
+`;
+interface IAniWord {
+  delayTime: string;
 }
-.ex_text p:nth-child(1) {
+export const AniWord = styled.p<IAniWord>`
   opacity: 0;
-  animation: fadein 1s;
-  animation-delay: 0.5s;
+  animation: fadeIn 1s;
+  animation-delay: ${(props) => props.delayTime};
   animation-fill-mode: forwards;
-}
-.ex_text p:nth-child(2) {
-  opacity: 0;
-  animation: fadein 1s;
-  animation-delay: 1s;
-  animation-fill-mode: forwards;
-}
-.ex_text p:nth-child(3) {
-  opacity: 0;
-  animation: fadein 1s;
-  animation-delay: 1.5s;
-  animation-fill-mode: forwards;
-}
-@keyframes fadein {
-  from {
-    opacity: 0;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
-  to {
-    opacity: 1;
-  }
-}
-.sec1_content {
+`;
+export const FirContent = styled.div`
   font-size: 50px;
   margin-top: 3%;
   font-weight: bold;
-}
-.section2 {
+`;
+export const SectionTwo = styled.div`
   width: 100%;
   height: 85%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.sec2_title {
+`;
+export const SubTitle = styled.div`
   padding-top: 7%;
   font-size: 44px;
   font-weight: bold;
-}
-.sec2_content {
+`;
+export const SecContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,37 +76,33 @@
   height: 100%;
   background: linear-gradient(180deg, #beddfc 0%, #5aaafa 100%);
   border-radius: 15px;
-}
-.sec2_content img {
-  width: 700px;
-}
-.sec2_goSet {
+
+  img {
+    width: 700px;
+  }
+`;
+export const GoSet = styled.a`
   margin-top: 3%;
   text-decoration: underline;
   font-weight: bolder;
   font-size: 24px;
-}
-.section3 {
+`;
+export const SectionThree = styled.div`
   width: 100%;
-  height: 125%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.sec3_title {
-  padding-top: 7%;
-  font-size: 44px;
-  font-weight: bold;
-}
-.sec3_content {
+`;
+export const ThirdContent = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   width: 100%;
   justify-content: space-around;
   margin-top: 5%;
-}
-.reg_content {
+`;
+export const RegisterBox = styled.div`
   width: 43%;
   height: 100%;
   background: linear-gradient(180deg, #beddfc 0%, #5aaafa 100%);
@@ -121,8 +110,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.memo_content {
+`;
+export const RegisterTitle = styled.div`
+  font-size: 40px;
+  font-weight: bold;
+  padding-top: 10%;
+`;
+export const RegisterImg = styled.img`
+  width: 90%;
+  height: 56%;
+  padding-top: 10%;
+  object-fit: contain;
+`;
+export const MemoBox = styled.div`
   width: 43%;
   height: 100%;
   background: linear-gradient(180deg, #beddfc 0%, #5aaafa 100%);
@@ -130,47 +130,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.reg_title {
+`;
+export const MemoTitle = styled.div`
   font-size: 40px;
   font-weight: bold;
-  padding-top: 15%;
-}
-.reg_content img {
+  padding-top: 10%;
+`;
+export const MemoImg = styled.img`
   width: 90%;
   height: 56%;
   padding-top: 10%;
-}
-.reg_img {
   object-fit: contain;
-}
-.memo_title {
-  font-size: 40px;
-  font-weight: bold;
-  padding-top: 15%;
-}
-.memo_content img {
-  width: 90%;
-  height: 56%;
-  padding-top: 10%;
-}
-.memo_img {
-  object-fit: contain;
-}
-.section4 {
+`;
+export const SectionFour = styled.div`
   width: 100%;
   height: 110%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.sec4_title {
-  padding-top: 7%;
-  font-size: 44px;
-  font-weight: bold;
-}
-.sec4_content {
+`;
+export const FourthBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -179,14 +158,13 @@
   margin-top: 2%;
   background: linear-gradient(180deg, #beddfc 0%, #5aaafa 100%);
   border-radius: 15px;
-}
-
-.sec4_content img {
+`;
+export const SearchImg = styled.img`
   width: 90%;
-}
-.sec4_goSearch {
+`;
+export const GoSearch = styled.a`
   margin-top: 3%;
   text-decoration: underline;
   font-weight: bolder;
   font-size: 25px;
-}
+`;
