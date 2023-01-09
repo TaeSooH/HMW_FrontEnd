@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { GrAddCircle } from "react-icons/gr";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header";
 import "./WordList.css";
 import Word from "../../components/Word/Word";
 import Popup from "reactjs-popup";
