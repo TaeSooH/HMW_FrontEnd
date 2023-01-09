@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { set } from "react-hook-form";
 import { Link, useLocation } from "react-router-dom";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header";
 import "./Search.css";
 
 interface IProp {
@@ -11,7 +11,7 @@ interface IProp {
 
 export default function Search(props: IProp) {
   const [isLoading, setIsLoading] = useState(false);
-  const [searchData, setSearchData] = useState<any>();
+  const [searchData, setSearchData] = useState<AxiosResponse>();
   const [ser_text, setText] = useState("");
   const [prText, setPrText] = useState("");
   const [example, setExample] = useState("");
@@ -22,13 +22,19 @@ export default function Search(props: IProp) {
       .get("https://helpingmemo.ga/search?word=" + ser_text)
       .then((res) => {
         setSearchData(res);
-        searchData.data[0] = searchData?.data[0].replace(/\(Edu times\)/g, "");
-        searchData.data[0] = searchData?.data[0].replace(
-          /\(Kids Edu times\)/g,
-          ""
-        );
-        searchData.data[0] = searchData?.data[0].replace(/\n/g, "<br/>");
-        searchData.data[1] = searchData?.data[1].replace(/\n/g, "<br/>");
+        if (searchData?.data[0] !== undefined) {
+          searchData.data[0] = searchData?.data[0].replace(
+            /\(Edu times\)/g,
+            ""
+          );
+          searchData.data[0] = searchData?.data[0].replace(
+            /\(Kids Edu times\)/g,
+            ""
+          );
+          searchData.data[0] = searchData?.data[0].replace(/\n/g, "<br/>");
+        }
+        if (searchData?.data[1] !== undefined)
+          searchData.data[1] = searchData?.data[1].replace(/\n/g, "<br/>");
         setPrText(ser_text);
         setText("");
         setMean(searchData?.data[1]);

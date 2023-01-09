@@ -1,5 +1,5 @@
 import React, { LegacyRef, RefObject, useEffect, useState } from "react";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header";
 import WordSet from "../../components/WordSet/WordSet";
 import Popup from "reactjs-popup";
 import "./MemoSet.css";

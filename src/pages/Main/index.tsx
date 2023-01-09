@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/Header/Header";
+import Header from "../../components/Header";
 import * as S from "./style";
 
 interface IProp {

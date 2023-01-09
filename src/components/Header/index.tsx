@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Header.css";
+import { HeaderContainer, Logo } from "./style";
+import * as S from "./style";
 
 interface IProps {
   username: string;
@@ -13,48 +14,51 @@ export default function Header(props: IProps) {
     window.location.replace("/");
   }
   return (
-    <header>
+    <S.HeaderContainer>
       <Link to="/" style={{ textDecoration: "none" }} className="logo">
-        <p>HMW</p>
+        <S.Logo>HMW</S.Logo>
       </Link>
-      <Link
+      <S.NavMenu
+        marginValue={"16%"}
+        as={Link}
         to="/search"
         state={{ username: props.username }}
-        style={{ textDecoration: "none" }}
-        className="ser_word2"
       >
         사전 검색하러 가기
-      </Link>
-      <Link
+      </S.NavMenu>
+      <S.NavMenu
+        marginValue={"4%"}
+        as={Link}
         to="/memoset"
         state={{ username: props.username }}
-        className="memo_word2"
-        style={{ textDecoration: "none" }}
       >
         단어 세트
-      </Link>
-      <Link
+      </S.NavMenu>
+      <S.NavMenu
+        marginValue={"4%"}
+        as={Link}
         to="/share"
         state={{ username: props.username }}
-        className="memo_word2"
-        style={{ textDecoration: "none" }}
       >
         단어 세트 공유
-      </Link>
+      </S.NavMenu>
       {props.username !== "" ? (
-        <div className="user" onClick={logout}>
-          {props.username}(로그아웃)
-        </div>
+        <S.User onClick={logout}>{props.username}(로그아웃)</S.User>
       ) : (
         <>
-          <Link to="/login" className="login">
+          <S.LinkMenu as={Link} marginValue="23%" to="/login" className="login">
             로그인
-          </Link>
-          <Link to="/register" className="join">
+          </S.LinkMenu>
+          <S.LinkMenu
+            as={Link}
+            marginValue="3%"
+            to="/register"
+            className="join"
+          >
             회원가입
-          </Link>
+          </S.LinkMenu>
         </>
       )}
-    </header>
+    </S.HeaderContainer>
   );
 }
