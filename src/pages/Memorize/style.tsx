@@ -1,8 +1,10 @@
+import styled from "styled-components";
+
 * {
     margin: 0;
     padding: 0;
 }
-.memorize_container {
+export const MContainer = styled.div`
     width: 100%;
     height: 100vh;
     display: flex;
@@ -10,8 +12,7 @@
     align-items: center;
     justify-content: center;
     background-color: grey;
-}
-
+`;
 .switch{
     width: 20%;
     height: 5%;
@@ -74,14 +75,14 @@
     transform: translateX(1.8vw);
 }
 
-.go_to_back{
+export const GoBack = styled.a`
     position: fixed;
     color: white;
     font-size: 150%;
     top: 2%;
     left: 2%;
     z-index: 7;
-}
+`;
 
 .memorize_way, .setlist{
     margin-left: 20px;
@@ -121,14 +122,12 @@
     font-size: 110%;
 }
 
-.memorize_container span {
+export const ContainerText = styled.span`
     height: 10%;
-    /* background-color: bisque; */
     line-height: 200%;
     font-size: 40px;
-    /* color: white; */
-}
-.content_box {
+`;
+export const ContentBox = styled.div`
     width: 65%;
     height: 65%;
     background-color: white;
@@ -137,9 +136,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+`;
 
-.inner_box {
+export const InnerBox = styled.div`
     width: 100%;
     height: 100%;
     background-color: white;
@@ -149,16 +148,16 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-}
-.content_box p {
+`;
+export const Words = styled.p`
     font-size: 60px;
-}
-.content_box_span {
+`;
+export const Answers = styled.span`
     font-size: 40px;
     color: black;
     margin-bottom: 40px;
-}
-.nonClick {
+`;
+export const NonClickedBox = styled.div`
     position: fixed;
     background-color: #1f8bf7;
     width: 65%;
@@ -166,8 +165,8 @@
     top: 55.5%;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
-}
-.content_box_onClick {
+`;
+export const ClickedBox = styled.div`
     position: fixed;
     background-color: #1f8bf7;
     width: 65%;
@@ -178,8 +177,8 @@
     animation-duration: 1s;
     animation-name: slidein;
     animation-fill-mode: forwards;
-}
-@keyframes slidein {
+
+    @keyframes slidein {
     from {
         position: fixed;
         top: 55.5%;
@@ -195,7 +194,9 @@
         height: 0;
     }
 }
-.space_button {
+`;
+
+export const SpaceButton = styled.div`
     width: 20%;
     height: 7vh;
     background-color: #CCD6F9;
@@ -204,19 +205,19 @@
     line-height: 7vh;
     font-size: 30px;
     cursor: pointer;
-}
-.next_word_button {
+`;
+export const NextBtn = styled.svg`
     position: fixed;
     right: 12%;
     top: 46%;
-}
+`;
 
-.before_word_button {
+export const BeforeBtn = styled.svg`
     position: fixed;
     left: 12%;
     top: 46%;
     z-index: 7;
-}
+`;
 
 .backTo{
     font-size: 30px;
@@ -253,7 +254,7 @@
     line-height: 70px;
     border-radius: 1000px;
 }
-.voicebtn{
+export const VoiceBtn = styled.button`
     background-color: transparent;
     margin-top:30px;
-}
+`;
