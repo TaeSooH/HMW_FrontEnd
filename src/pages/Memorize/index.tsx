@@ -85,15 +85,15 @@ const index = () => {
   if (load) return <div>...</div>;
   if (!start)
     return (
-      <div className="memorize_container">
-        <div className="check">
-          <p className="box_title">
+      <S.MContainer>
+        <S.CheckBox>
+          <S.CheckTitle>
             적절한 모드와 방법으로 단어를 효율적으로 외우세요!
-          </p>
-          <div className="setlist">
+          </S.CheckTitle>
+          <S.SetMode>
             <p>셔플모드</p>
-            <label className="switch">
-              <input
+            <S.Switch>
+              <S.ShuffleCheck
                 type={"checkbox"}
                 onClick={() => {
                   implShuffle(shuffleList);
@@ -101,8 +101,8 @@ const index = () => {
                 }}
               />
               <span className="slider_round"></span>
-            </label>
-          </div>
+            </S.Switch>
+          </S.SetMode>
 
           <div className="memorize_way">
             <p>학습 방법</p>
@@ -125,8 +125,8 @@ const index = () => {
           >
             암기 학습 시작
           </button>
-        </div>
-      </div>
+        </S.CheckBox>
+      </S.MContainer>
     );
   return (
     <>

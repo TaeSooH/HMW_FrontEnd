@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-* {
-    margin: 0;
-    padding: 0;
-}
 export const MContainer = styled.div`
     width: 100%;
     height: 100vh;
@@ -13,19 +9,18 @@ export const MContainer = styled.div`
     justify-content: center;
     background-color: grey;
 `;
-.switch{
+export const Switch = styled.label`
     width: 20%;
     height: 5%;
     position: relative;
     display: inline-block;
-}
+`;
 
-.switch input {
+export const ShuffleCheck = styled.input`
     opacity: 0;
     width: 0;
     height: 0;
-    
-}
+`;
 
 .content{
     width: 100%;
@@ -34,11 +29,11 @@ export const MContainer = styled.div`
     transition: 0.5s;
 }
 
-.setlist{
+export const SetMode = styled.div`
     height: 10%;
-}
+`;
 
-.slider_round{
+export const SliderRound = styled.span`
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -51,7 +46,7 @@ export const MContainer = styled.div`
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 34px;
-}
+`;
 .slider_round:before{
     position: absolute;
     content: "";
@@ -104,7 +99,7 @@ export const GoBack = styled.a`
     opacity: 1;
 }
 
-.check {
+export const CheckBox = styled.div`
     width: 20vw;
     height: 40vh;
     background-color: white;
@@ -112,15 +107,15 @@ export const GoBack = styled.a`
     flex-direction: column;
     justify-content: space-between;
     border-radius: 10px;
-}
+`;
 
-.box_title{
+export const CheckTitle = styled.p`
     margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
     font-weight: 700;
     font-size: 110%;
-}
+`;
 
 export const ContainerText = styled.span`
     height: 10%;
@@ -175,10 +170,10 @@ export const ClickedBox = styled.div`
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     animation-duration: 1s;
-    animation-name: slidein;
+    animation-name: slideIn;
     animation-fill-mode: forwards;
 
-    @keyframes slidein {
+    @keyframes slideIn {
     from {
         position: fixed;
         top: 55.5%;
@@ -237,7 +232,7 @@ export const BeforeBtn = styled.svg`
 }
 
 
-.bts {
+export const Btns = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -245,15 +240,15 @@ export const BeforeBtn = styled.svg`
     font-size: 40px;
     width: 100%;
     margin-top: 50px;
-}
-.bts a{
+`;
+export const LinkTabs = styled.a`
     background-color: #1f8bf7;
     text-align: center;
     width: 40%;
     height: 100%;
     line-height: 70px;
     border-radius: 1000px;
-}
+`;
 export const VoiceBtn = styled.button`
     background-color: transparent;
     margin-top:30px;

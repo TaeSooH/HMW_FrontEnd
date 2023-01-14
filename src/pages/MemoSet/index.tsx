@@ -2,7 +2,7 @@ import React, { LegacyRef, RefObject, useEffect, useState } from "react";
 import Header from "../../components/Header";
 import WordSet from "../../components/WordSet/WordSet";
 import Popup from "reactjs-popup";
-import "./MemoSet.css";
+import * as S from "./style";
 import { IoAddOutline } from "react-icons/io5";
 import { Link, useHref, useLocation } from "react-router-dom";
 import { useHorizontalScroll } from "../../hooks/useSideScroll";
@@ -85,17 +85,14 @@ export default function MemoSet(props: IProp) {
   if (isLoading || !isLogged) return <div>...</div>;
   return (
     <>
-      <div className="memoset_container">
+      <S.MemoSetContainer>
         <Header username={props.name} />
         {names.length < 1 ? (
-          <div className="noset"> 아직 세트가 없습니다 . . .</div>
+          <S.NoSet> 아직 세트가 없습니다 . . .</S.NoSet>
+        ) : names.length <= 6 ? (
+          <S.MemoSetBox ref={scrollRef}>{nameList}</S.MemoSetBox>
         ) : (
-          <div
-            className={names.length <= 6 ? "memoSet_box" : "long_memoSet_box"}
-            ref={scrollRef}
-          >
-            {nameList}
-          </div>
+          <S.LongMemoSetBox ref={scrollRef}></S.LongMemoSetBox>
         )}
         <Popup
           open={modalOpened}
@@ -104,30 +101,28 @@ export default function MemoSet(props: IProp) {
             setListName("");
           }}
         >
-          <div className="popup_input">
-            <p>단어장의 이름을 입력해주세요.</p>
+          <S.PopupInput>
+            <S.InputText>단어장의 이름을 입력해주세요.</S.InputText>
             <form onSubmit={setWordSet}>
-              <input
-                className="setNameInput"
+              <S.SetNameInput
                 value={listName}
                 onChange={(e) => {
                   setListName(e.target.value);
                 }}
                 type="text"
               />
-              <input className="pop_submit" type="submit" value="enter" />
+              <S.PopSubmit type="submit" value="enter" />
             </form>
-          </div>
+          </S.PopupInput>
         </Popup>
-        <div
-          className="add_memoSet"
+        <S.AddMemoSet
           onClick={() => {
             setModalOpened(true);
           }}
         >
           새로 만들기
-        </div>
-      </div>
+        </S.AddMemoSet>
+      </S.MemoSetContainer>
     </>
   );
 }
