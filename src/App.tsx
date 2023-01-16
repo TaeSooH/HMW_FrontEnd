@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Memorize from "./pages/Memorize";
 import MemoSet from "./pages/MemoSet/index";
-import Register from "./pages/Register/Register";
+import Register from "./pages/Register/index";
 import Search from "./pages/Search/Search";
 import Share from "./pages/Share/Share";
 import SharedSetWord from "./pages/SharedSetWord/SharedSetWord";

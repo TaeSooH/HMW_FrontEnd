@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import MainHeader from "../../components/MainHeader/MainHeader";
-import "./Register.css";
+import * as S from "./style";
 
 export default function Register() {
   const [registerData, setRegisterData] = useState({
@@ -28,19 +28,18 @@ export default function Register() {
     }
   }
   return (
-    <div className="register_container">
+    <S.RegisterContainer>
       <MainHeader />
-      <form onSubmit={register}>
-        <input
+      <S.InputForm onSubmit={register}>
+        <S.RegisterInput
           type={"text"}
           placeholder="아이디"
-          className="id"
           value={registerData.id}
           onChange={(e) => {
             setRegisterData({ ...registerData, id: e.target.value });
           }}
         />
-        <input
+        <S.RegisterInput
           type={"password"}
           placeholder="비밀번호"
           className="pw"
@@ -49,20 +48,19 @@ export default function Register() {
             setRegisterData({ ...registerData, password1: e.target.value });
           }}
         />
-        <input
+        <S.RegisterInput
           type={"password"}
           placeholder="비밀번호 재입력"
-          className="ckpw"
           value={registerData.password2}
           onChange={(e) => {
             setRegisterData({ ...registerData, password2: e.target.value });
           }}
         />
-        <input type={"submit"} value="회원가입" className="submit" />
+        <S.Submit type={"submit"} value="회원가입" />
         <Link to="/login">
-          <p className="toJoin">계정이 이미 있으신가요? 로그인 하기</p>
+          <S.ToLogin>계정이 이미 있으신가요? 로그인 하기</S.ToLogin>
         </Link>
-      </form>
-    </div>
+      </S.InputForm>
+    </S.RegisterContainer>
   );
 }
