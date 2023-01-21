@@ -17,47 +17,47 @@ interface IData {
   meaning: string;
 }
 
-const index = () => {
+const Index = () => {
   const [playing, setPlaying] = useState(false);
   const { messages, speak } = useSpeech();
   const [isClick, setIsClick] = useState(false);
   const [way, setWay] = useState("word");
   const [start, setStart] = useState(false);
   const [shuffle, setShuffle] = useState(false);
-  const params = useParams();
-  const id = params.setId;
+  const { setId } = useParams();
+  const id = setId;
   const [set_name, setSet_name] = useState("");
   const [wordList, setWordList] = useState([]);
   const [load, setLoad] = useState(true);
   const [shuffleList, setShuffleList] = useState([]);
-  useEffect(() => {
-    async function getWords() {
-      const response = await axios.get(
-        `https://helpingmemo.ga/word/getWords/?setId=${id}`
-      );
-      setWordList(response.data);
-    }
-    async function getShuffles() {
-      console.log("enter");
-      const response = await axios.get(
-        `https://helpingmemo.ga/word/getWords/?setId=${id}`
-      );
-      setShuffleList(response.data);
-      setLoad(false);
-    }
-    axios
-      .get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
-      .then((response) => {
-        setSet_name(response.data);
-      })
-      .catch((err) => {
-        alert("서버 오류");
-        window.location.replace("/");
-      });
-    document.addEventListener("keydown", space, true);
-    getWords();
-    getShuffles();
-  }, []);
+  // useEffect(() => {
+  //   async function getWords() {
+  //     const response = await axios.get(
+  //       `https://helpingmemo.ga/word/getWords/?setId=${id}`
+  //     );
+  //     setWordList(response.data);
+  //   }
+  //   async function getShuffles() {
+  //     console.log("enter");
+  //     const response = await axios.get(
+  //       `https://helpingmemo.ga/word/getWords/?setId=${id}`
+  //     );
+  //     setShuffleList(response.data);
+  //     setLoad(false);
+  //   }
+  //   axios
+  //     .get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
+  //     .then((response) => {
+  //       setSet_name(response.data);
+  //     })
+  //     .catch((err) => {
+  //       alert("서버 오류");
+  //       window.location.replace("/");
+  //     });
+  //   document.addEventListener("keydown", space, true);
+  //   getWords();
+  //   getShuffles();
+  // }, []);
   async function speech(text: string) {
     setPlaying(true);
     const utterance = await speak({
@@ -104,7 +104,7 @@ const index = () => {
             </S.Switch>
           </S.SetMode>
 
-          <div className="memorize_way">
+          <S.MemorizeWay>
             <p>학습 방법</p>
             <select
               onChange={(e) => {
@@ -116,15 +116,14 @@ const index = () => {
               <option value="word">단어 제시</option>
               <option value="meaning">의미 제시</option>
             </select>
-          </div>
-          <button
-            className="startMemo"
+          </S.MemorizeWay>
+          <S.StartMemo
             onClick={() => {
               setStart(true);
             }}
           >
             암기 학습 시작
-          </button>
+          </S.StartMemo>
         </S.CheckBox>
       </S.MContainer>
     );
@@ -275,12 +274,12 @@ const index = () => {
                 ))}
           </>
           <S.MContainer>
-            <div className="content_box finish">
-              <span>finish!</span>
-              <Link to="/memoset" className="backTo">
+            <S.FinishBox>
+              <S.FinishText>finish!</S.FinishText>
+              <S.ToBack as={Link} to="/memoset">
                 돌아가기
-              </Link>
-            </div>
+              </S.ToBack>
+            </S.FinishBox>
           </S.MContainer>
         </Carousel>
       ) : (
@@ -306,4 +305,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
