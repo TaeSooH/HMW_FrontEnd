@@ -9,6 +9,10 @@ export const HeaderContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   border-bottom: 1px solid #edeff5;
+
+  a {
+    color: black;
+  }
 `;
 
 export const Logo = styled.span`

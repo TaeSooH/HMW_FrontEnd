@@ -41,4 +41,5 @@ export const LoginForm = styled.form`
 export const ToJoin = styled.p`
   margin-top: 20px;
   text-decoration: underline;
+  color: #1f8bf7;
 `;
