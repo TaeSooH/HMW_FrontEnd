@@ -105,7 +105,8 @@ function App() {
           element={<WordList name={userName} />}
         />
         <Route
-          path="/memoset/wordlist/memorize/:setId"
+          // path="/memoset/wordlist/memorize/:setId"
+          path="/memorize"
           element={<Memorize />}
         />
         <Route

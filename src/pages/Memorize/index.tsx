@@ -30,34 +30,35 @@ const Index = () => {
   const [wordList, setWordList] = useState([]);
   const [load, setLoad] = useState(true);
   const [shuffleList, setShuffleList] = useState([]);
-  // useEffect(() => {
-  //   async function getWords() {
-  //     const response = await axios.get(
-  //       `https://helpingmemo.ga/word/getWords/?setId=${id}`
-  //     );
-  //     setWordList(response.data);
-  //   }
-  //   async function getShuffles() {
-  //     console.log("enter");
-  //     const response = await axios.get(
-  //       `https://helpingmemo.ga/word/getWords/?setId=${id}`
-  //     );
-  //     setShuffleList(response.data);
-  //     setLoad(false);
-  //   }
-  //   axios
-  //     .get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
-  //     .then((response) => {
-  //       setSet_name(response.data);
-  //     })
-  //     .catch((err) => {
-  //       alert("서버 오류");
-  //       window.location.replace("/");
-  //     });
-  //   document.addEventListener("keydown", space, true);
-  //   getWords();
-  //   getShuffles();
-  // }, []);
+  useEffect(() => {
+    async function getWords() {
+      const response = await axios.get(
+        `https://helpingmemo.ga/word/getWords/?setId=${id}`
+      );
+      setWordList(response.data);
+    }
+    async function getShuffles() {
+      console.log("enter");
+      const response = await axios.get(
+        `https://helpingmemo.ga/word/getWords/?setId=${id}`
+      );
+      setShuffleList(response.data);
+      setLoad(false);
+    }
+    axios
+      .get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
+      .then((response) => {
+        setSet_name(response.data);
+      })
+      .catch((err) => {
+        alert("서버 오류");
+        window.location.replace("/");
+      });
+    document.addEventListener("keydown", space, true);
+    getWords();
+    getShuffles();
+  }, []);
+
   async function speech(text: string) {
     setPlaying(true);
     const utterance = await speak({
