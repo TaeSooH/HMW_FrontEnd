@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../Memorize/Memorize.css";
+import "../Memorize/style.tsx";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdOutlineNavigateBefore } from "react-icons/md";
 import { GiSpeaker } from "react-icons/gi";

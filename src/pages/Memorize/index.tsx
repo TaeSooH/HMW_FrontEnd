@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Memorize.css";
+import * as S from "./style";
 import { MdOutlineNavigateNext } from "react-icons/md";
 import { MdOutlineNavigateBefore } from "react-icons/md";
 import { GiSpeaker } from "react-icons/gi";
@@ -17,15 +17,15 @@ interface IData {
   meaning: string;
 }
 
-const Memorize = () => {
+const Index = () => {
   const [playing, setPlaying] = useState(false);
   const { messages, speak } = useSpeech();
   const [isClick, setIsClick] = useState(false);
   const [way, setWay] = useState("word");
   const [start, setStart] = useState(false);
   const [shuffle, setShuffle] = useState(false);
-  const params = useParams();
-  const id = params.setId;
+  const { setId } = useParams();
+  const id = setId;
   const [set_name, setSet_name] = useState("");
   const [wordList, setWordList] = useState([]);
   const [load, setLoad] = useState(true);
@@ -58,6 +58,7 @@ const Memorize = () => {
     getWords();
     getShuffles();
   }, []);
+
   async function speech(text: string) {
     setPlaying(true);
     const utterance = await speak({
@@ -85,15 +86,15 @@ const Memorize = () => {
   if (load) return <div>...</div>;
   if (!start)
     return (
-      <div className="memorize_container">
-        <div className="check">
-          <p className="box_title">
+      <S.MContainer>
+        <S.CheckBox>
+          <S.CheckTitle>
             적절한 모드와 방법으로 단어를 효율적으로 외우세요!
-          </p>
-          <div className="setlist">
+          </S.CheckTitle>
+          <S.SetMode>
             <p>셔플모드</p>
-            <label className="switch">
-              <input
+            <S.Switch>
+              <S.ShuffleCheck
                 type={"checkbox"}
                 onClick={() => {
                   implShuffle(shuffleList);
@@ -101,10 +102,10 @@ const Memorize = () => {
                 }}
               />
               <span className="slider_round"></span>
-            </label>
-          </div>
+            </S.Switch>
+          </S.SetMode>
 
-          <div className="memorize_way">
+          <S.MemorizeWay>
             <p>학습 방법</p>
             <select
               onChange={(e) => {
@@ -116,23 +117,22 @@ const Memorize = () => {
               <option value="word">단어 제시</option>
               <option value="meaning">의미 제시</option>
             </select>
-          </div>
-          <button
-            className="startMemo"
+          </S.MemorizeWay>
+          <S.StartMemo
             onClick={() => {
               setStart(true);
             }}
           >
             암기 학습 시작
-          </button>
-        </div>
-      </div>
+          </S.StartMemo>
+        </S.CheckBox>
+      </S.MContainer>
     );
   return (
     <>
-      <Link className="go_to_back" to="/memoset">
+      <S.GoBack as={Link} to="/memoset">
         <IoMdArrowRoundBack size="20" /> 학습 종료
-      </Link>
+      </S.GoBack>
       {wordList.length !== 0 ? (
         <Carousel
           showThumbs={false}
@@ -140,12 +140,12 @@ const Memorize = () => {
           showStatus={false}
           renderArrowNext={(clickHandler, hasNext, labelNext) =>
             hasNext && (
-              <MdOutlineNavigateNext
+              <S.NextBtn
+                as={MdOutlineNavigateNext}
                 onClick={() => {
                   clickHandler();
                   setIsClick(false);
                 }}
-                className="next_word_button"
                 color="white"
                 size="70"
               />
@@ -153,12 +153,12 @@ const Memorize = () => {
           }
           renderArrowPrev={(clickHandler, hasPrev, labelPrev) =>
             hasPrev && (
-              <MdOutlineNavigateBefore
+              <S.BeforeBtn
+                as={MdOutlineNavigateBefore}
                 onClick={() => {
                   clickHandler();
                   setIsClick(false);
                 }}
-                className="before_word_button"
                 color="white"
                 size="70"
               />
@@ -168,151 +168,142 @@ const Memorize = () => {
           <>
             {shuffle
               ? shuffleList.map((data: IData, index: number) => (
-                  <div className="memorize_container">
-                    <span>{set_name}</span>
-                    <span>
+                  <S.MContainer>
+                    <S.ContainerText>{set_name}</S.ContainerText>
+                    <S.ContainerText>
                       {index + 1}/{wordList.length}
-                    </span>
-                    <div className="content_box">
+                    </S.ContainerText>
+                    <S.ContentBox>
                       {way === "meaning" ? (
                         !isClick ? (
-                          <button className="voicebtn">
+                          <S.VoiceBtn>
                             <GiSpeaker size="30" color="grey" />
-                          </button>
+                          </S.VoiceBtn>
                         ) : (
-                          <button
-                            className="voicebtn"
-                            onClick={() => speech(data.word)}
-                          >
+                          <S.VoiceBtn onClick={() => speech(data.word)}>
                             {playing ? (
                               <CgPlayPause size="30" />
                             ) : (
                               <GiSpeaker size="30" />
                             )}
-                          </button>
+                          </S.VoiceBtn>
                         )
                       ) : (
-                        <button
-                          className="voicebtn"
-                          onClick={() => speech(data.word)}
-                        >
+                        <S.VoiceBtn onClick={() => speech(data.word)}>
                           {playing ? (
                             <CgPlayPause size="30" />
                           ) : (
                             <GiSpeaker size="30" />
                           )}
-                        </button>
+                        </S.VoiceBtn>
                       )}
-                      <div className="inner_box">
-                        <p>{way === "word" ? data.word : data.meaning}</p>
-                        <span className="content_box_span">
+                      <S.InnerBox>
+                        <S.Words>
+                          {way === "word" ? data.word : data.meaning}
+                        </S.Words>
+                        <S.Answers>
                           {way === "word" ? data.meaning : data.word}
-                        </span>
-                        <div
-                          className={
-                            isClick ? "content_box_onClick" : "nonClick"
-                          }
-                        ></div>
-                      </div>
-                    </div>
-                    <div
+                        </S.Answers>
+                        {isClick ? (
+                          <S.NonClickedBox></S.NonClickedBox>
+                        ) : (
+                          <S.ClickedBox></S.ClickedBox>
+                        )}
+                      </S.InnerBox>
+                    </S.ContentBox>
+                    <S.SpaceButton
                       onClick={() => {
                         setIsClick(true);
                       }}
-                      className="space_button"
                     >
                       space
-                    </div>
-                  </div>
+                    </S.SpaceButton>
+                  </S.MContainer>
                 ))
               : wordList.map((data: IData, index: number) => (
-                  <div className="memorize_container">
-                    <span>{set_name}</span>
-                    <span>
+                  <S.MContainer>
+                    <S.ContainerText>{set_name}</S.ContainerText>
+                    <S.ContainerText>
                       {index + 1}/{wordList.length}
-                    </span>
-                    <div className="content_box">
+                    </S.ContainerText>
+                    <S.ContentBox>
                       {way === "meaning" ? (
                         !isClick ? (
-                          <button className="voicebtn">
+                          <S.VoiceBtn>
                             <GiSpeaker color="grey" size="30" />
-                          </button>
+                          </S.VoiceBtn>
                         ) : (
-                          <button
-                            className="voicebtn"
-                            onClick={() => speech(data.word)}
-                          >
+                          <S.VoiceBtn onClick={() => speech(data.word)}>
                             {playing ? (
                               <CgPlayPause size="30" />
                             ) : (
                               <GiSpeaker size="30" />
                             )}
-                          </button>
+                          </S.VoiceBtn>
                         )
                       ) : (
-                        <button
-                          className="voicebtn"
-                          onClick={() => speech(data.word)}
-                        >
+                        <S.VoiceBtn onClick={() => speech(data.word)}>
                           {playing ? (
                             <CgPlayPause size="30" />
                           ) : (
                             <GiSpeaker size="30" />
                           )}
-                        </button>
+                        </S.VoiceBtn>
                       )}
-                      <div className="inner_box">
-                        <p>{way === "word" ? data.word : data.meaning}</p>
-                        <div
-                          className={
-                            isClick ? "content_box_onClick" : "nonClick"
-                          }
-                        ></div>
-                        <span className="content_box_span">
+                      <S.InnerBox>
+                        <S.Words>
+                          {way === "word" ? data.word : data.meaning}
+                        </S.Words>
+                        <S.Answers>
                           {way === "word" ? data.meaning : data.word}
-                        </span>
-                      </div>
-                    </div>
-                    <div
+                        </S.Answers>
+                        {isClick ? (
+                          <S.NonClickedBox></S.NonClickedBox>
+                        ) : (
+                          <S.ClickedBox></S.ClickedBox>
+                        )}
+                      </S.InnerBox>
+                    </S.ContentBox>
+                    <S.SpaceButton
                       onClick={() => {
                         setIsClick(true);
                       }}
-                      className="space_button"
                     >
                       space
-                    </div>
-                  </div>
+                    </S.SpaceButton>
+                  </S.MContainer>
                 ))}
           </>
-          <div className="memorize_container">
-            <div className="content_box finish">
-              <span>finish!</span>
-              <Link to="/memoset" className="backTo">
+          <S.MContainer>
+            <S.FinishBox>
+              <S.FinishText>finish!</S.FinishText>
+              <S.ToBack as={Link} to="/memoset">
                 돌아가기
-              </Link>
-            </div>
-          </div>
+              </S.ToBack>
+            </S.FinishBox>
+          </S.MContainer>
         </Carousel>
       ) : (
-        <div className="memorize_container">
-          <div className="content_box non">
+        <S.MContainer>
+          <S.ContentBox>
             <p>단어가 아직 없습니다...</p>
-            <div className="bts">
-              <Link className="back" to="/memoset">
+            <S.Btns>
+              <S.LinkTabs as={Link} to="/memoset">
                 돌아가기
-              </Link>
-              <Link
+              </S.LinkTabs>
+              <S.LinkTabs
+                as={Link}
                 state={{ set_name: set_name, id: id }}
                 to="/memoset/wordlist"
               >
                 단어 추가하러 가기
-              </Link>
-            </div>
-          </div>
-        </div>
+              </S.LinkTabs>
+            </S.Btns>
+          </S.ContentBox>
+        </S.MContainer>
       )}
     </>
   );
 };
 
-export default Memorize;
+export default Index;
