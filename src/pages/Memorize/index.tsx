@@ -10,8 +10,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useSpeech } from "react-web-voice";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import MemoWord from "../../components/MemoWord";
-
+import MemoWord from "../../components/MemoWord/index";
 interface IData {
   word: string;
   meaning: string;
@@ -201,9 +200,9 @@ const Index = () => {
                         <S.Words>
                           {way === "word" ? data.word : data.meaning}
                         </S.Words>
-                        <S.Answers>
+                        <S.Meanings>
                           {way === "word" ? data.meaning : data.word}
-                        </S.Answers>
+                        </S.Meanings>
                         {isClick ? (
                           <S.NonClickedBox></S.NonClickedBox>
                         ) : (
@@ -254,9 +253,9 @@ const Index = () => {
                         <S.Words>
                           {way === "word" ? data.word : data.meaning}
                         </S.Words>
-                        <S.Answers>
+                        <S.Meanings>
                           {way === "word" ? data.meaning : data.word}
-                        </S.Answers>
+                        </S.Meanings>
                         {isClick ? (
                           <S.NonClickedBox></S.NonClickedBox>
                         ) : (
