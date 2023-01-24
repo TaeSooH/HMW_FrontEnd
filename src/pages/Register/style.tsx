@@ -8,8 +8,6 @@ export const RegisterInput = styled(S.LoginInput)`
     outline: none;
   }
 `;
-export const Submit = styled(S.Submit)`
-  border-radius: 10px;
-`;
+export const Submit = styled(S.Submit)``;
 export const InputForm = styled(S.LoginForm)``;
 export const ToLogin = styled(S.ToJoin)``;

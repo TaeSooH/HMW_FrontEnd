@@ -44,6 +44,9 @@ export const SerInput = styled.input`
   height: 100%;
   font-size: 100%;
   background-color: transparent;
+  &:focus {
+    outline: none;
+  }
 `;
 export const WordMean = styled.div`
   position: fixed;

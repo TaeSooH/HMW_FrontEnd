@@ -138,7 +138,7 @@ export const InnerBox = styled.div`
 export const Words = styled.p`
   font-size: 60px;
 `;
-export const Answers = styled.span`
+export const Meanings = styled.span`
   font-size: 40px;
   color: black;
   margin-bottom: 40px;

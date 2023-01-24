@@ -86,6 +86,12 @@ export const GoSet = styled.a`
   text-decoration: underline;
   font-weight: bolder;
   font-size: 24px;
+  color: black;
+
+  &:hover {
+    color: #4c79ff;
+    transition: 0.2s;
+  }
 `;
 export const SectionThree = styled.div`
   width: 100%;
@@ -167,4 +173,9 @@ export const GoSearch = styled.a`
   text-decoration: underline;
   font-weight: bolder;
   font-size: 25px;
+  color: black;
+  &:hover {
+    color: #4c79ff;
+    transition: 0.2s;
+  }
 `;
