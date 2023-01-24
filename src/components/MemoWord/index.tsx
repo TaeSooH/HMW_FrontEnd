@@ -3,7 +3,7 @@ import { GiSpeaker } from "react-icons/gi";
 import { CgPlayPause } from "react-icons/cg";
 import { useState } from "react";
 import { useSpeech } from "react-web-voice";
-
+import * as S from "./style";
 interface IMemoWord {
   setIsClick(isClick: boolean): void;
   isClick: boolean;
@@ -37,29 +37,34 @@ export default function MemoWord({
     setPlaying(false);
   }
   return (
-    <div className="memorize_container">
+    <S.MContainer>
       <span>{set_name}</span>
       <span>
+        []
         {index + 1}/{length}
       </span>
-      <div className="content_box">
-        <button className="voicebtn" onClick={() => speech(data.word)}>
+      {/* 세트 이름이랑 N번째 단어 span 스타일 체크 필요함 */}
+      <S.ContentBox>
+        <S.VoiceBtn onClick={() => speech(data.word)}>
           {playing ? <CgPlayPause size="30" /> : <GiSpeaker size="30" />}
-        </button>
-        <div className="inner_box">
-          <p>{data.word}</p>
-          <div className={isClick ? "content_box_onClick" : "nonClick"}></div>
-          <span>{data.meaning}</span>
-        </div>
-      </div>
-      <div
+        </S.VoiceBtn>
+        <S.InnerBox>
+          <S.Word>{data.word}</S.Word>
+          {isClick ? (
+            <S.ClickedBox></S.ClickedBox>
+          ) : (
+            <S.NonClickedBox></S.NonClickedBox>
+          )}
+          <S.Meaning>{data.meaning}</S.Meaning>
+        </S.InnerBox>
+      </S.ContentBox>
+      <S.Space
         onClick={() => {
           setIsClick(true);
         }}
-        className="space_button"
       >
         space
-      </div>
-    </div>
+      </S.Space>
+    </S.MContainer>
   );
 }

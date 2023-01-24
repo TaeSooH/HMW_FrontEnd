@@ -27,7 +27,7 @@ export const Submit = styled.input`
   background-color: #1f8bf7;
   box-shadow: 0 5px 5px gray;
   font-size: 3vh;
-  border-radius: 1000px;
+  border-radius: 10px;
   cursor: pointer;
 `;
 export const LoginForm = styled.form`

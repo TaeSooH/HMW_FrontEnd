@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Header from "../../components/Header";
-import "./Search.css";
+import * as S from "./style";
 
 interface IProp {
   name: string;
@@ -74,59 +74,49 @@ export default function Search(props: IProp) {
     }
   }
   return (
-    <div className="container">
+    <S.Container>
       <Header username={props.name} />
       <Link to="/">
-        <img src="back.png" className="back" alt="사진이 없음" />
+        <S.BackBtn src="back.png" alt="사진이 없음" />
       </Link>
-      <label className="ser">
-        <div className="ser_title">사전 검색</div>
-        <div className="ser_bar">
-          <input
+      <S.SerLabel>
+        <S.SerTitle>사전 검색</S.SerTitle>
+        <S.SerBar>
+          <S.SerInput
             onChange={(e) => {
               setText(e.target.value);
             }}
             value={ser_text}
             type={"text"}
             placeholder="search..."
-            className="ser_input"
             onKeyDown={enter}
           />
-          <img
-            onClick={searchWord}
-            src="search.png"
-            className="ser_ck"
-            alt="사진이 없음"
-          />
-        </div>
-      </label>
-      <div className="wordMean">
+          <S.SerBtn onClick={searchWord} src="search.png" alt="사진이 없음" />
+        </S.SerBar>
+      </S.SerLabel>
+      <S.WordMean>
         {isLoading ? (
-          <div className="loading">로딩중 ...</div>
+          <S.Loading>로딩중 ...</S.Loading>
         ) : (
           <>
             {prText === "" ? (
               <></>
             ) : (
               <>
-                <div className="prWord">
-                  <div className="prText">{prText}</div>
-                </div>
-                <div className="exandmean">
-                  <div
-                    className="mean"
-                    dangerouslySetInnerHTML={{ __html: mean }}
-                  ></div>
-                  <div
-                    className="example"
+                <S.InputValueBox>
+                  <S.InputValue>{prText}</S.InputValue>
+                </S.InputValueBox>
+                <S.SerResult>
+                  <S.Mean dangerouslySetInnerHTML={{ __html: mean }}></S.Mean>
+                  <S.Example
                     dangerouslySetInnerHTML={{ __html: example }}
-                  ></div>
-                </div>
+                  ></S.Example>
+                </S.SerResult>
               </>
             )}
           </>
         )}
-      </div>
-    </div>
+      </S.WordMean>
+    </S.Container>
   );
 }
