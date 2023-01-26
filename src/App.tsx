@@ -11,7 +11,7 @@ import MemoSet from "./pages/MemoSet/index";
 import Register from "./pages/Register/index";
 import Search from "./pages/Search";
 import Share from "./pages/Share";
-import SharedSetWord from "./pages/SharedSetWord/SharedSetWord";
+import SharedSetWord from "./pages/SharedSetWord";
 import Spelling from "./pages/Spelling/Spelling";
 import WordList from "./pages/WordList/WordList";
 

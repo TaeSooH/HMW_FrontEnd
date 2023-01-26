@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
-// import "./WordList/WordList.css";
+import * as S from "./style";
 import SharedWord from "../../components/SharedWord";
 import axios from "axios";
 
@@ -45,29 +45,29 @@ const SharedSetWord = (props: IProp) => {
   }, []);
   if (loading) return <div>...</div>;
   return (
-    <div className="container">
+    <S.Container>
       <Header username={props.name} />
-      <div className="wordList_container">
-        <div className="wordList_box">
-          <div className="wordList_header">
-            <div className="setName">{set_name}</div>
-            <hr></hr>
-          </div>
+      <S.ListContainer>
+        <S.ListBox>
+          <S.ListHeader>
+            <S.SetName>{set_name}</S.SetName>
+            <S.MidLine></S.MidLine>
+          </S.ListHeader>
           {words.length > 0 ? (
-            <div className="wordList_content">
-              <div className="word_classification">
-                <span>단어</span>
-                <span>의미</span>
-              </div>
+            <S.ListContent>
+              <S.WordBox>
+                <S.WordText>단어</S.WordText>
+                <S.WordText>의미</S.WordText>
+              </S.WordBox>
               {resultList}
-            </div>
+            </S.ListContent>
           ) : (
-            <div className="noWords">단어가 아직 없습니다.</div>
+            <S.NoWord>단어가 아직 없습니다.</S.NoWord>
           )}
-          <div className="Bottom_box"></div>
-        </div>
-      </div>
-    </div>
+          <S.BottomBox></S.BottomBox>
+        </S.ListBox>
+      </S.ListContainer>
+    </S.Container>
   );
 };
 
