@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import Header from "../../components/Header";
 import SharedSet from "../../components/SharedSet/SharedSet";
-import "./Share.css";
+import * as S from "./style";
 
 interface IProp {
   name: string;
@@ -29,10 +29,10 @@ const Share = (props: IProp) => {
   }, []);
   return (
     <>
-      <div className="container">
+      <S.Container>
         <Header username={props.name} />
-        <div className="Share_container">
-          <div className="fl_box">
+        <S.ShareContainer>
+          <S.FlexBox>
             {sharedSets.map((data: ISharedSet, index: number) => (
               <SharedSet
                 id={data.id}
@@ -41,9 +41,9 @@ const Share = (props: IProp) => {
                 owner={data.owner}
               />
             ))}
-          </div>
-        </div>
-      </div>
+          </S.FlexBox>
+        </S.ShareContainer>
+      </S.Container>
     </>
   );
 };
