@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./MainHeader.css";
+import * as S from "./style";
 
 export default function MainHeader() {
   return (
-    <header className="mainheader">
+    <S.MainHeader>
       <Link to="/">
-        <p className="mainlogo">HMW - Helping Memorize Words</p>
+        <S.MainLogo>HMW - Helping Memorize Words</S.MainLogo>
       </Link>
-    </header>
+    </S.MainHeader>
   );
 }
