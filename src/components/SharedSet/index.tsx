@@ -1,9 +1,9 @@
 import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import "./SharedSet.css";
-import { user } from ".././states";
+import { useRecoilState, useRecoilValue } from "recoil";
+import * as S from "./style";
+import { user } from "../states";
 
 interface ISharedSet {
   id: number;
@@ -34,26 +34,24 @@ const SharedSet = ({ id, title, word_length, owner }: ISharedSet) => {
   };
   return (
     <>
-      <div className="ShareSet_container">
-        <div className="row_box">
+      <S.SharedSet>
+        <S.RowBox>
           <Link to={`/share/sharedSetWord/${id}/`}>
-            <div className="set_box1">
-              <div className="main_box1">
+            <S.SetBox>
+              <S.MainBox>
                 <p>세트이름: {title}</p>
                 <span>단어 개수: {word_length}개</span>
-              </div>
-              <div className="bottom_box"></div>
-            </div>
+              </S.MainBox>
+              <S.BottomBox></S.BottomBox>
+            </S.SetBox>
           </Link>
-          <div className="right_set_box">
-            <p>세트이름 : {title}</p>
-            <span>유저이름 : {owner}</span>
-          </div>
-        </div>
-        <button className="down" onClick={download}>
-          세트 다운로드
-        </button>
-      </div>
+          <S.RightSetBox>
+            <S.SetName>세트이름 : {title}</S.SetName>
+            <S.Owner>유저이름 : {owner}</S.Owner>
+          </S.RightSetBox>
+        </S.RowBox>
+        <S.Download onClick={download}>세트 다운로드</S.Download>
+      </S.SharedSet>
     </>
   );
 };
