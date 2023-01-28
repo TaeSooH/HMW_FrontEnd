@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import * as S from "./style";
-import SharedWord from "../../components/SharedWord";
+import SharedWord from "../../components/SharedSetWord";
 import axios from "axios";
 
 interface IProp {
