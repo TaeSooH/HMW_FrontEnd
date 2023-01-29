@@ -65,14 +65,14 @@ const WordSet = (props: IWordSet) => {
             세트 확인하기
           </S.OptionButton>
           <S.OptionButton onClick={deleteSet}>세트 삭제하기</S.OptionButton>
-          <S.OptionButton
+          <S.ModifyBtn
             onClick={() => {
               setSet_nameModal(true);
               setModalOpened(false);
             }}
           >
             세트이름 변경
-          </S.OptionButton>
+          </S.ModifyBtn>
           <S.OptionButton onClick={shareSet}>세트 공유하기</S.OptionButton>
           <S.OptionButton
             onClick={() => {
@@ -90,20 +90,19 @@ const WordSet = (props: IWordSet) => {
           setModifiedSetName(props.name);
         }}
       >
-        <form className="popup_word_container" onSubmit={modifySetName}>
-          <div className="popup_top">
-            <span>세트 이름</span>
-            <input
-              className="setInput"
+        <S.PopupContainer onSubmit={modifySetName}>
+          <S.PopupTop>
+            <S.PopupSetName>세트 이름</S.PopupSetName>
+            <S.SetInput
               type="text"
               value={modifiedSetName}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setModifiedSetName(e.target.value);
               }}
             />
-          </div>
-          <input className="popup_word_submit" type="submit" value="변경하기" />
-        </form>
+          </S.PopupTop>
+          <S.PopupSubmit type="submit" value="변경하기" />
+        </S.PopupContainer>
       </Popup>
     </S.WordSetBox>
   );

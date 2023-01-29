@@ -54,3 +54,42 @@ export const OptionButton = styled.button`
   margin: 10px 0;
   border: none;
 `;
+export const ModifyBtn = styled.button`
+  width: 7%;
+  height: 5%;
+  font-size: 15px;
+  background-color: #ccecf9;
+  padding-left: 0;
+`;
+export const PopupContainer = styled.form`
+  width: 800px;
+  height: 250px;
+  background-color: #1f8bf7;
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 30px;
+`;
+export const PopupSetName = styled.span`
+  font-size: 25px;
+  margin-bottom: 20px;
+`;
+export const Title = styled.p`
+  font-size: 30px;
+`;
+export const PopupTop = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+export const SetInput = styled.input`
+  width: 50%;
+  height: 50px;
+  border-radius: 15px;
+  font-size: 25px;
+  padding-left: 20px;
+`;
+export const PopupSubmit = styled.input`
+  background-color: transparent;
+  font-size: 40px;
+`;
