@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
-import "./Word.css";
+import * as S from "./style";
 
 interface IWord {
   idx: number;
@@ -11,7 +11,7 @@ interface IWord {
   setId?: string;
 }
 
-const Word = (props: IWord) => {
+const index = (props: IWord) => {
   const [modalOpened, setModalOpened] = useState<boolean>();
   const [modifiedWord, setModifiedWord] = useState(props.word);
   const [modifiedMeaning, setModifiedMeaning] = useState(props.mean);
@@ -25,14 +25,14 @@ const Word = (props: IWord) => {
   }
 
   return (
-    <div className="word_container">
-      <span>{props.idx + 1}</span>
-      <div className="word_box">
-        <div>{props.word}</div>
-        <div>{props.mean}</div>
-      </div>
-      <div className="word_right_side">
-        <span
+    <S.WordContainer>
+      <S.Times>{props.idx + 1}</S.Times>
+      <S.WordBox>
+        <S.Word>{props.word}</S.Word>
+        <S.Word>{props.mean}</S.Word>
+      </S.WordBox>
+      <S.RightSide>
+        <S.FuncBtn
           onClick={() => {
             setModalOpened(true);
             setModifiedWord(props.word);
@@ -40,9 +40,9 @@ const Word = (props: IWord) => {
           }}
         >
           수정
-        </span>
-        <span onClick={deleteWord}>삭제</span>
-      </div>
+        </S.FuncBtn>
+        <S.FuncBtn onClick={deleteWord}>삭제</S.FuncBtn>
+      </S.RightSide>
       <Popup
         open={modalOpened}
         onClose={() => {
@@ -92,8 +92,8 @@ const Word = (props: IWord) => {
           <input className="popup_word_submit" type="submit" value="수정하기" />
         </form>
       </Popup>
-    </div>
+    </S.WordContainer>
   );
 };
 
-export default Word;
+export default index;

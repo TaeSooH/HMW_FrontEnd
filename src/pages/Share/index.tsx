@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import Header from "../../components/Header";
-import SharedSet from "../../components/SharedSet/SharedSet";
+import SharedSet from "../../components/SharedSet";
 import * as S from "./style";
 
 interface IProp {

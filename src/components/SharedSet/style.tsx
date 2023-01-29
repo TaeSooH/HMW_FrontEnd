@@ -1,4 +1,5 @@
-.ShareSet_container {
+import styled from "styled-components";
+export const SharedSet = styled.div`
   margin: 25px auto;
   width: 80%;
   height: 300px;
@@ -10,19 +11,18 @@
   border-radius: 20px;
   box-shadow: 1px 1px 5px 5px rgb(216, 216, 216);
   margin-top: 60px;
-}
-.row_box {
+`;
+export const RowBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-}
-.set_box1 {
+`;
+export const SetBox = styled.div`
   width: 200px;
   height: 200px;
-  /* box-shadow: 5px 5px 10px 10px #b1d4f6; */
-}
-.main_box1 {
+`;
+export const MainBox = styled.div`
   width: 200px;
   height: 175px;
   display: flex;
@@ -32,34 +32,33 @@
   background-color: white;
   font-size: 1.15vw;
   font-weight: 700;
-}
-.bottom_box{
+`;
+export const BottomBox = styled.div`
   width: 200px;
-  height:25px;
+  height: 25px;
   background-color: #1f8bf7;
-}
-.right_set_box {
+`;
+export const RightSetBox = styled.div`
   width: calc(80% - 200px);
   height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: #80909f; */
-}
-.right_set_box p {
+`;
+export const SetName = styled.p`
   font-weight: bold;
   font-size: 1.1vw;
-}
-.right_set_box span {
+`;
+export const Owner = styled.span`
   color: rgb(77, 77, 77);
   font-weight: 700;
   font-size: 1vw;
-}
-.down {
+`;
+export const Download = styled.button`
   font-size: 20px;
   height: 40px;
   width: 50%;
   border-radius: 5px;
   cursor: pointer;
-}
+`;

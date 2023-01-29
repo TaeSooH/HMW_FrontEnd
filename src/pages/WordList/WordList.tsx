@@ -3,7 +3,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { GrAddCircle } from "react-icons/gr";
 import Header from "../../components/Header";
 import "./WordList.css";
-import Word from "../../components/Word/Word";
+import Word from "../../components/Word/index";
 import Popup from "reactjs-popup";
 import axios from "axios";
 
