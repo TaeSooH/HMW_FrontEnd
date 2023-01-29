@@ -1,6 +1,6 @@
 import React, { LegacyRef, RefObject, useEffect, useState } from "react";
 import Header from "../../components/Header";
-import WordSet from "../../components/WordSet/WordSet";
+import WordSet from "../../components/WordSet";
 import Popup from "reactjs-popup";
 import * as S from "./style";
 import { IoAddOutline } from "react-icons/io5";

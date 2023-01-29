@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./WordSet.css";
+import * as S from "./style";
 import Popup from "reactjs-popup";
 import axios from "axios";
 
@@ -14,7 +14,6 @@ const WordSet = (props: IWordSet) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [set_nameModal, setSet_nameModal] = useState(false);
   const [modifiedSetName, setModifiedSetName] = useState(props.name);
-  const [memorizeWay, setMemorizeWay] = useState();
 
   async function deleteSet() {
     const check = window.confirm("정말로 삭제하시겠습니까?");
@@ -44,17 +43,16 @@ const WordSet = (props: IWordSet) => {
     window.location.replace("/memoset");
   }
   return (
-    <div className="wordSet_box">
-      <div
-        className="main_box"
+    <S.WordSetBox>
+      <S.MainBox
         onClick={() => {
           setModalOpened(true);
         }}
       >
-        <p>{props.name}</p>
+        <S.SetName>{props.name}</S.SetName>
         <span>단어 {props.length}개</span>
-      </div>
-      <div className="bottom_box"></div>
+      </S.MainBox>
+      <S.BottomBox></S.BottomBox>
 
       <Popup
         open={modalOpened}
@@ -62,31 +60,28 @@ const WordSet = (props: IWordSet) => {
           setModalOpened(false);
         }}
       >
-        <div className="option_list">
-          <Link className="set_modify" to={`/memoset/wordlist/${props.id}/`}>
+        <S.OptionList>
+          <S.OptionButton as={Link} to={`/memoset/wordlist/${props.id}/`}>
             세트 확인하기
-          </Link>
-          <button className="set_delete" onClick={deleteSet}>
-            세트 삭제하기
-          </button>
-          <button
+          </S.OptionButton>
+          <S.OptionButton onClick={deleteSet}>세트 삭제하기</S.OptionButton>
+          <S.OptionButton
             onClick={() => {
               setSet_nameModal(true);
               setModalOpened(false);
             }}
-            className="moBt"
           >
             세트이름 변경
-          </button>
-          <button onClick={shareSet}>세트 공유하기</button>
-          <button
+          </S.OptionButton>
+          <S.OptionButton onClick={shareSet}>세트 공유하기</S.OptionButton>
+          <S.OptionButton
             onClick={() => {
               setModalOpened(false);
             }}
           >
             돌아가기
-          </button>
-        </div>
+          </S.OptionButton>
+        </S.OptionList>
       </Popup>
       <Popup
         open={set_nameModal}
@@ -110,7 +105,7 @@ const WordSet = (props: IWordSet) => {
           <input className="popup_word_submit" type="submit" value="변경하기" />
         </form>
       </Popup>
-    </div>
+    </S.WordSetBox>
   );
 };
 
