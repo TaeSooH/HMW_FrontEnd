@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { GrAddCircle } from "react-icons/gr";
 import Header from "../../components/Header";
-import "./WordList.css";
+import * as S from "./style";
 import Word from "../../components/Word/index";
 import Popup from "reactjs-popup";
 import axios from "axios";
+import { DefaultSerializer } from "v8";
 
 interface IProp {
   name: string;
@@ -61,32 +62,32 @@ const WordList = (props: IProp) => {
   };
   if (loading) return <div>...</div>;
   return (
-    <div className="container">
+    <S.Container>
       <Header username={props.name} />
-      <div className="wordList_container">
-        <div className="wordList_box">
-          <div className="wordList_header">
-            <div className="setName">{set_name}</div>
-            <hr></hr>
-          </div>
+      <S.ListContainer>
+        <S.ListBox>
+          <S.ListHeader>
+            <S.SetName>{set_name}</S.SetName>
+            <S.TopLine></S.TopLine>
+          </S.ListHeader>
           {words.length > 0 ? (
-            <div className="wordList_content">
-              <div className="word_classification">
-                <span>단어</span>
-                <span>의미</span>
-              </div>
+            <S.ListContent>
+              <S.WordBox>
+                <S.WordText>단어</S.WordText>
+                <S.WordText>의미</S.WordText>
+              </S.WordBox>
               {resultList}
-            </div>
+            </S.ListContent>
           ) : (
-            <div className="noWords">단어가 아직 없습니다.</div>
+            <S.NoWord>단어가 아직 없습니다.</S.NoWord>
           )}
 
-          <div className="wordList_footer">
-            <hr></hr>
-            <GrAddCircle
+          <S.ListFooter>
+            <S.BottomLine></S.BottomLine>
+            <S.AddIcon
+              as={GrAddCircle}
               size="120"
               color="black"
-              className="wordList_addIcon"
               onKeyDown={() => {}}
               onClick={() => {
                 setModalOpened(true);
@@ -94,20 +95,18 @@ const WordList = (props: IProp) => {
                 setMeaning("");
               }}
             />
-            <hr></hr>
-          </div>
-          <div className="Bottom_box"></div>
-        </div>
-      </div>
-
+            <S.BottomLine></S.BottomLine>
+          </S.ListFooter>
+          <S.BottomBox></S.BottomBox>
+        </S.ListBox>
+      </S.ListContainer>
       <Popup
         open={modalOpened}
         onClose={() => {
           setModalOpened(false);
         }}
       >
-        <form
-          className="popup_word_container"
+        <S.PopupContainer
           onSubmit={async (e) => {
             e.preventDefault();
             if (word !== "" && meaning !== "") {
@@ -135,53 +134,50 @@ const WordList = (props: IProp) => {
             }
           }}
         >
-          <p>암기할 단어 입력</p>
-          <div className="popup_bot">
-            <div className="popup_top">
-              <span>단어</span>
-              <input
+          <S.PopupSetName>암기할 단어 입력</S.PopupSetName>
+          <S.PopupBottom>
+            <S.PopupTop>
+              <S.Title>단어</S.Title>
+              <S.SetInput
                 onChange={(e) => {
                   setWord(e.target.value);
                 }}
                 type="text"
                 value={word}
               />
-            </div>
-            <div className="popup_top">
-              <span>의미</span>
-              <input
+            </S.PopupTop>
+            <S.PopupTop>
+              <S.Title>의미</S.Title>
+              <S.SetInput
                 onChange={(e) => {
                   setMeaning(e.target.value);
                 }}
                 type="text"
                 value={meaning}
               />
-            </div>
-          </div>
-          <input className="popup_word_submit" type="submit" value="추가하기" />
-        </form>
+            </S.PopupTop>
+          </S.PopupBottom>
+          <S.PopupSubmit type="submit" value="추가하기" />
+        </S.PopupContainer>
       </Popup>
-      <div className="Bottom_menu">
-        <div className="Menu_inner_box">
-          <Link
-            className="start_memorizing"
-            to={`/memoset/wordlist/memorize/${id}/`}
-          >
+      <S.BottomMenu>
+        <S.InnerBox>
+          <S.Start as={Link} to={`/memoset/wordlist/memorize/${id}/`}>
             암기학습
-          </Link>
-          <p>단어 또는 의미를 보고 맞추기</p>
-        </div>
-        <div className="Menu_inner_box">
+          </S.Start>
+          <S.MemorizeWay>단어 또는 의미를 보고 맞추기</S.MemorizeWay>
+        </S.InnerBox>
+        <S.InnerBox>
           <Link
             className="start_memorizing"
             to={`/memoset/wordlist/spelling/${id}/`}
           >
             스펠학습
           </Link>
-          <p>의미를 보고 단어의 스펠링을 맞추기</p>
-        </div>
-      </div>
-    </div>
+          <S.MemorizeWay>의미를 보고 단어의 스펠링을 맞추기</S.MemorizeWay>
+        </S.InnerBox>
+      </S.BottomMenu>
+    </S.Container>
   );
 };
 

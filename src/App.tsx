@@ -13,7 +13,7 @@ import Search from "./pages/Search";
 import Share from "./pages/Share";
 import SharedSetWord from "./pages/SharedSetWord";
 import Spelling from "./pages/Spelling/Spelling";
-import WordList from "./pages/WordList/WordList";
+import WordList from "./pages/WordList";
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
