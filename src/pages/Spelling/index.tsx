@@ -9,7 +9,7 @@ import axios from "axios";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useSpeech } from "react-web-voice";
-import "./Spelling.css";
+import * as S from "./style";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import "animate.css";
 
@@ -98,26 +98,26 @@ const Spelling = () => {
   if (load) return <div>...</div>;
   if (!start)
     return (
-      <div className="memorize_container">
-        <div className="check">
-          <p className="box_title">
+      <S.MContainer>
+        <S.CheckBox>
+          <S.CheckTitle>
             적절한 모드와 방법으로 단어를 효율적으로 외우세요!
-          </p>
-          <div className="setlist">
+          </S.CheckTitle>
+          <S.SetMode>
             <p>셔플모드</p>
-            <label className="switch">
-              <input
+            <S.Switch>
+              <S.ShuffleCheck
                 type={"checkbox"}
                 onClick={() => {
                   implShuffle(shuffleList);
                   setShuffle(!shuffle);
                 }}
               />
-              <span className="slider_round"></span>
-            </label>
-          </div>
+              <S.SliderRound></S.SliderRound>
+            </S.Switch>
+          </S.SetMode>
 
-          <div className="memorize_way">
+          <S.MemorizeWay>
             <p>학습 방법</p>
             <select
               onChange={(e) => {
@@ -129,23 +129,22 @@ const Spelling = () => {
               <option value="word">단어 제시</option>
               <option value="meaning">의미 제시</option>
             </select>
-          </div>
-          <button
-            className="startMemo"
+          </S.MemorizeWay>
+          <S.StartMemo
             onClick={() => {
               setStart(true);
             }}
           >
             스펠 학습 시작
-          </button>
-        </div>
-      </div>
+          </S.StartMemo>
+        </S.CheckBox>
+      </S.MContainer>
     );
   return (
     <>
-      <Link className="go_to_back" to="/memoset">
+      <S.GoBack as={Link} to="/memoset">
         <IoMdArrowRoundBack size="20" /> 학습 종료
-      </Link>
+      </S.GoBack>
       {wordList.length !== 0 ? (
         <Carousel
           showThumbs={false}
@@ -153,14 +152,14 @@ const Spelling = () => {
           showStatus={false}
           renderArrowNext={(clickHandler, hasNext, labelNext) =>
             hasNext && (
-              <MdOutlineNavigateNext
+              <S.NextBtn
+                as={MdOutlineNavigateNext}
                 onClick={() => {
                   clickHandler();
                   setIsClick(false);
                   setFirst(true);
                   setAnswer("");
                 }}
-                className="next_word_button"
                 color="white"
                 size="70"
               />
@@ -168,7 +167,8 @@ const Spelling = () => {
           }
           renderArrowPrev={(clickHandler, hasPrev, labelPrev) =>
             hasPrev && (
-              <MdOutlineNavigateBefore
+              <S.BeforeBtn
+                as={MdOutlineNavigateBefore}
                 onClick={() => {
                   clickHandler();
                   setIsClick(false);
@@ -185,50 +185,40 @@ const Spelling = () => {
           <>
             {shuffle
               ? shuffleList.map((data: IData, index: number) => (
-                  <div className="memorize_container">
-                    <span>{set_name}</span>
-                    <span>
+                  <S.MContainer>
+                    <S.ContainerText>{set_name}</S.ContainerText>
+                    <S.ContainerText>
                       {index + 1}/{wordList.length}
-                    </span>
-                    <div className="content_box">
+                    </S.ContainerText>
+                    <S.ContentBox>
                       {way === "meaning" ? (
                         !isClick ? (
-                          <button className="voicebtn">
+                          <S.VoiceBtn>
                             <GiSpeaker size="30" color="grey" />
-                          </button>
+                          </S.VoiceBtn>
                         ) : (
-                          <button
-                            className="voicebtn"
-                            onClick={() => speech(data.word)}
-                          >
+                          <S.VoiceBtn onClick={() => speech(data.word)}>
                             {playing ? (
                               <CgPlayPause size="30" />
                             ) : (
                               <GiSpeaker size="30" />
                             )}
-                          </button>
+                          </S.VoiceBtn>
                         )
                       ) : (
-                        <button
-                          className="voicebtn"
-                          onClick={() => speech(data.word)}
-                        >
+                        <S.VoiceBtn onClick={() => speech(data.word)}>
                           {playing ? (
                             <CgPlayPause size="30" />
                           ) : (
                             <GiSpeaker size="30" />
                           )}
-                        </button>
+                        </S.VoiceBtn>
                       )}
-                      <div className="inner_box">
-                        <p>{way === "word" ? data.word : data.meaning}</p>
-                        <hr
-                          style={{
-                            width: "100%",
-                            height: "1px",
-                            backgroundColor: "grey",
-                          }}
-                        ></hr>
+                      <S.InnerBox>
+                        <S.Words>
+                          {way === "word" ? data.word : data.meaning}
+                        </S.Words>
+                        <S.MidLine></S.MidLine>
                         <form
                           className="word_submit_form"
                           onSubmit={(e) => {
@@ -267,9 +257,9 @@ const Spelling = () => {
                             </span>
                           ))}
                         {/* {isClick ? <span>정답입니다!</span> : <span style={{color:"red"}}>틀렸습니다!</span>} */}
-                      </div>
-                    </div>
-                    <div
+                      </S.InnerBox>
+                    </S.ContentBox>
+                    <S.SpaceButton
                       onClick={() => {
                         if (way === "word") {
                           inspect(answer, data.meaning);
@@ -287,11 +277,10 @@ const Spelling = () => {
                           }
                         }
                       }}
-                      className="space_button"
                     >
                       enter
-                    </div>
-                  </div>
+                    </S.SpaceButton>
+                  </S.MContainer>
                 ))
               : wordList.map((data: IData, index: number) => (
                   <div className="memorize_container">
