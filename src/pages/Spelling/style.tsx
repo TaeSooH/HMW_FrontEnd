@@ -47,78 +47,68 @@ export const MidLine = styled.hr`
   height: "1px";
   background-color: "grey";
 `;
+export const SpellingInput = styled.input`
+  width: 70%;
+  height: 100%;
+  border: 1px solid grey;
+  border-radius: 10px;
+  font-size: 20px;
+  padding-left: 10px;
+`;
+export const SpellingRight = styled(SpellingInput)`
+  color: #1f8bf7;
+  border: 1px solid #1f8bf7;
+  animation: right 0.8s;
 
-// .Spelling_input {
-//     width: 70%;
-//     height: 100%;
-//     border: 1px solid grey;
-//     border-radius: 10px;
-//     font-size: 20px;
-//     padding-left: 10px;
-// }
-// .Spelling_right {
-//     width: 70%;
-//     height: 100%;
-//     border: 1px solid #1f8bf7;
-//     color: #1f8bf7;
-//     border-radius: 10px;
-//     font-size: 20px;
-//     padding-left: 10px;
-//     animation: right 0.8s;
-// }
-// .Spelling_wrong {
-//     width: 70%;
-//     height: 100%;
-//     border: 1px solid red;
-//     color: red;
-//     border-radius: 10px;
-//     font-size: 20px;
-//     padding-left: 10px;
-//     animation: wrong 0.3s;
-// }
-// @keyframes wrong {
-//     from {
-//         transform: translateX(-10px);
-//     }
-//     20% {
-//         transform: translateX(20px);
-//     }
-//     40% {
-//         transform: translateX(-20px);
-//     }
-//     60% {
-//         transform: translateX(20px);
-//     }
-//     80% {
-//         transform: translateX(-20px);
-//     }
-//     to {
-//         transform: translateX(10px);
-//     }
-// }
-// @keyframes right {
-//     from {
-//         transform: scale(1)
-//     }
-//     25% {
-//         transform: scale(1.2, 1.45);
-//     }
-//     38% {
-//         transform: scale(1.2, 1.45);
-//     }
-//     to {
-//         transform: scale(1);
-//     }
-// }
-// .inner_span {
-//     position: absolute;
-//     top: 73%;
-//     font-size: 30px !important;
-//     color: #1f8bf7;
-// }
+  @keyframes right {
+    from {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.2, 1.45);
+    }
+    38% {
+      transform: scale(1.2, 1.45);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+`;
+export const SpellingWrong = styled(SpellingInput)`
+  border: 1px solid red;
+  color: red;
+  animation: wrong 0.3s;
 
-// .word_submit_form{
-//     width: 100%;
-//     height: 15%;
-//     margin-bottom: 10%;
-// }
+  @keyframes wrong {
+    from {
+      transform: translateX(-10px);
+    }
+    20% {
+      transform: translateX(20px);
+    }
+    40% {
+      transform: translateX(-20px);
+    }
+    60% {
+      transform: translateX(20px);
+    }
+    80% {
+      transform: translateX(-20px);
+    }
+    to {
+      transform: translateX(10px);
+    }
+  }
+`;
+export const InnerSpan = styled.span<{ tColor: string }>`
+  position: absolute;
+  top: 73%;
+  font-size: 30px !important;
+  color: ${(props) => props.tColor};
+`;
+export const SubmitForm = styled.form`
+  width: 100%;
+  height: 15%;
+  margin-bottom: 10%;
+`;
