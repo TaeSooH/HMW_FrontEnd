@@ -100,7 +100,7 @@ const Index = () => {
                   setShuffle(!shuffle);
                 }}
               />
-              <span className="slider_round"></span>
+              <S.SliderRound></S.SliderRound>
             </S.Switch>
           </S.SetMode>
 

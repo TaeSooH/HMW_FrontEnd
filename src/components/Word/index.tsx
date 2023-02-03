@@ -11,7 +11,7 @@ interface IWord {
   setId?: string;
 }
 
-const index = (props: IWord) => {
+const Index = (props: IWord) => {
   const [modalOpened, setModalOpened] = useState<boolean>();
   const [modifiedWord, setModifiedWord] = useState(props.word);
   const [modifiedMeaning, setModifiedMeaning] = useState(props.mean);
@@ -96,4 +96,4 @@ const index = (props: IWord) => {
   );
 };
 
-export default index;
+export default Index;
