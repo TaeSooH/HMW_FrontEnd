@@ -37,13 +37,13 @@ const WordList = (props: IProp) => {
   useEffect(() => {
     async function getWords() {
       const response = await axios.get(
-        `https://helpingmemo.ga/word/getWords/?setId=${id}`
+        `https://192.168.10.74/word/getWords/?setId=${id}`
       );
       setWords(response.data);
       setLoading(false);
     }
     axios
-      .get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
+      .get(`https://192.168.10.74/wordSet/getWordSetTitle/?setId=${id}`)
       .then((response) => {
         setSet_name(response.data);
       })
@@ -115,7 +115,7 @@ const WordList = (props: IProp) => {
                 meaning: meaning,
               };
               const response = await axios.put(
-                `https://helpingmemo.ga/word/setWords/${id}`,
+                `https://192.168.10.74/word/setWords/${id}`,
                 form
               );
               setModalOpened(false);
@@ -124,7 +124,7 @@ const WordList = (props: IProp) => {
               alert(response.data);
               async function getWords() {
                 const response = await axios.get(
-                  `https://helpingmemo.ga/word/getWords/?setId=${id}`
+                  `https://192.168.10.74/word/getWords/?setId=${id}`
                 );
                 setWords(response.data);
               }

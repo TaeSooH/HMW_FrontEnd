@@ -18,7 +18,7 @@ const Index = (props: IWord) => {
 
   async function deleteWord() {
     const response = await axios.put(
-      `https://helpingmemo.ga/word/deleteWord/${props.id}`
+      `https://192.168.10.74/word/deleteWord/${props.id}`
     );
     alert(response.data);
     window.location.replace(`/memoset/wordlist/${props.setId}`);
@@ -58,7 +58,7 @@ const Index = (props: IWord) => {
               meaning: modifiedMeaning,
             };
             const response = await axios.put(
-              `https://helpingmemo.ga/word/modifyWord/${props.id}`,
+              `https://192.168.10.74/word/modifyWord/${props.id}`,
               form
             );
             setModalOpened(false);

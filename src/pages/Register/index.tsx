@@ -16,7 +16,7 @@ export default function Register() {
       alert("패스워드가 일치하지 않습니다.");
     } else {
       await axios
-        .post("https://helpingmemo.ga/user/signup", registerData)
+        .post("https://192.168.10.74/user/signup", registerData)
         .then((response) => {
           alert(response.data);
           window.location.replace("/");

@@ -22,7 +22,7 @@ const SharedSet = ({ id, title, word_length, owner }: ISharedSet) => {
       console.log(userName);
       axios
         .post(
-          `https://helpingmemo.ga/wordSet/downloadSharedWordSet/${id}?owner=${userName}`
+          `https://192.168.10.74/wordSet/downloadSharedWordSet/${id}?owner=${userName}`
         )
         .then((res) => {
           alert(res.data);
