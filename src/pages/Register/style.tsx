@@ -13,6 +13,4 @@ export const Submit = styled(S.Submit)`
 `;
 export const InputForm = styled(S.LoginForm)``;
 export const ToLogin = styled(S.ToJoin)``;
-export const ErrorMsg = styled.span`
-  color: red;
-`;
+export const ErrorMsg = styled(S.ErrorMsg)``;
