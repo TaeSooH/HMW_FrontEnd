@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import { Routes, Route } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { createGlobalStyle } from "styled-components";
@@ -64,30 +65,56 @@ table {
 function App() {
   const [loading, setLoading] = useState(true);
   const [userName, setUserName] = useRecoilState(user);
+  const logOut = () => {
+    axios
+      .get("/api/auth/logout")
+      .then((res) => {
+        console.log(res.data);
+        window.location.replace("/");
+      })
+      .catch((err) => console.log(err));
+  };
+  const authCheck = () => {
+    axios
+      .get("/api/auth/getUser") // 토큰으로 서버에 인증 요청
+      .then((res) => {
+        setUserName(res.data.username);
+      })
+      .catch(() => {
+        logOut();
+      });
+  };
+  // console.log(userName);
+  // useEffect(() => {
+  //   autoCheck();
+
+  // if (localStorage.getItem("token") != null) {
+  //   console.log(localStorage.getItem("token"));
+  //   async function checkLogged() {
+  //     const token = localStorage.getItem("token");
+  //     await axios
+  //       .get("https://helpingmemo.ga/user/getUser", {
+  //         params: {
+  //           token: token,
+  //         },
+  //       })
+  //       .then((response) => {
+  //         setUserName(response.data.name);
+  //         localStorage.setItem("isLogged", JSON.stringify(true));
+  //       })
+  //       .catch((error) => {
+  //         localStorage.setItem("isLogged", JSON.stringify(false));
+  //         localStorage.removeItem("token");
+  //       });
+  //   }
+  //   checkLogged();
+  // } else {
+  //   localStorage.setItem("isLogged", JSON.stringify(false));
+  // }
+  //   setLoading(false);
+  // });
   useEffect(() => {
-    if (localStorage.getItem("token") != null) {
-      console.log(localStorage.getItem("token"));
-      async function checkLogged() {
-        const token = localStorage.getItem("token");
-        await axios
-          .get("https://helpingmemo.ga/user/getUser", {
-            params: {
-              token: token,
-            },
-          })
-          .then((response) => {
-            setUserName(response.data.name);
-            localStorage.setItem("isLogged", JSON.stringify(true));
-          })
-          .catch((error) => {
-            localStorage.setItem("isLogged", JSON.stringify(false));
-            localStorage.removeItem("token");
-          });
-      }
-      checkLogged();
-    } else {
-      localStorage.setItem("isLogged", JSON.stringify(false));
-    }
+    authCheck();
     setLoading(false);
   }, []);
   if (loading) return <div>. . .</div>;
