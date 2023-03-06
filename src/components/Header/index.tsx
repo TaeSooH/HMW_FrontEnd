@@ -50,7 +50,10 @@ export default function Header(props: IProps) {
         단어 세트 공유
       </S.NavMenu>
       {props.username ? (
-        <S.User onClick={logOut}>{props.username}(로그아웃)</S.User>
+        <>
+          <S.User>{props.username}</S.User>
+          <S.User onClick={logOut}>로그아웃</S.User>
+        </>
       ) : (
         <>
           <S.LinkMenu as={Link} marginValue="23%" to="/login" className="login">

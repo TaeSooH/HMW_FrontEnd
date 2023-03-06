@@ -24,8 +24,14 @@ export const Logo = styled.span`
 
 export const User = styled.div`
   font-size: 1.25vw;
-  margin-left: 23%;
-  cursor: pointer;
+  margin-left: 30%;
+  &:not(:first-of-type) {
+    margin-left: 2%;
+    cursor: pointer;
+    &:hover {
+      color: #828282;
+    }
+  }
 `;
 
 interface IMargin {
