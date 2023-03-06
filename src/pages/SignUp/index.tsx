@@ -88,9 +88,15 @@ export default function SignUp() {
           placeholder="비밀번호 확인"
         />
         <S.ErrorMsg>{errors.Email?.message}</S.ErrorMsg>
-        <S.ErrorMsg>{errors.Username?.message}</S.ErrorMsg>
-        <S.ErrorMsg>{errors.PW?.message}</S.ErrorMsg>
-        <S.ErrorMsg>{errors.PWcheck?.message}</S.ErrorMsg>
+        {!errors.Email?.message && (
+          <S.ErrorMsg>{errors.Username?.message}</S.ErrorMsg>
+        )}
+        {!errors.Username?.message && (
+          <S.ErrorMsg>{errors.PW?.message}</S.ErrorMsg>
+        )}
+        {!errors.PW?.message && (
+          <S.ErrorMsg>{errors.PWcheck?.message}</S.ErrorMsg>
+        )}
         <S.Submit
           onClick={() => {
             console.log(errors);
