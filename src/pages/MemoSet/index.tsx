@@ -39,7 +39,7 @@ export default function MemoSet(props: IProp) {
       setIsLogged(true);
       async function GetWordSet() {
         await axios
-          .get(`https://helpingmemo.ga/wordSet/getWordSet?owner=${props.name}`)
+          .get(`https://192.168.10.74/wordSet/getWordSet?owner=${props.name}`)
           .then((response) => {
             console.log(response.data);
             setNames(response.data);

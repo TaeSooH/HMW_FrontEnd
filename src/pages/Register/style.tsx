@@ -8,6 +8,11 @@ export const RegisterInput = styled(S.LoginInput)`
     outline: none;
   }
 `;
-export const Submit = styled(S.Submit)``;
+export const Submit = styled(S.Submit)`
+  margin-top: 1%;
+`;
 export const InputForm = styled(S.LoginForm)``;
 export const ToLogin = styled(S.ToJoin)``;
+export const ErrorMsg = styled.span`
+  color: red;
+`;

@@ -18,7 +18,7 @@ export default function Search(props: IProp) {
   const searchWord = () => {
     setIsLoading(true);
     axios
-      .get("https://helpingmemo.ga/search?word=" + ser_text)
+      .get("https://192.168.10.74/search?word=" + ser_text)
       .then((res) => {
         setSearchData(res);
         if (searchData?.data[0] !== undefined) {

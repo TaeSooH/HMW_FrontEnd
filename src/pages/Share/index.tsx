@@ -19,7 +19,7 @@ const Share = (props: IProp) => {
   const [sharedSets, setSharedSet] = useState([]);
   useEffect(() => {
     axios
-      .get("https://helpingmemo.ga/wordSet/getSharedWordSet")
+      .get("https://192.168.10.74/wordSet/getSharedWordSet")
       .then((res) => {
         setSharedSet(res.data);
       })

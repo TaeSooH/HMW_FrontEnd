@@ -37,7 +37,7 @@ const Spelling = () => {
     async function getWords() {
       console.log("enter");
       const response = await axios.get(
-        `https://helpingmemo.ga/word/getWords/?setId=${id}`
+        `https://192.168.10.74/word/getWords/?setId=${id}`
       );
       console.log(response.data);
       setWordList(response.data);
@@ -48,7 +48,7 @@ const Spelling = () => {
     async function getShuffles() {
       console.log("enter");
       const response = await axios.get(
-        `https://helpingmemo.ga/word/getWords/?setId=${id}`
+        `https://192.168.10.74/word/getWords/?setId=${id}`
       );
       console.log(response.data);
       setShuffleList(response.data);
@@ -58,7 +58,7 @@ const Spelling = () => {
       console.log(shuffle);
     }
     axios
-      .get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
+      .get(`https://192.168.10.74/wordSet/getWordSetTitle/?setId=${id}`)
       .then((response) => {
         setSet_name(response.data);
       })

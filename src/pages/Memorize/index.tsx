@@ -10,7 +10,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useSpeech } from "react-web-voice";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import MemoWord from "../../components/MemoWord/index";
 interface IData {
   word: string;
   meaning: string;
@@ -32,7 +31,7 @@ const Index = () => {
   useEffect(() => {
     async function getWords() {
       const response = await axios.get(
-        `https://helpingmemo.ga/word/getWords/?setId=${id}`
+        `https://192.168.10.74/word/getWords/?setId=${id}`
       );
       setWordList(response.data);
     }

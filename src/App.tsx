@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Memorize from "./pages/Memorize";
 import MemoSet from "./pages/MemoSet/index";
-import Register from "./pages/Register/index";
+import SignUp from "./pages/Register/index";
 import Search from "./pages/Search";
 import Share from "./pages/Share";
 import SharedSetWord from "./pages/SharedSetWord";
@@ -97,7 +97,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main name={userName} />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<SignUp />} />
         <Route path="/search" element={<Search name={userName} />} />
         <Route path="/memoset" element={<MemoSet name={userName} />} />
         <Route

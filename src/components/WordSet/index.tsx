@@ -20,7 +20,7 @@ const WordSet = (props: IWordSet) => {
     if (check) {
       console.log(props.id);
       const response = await axios.put(
-        `https://helpingmemo.ga/wordSet/deleteWordSet/${props.id}`
+        `https://192.168.10.74/wordSet/deleteWordSet/${props.id}`
       );
       setModalOpened(false);
       window.location.replace("/memoset");
@@ -28,7 +28,7 @@ const WordSet = (props: IWordSet) => {
   }
   async function shareSet() {
     const response = await axios.put(
-      `https://helpingmemo.ga/wordSet/shareWordSet/${props.id}`
+      `https://192.168.10.74/wordSet/shareWordSet/${props.id}`
     );
     alert(response.data);
     window.location.replace("/memoset");
@@ -36,7 +36,7 @@ const WordSet = (props: IWordSet) => {
   async function modifySetName(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const response = await axios.put(
-      `https://helpingmemo.ga/wordSet/modifyWordSet/${props.id}`,
+      `https://192.168.10.74/wordSet/modifyWordSet/${props.id}`,
       { title: modifiedSetName }
     );
     setSet_nameModal(false);

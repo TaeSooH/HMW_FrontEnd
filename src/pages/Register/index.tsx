@@ -1,62 +1,105 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import * as S from "./style";
+import { useForm } from "react-hook-form";
 
-export default function Register() {
-  const [registerData, setRegisterData] = useState({
-    id: "",
-    password1: "",
-    password2: "",
+interface ISignUp {
+  Email: string;
+  Username: string;
+  PW: string;
+  PWcheck: string;
+}
+export default function SignUp() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setError,
+  } = useForm<ISignUp>({
+    defaultValues: {
+      Email: "@bssm.hs.kr",
+    },
   });
-  async function register(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (registerData.password1 !== registerData.password2) {
-      alert("패스워드가 일치하지 않습니다.");
+  const onValid = (data: ISignUp) => {
+    if (data.PW !== data.PWcheck) {
+      return setError(
+        "PWcheck",
+        { message: "비밀번호를 다시 확인해주세요." },
+        { shouldFocus: true }
+      );
     } else {
-      await axios
-        .post("https://helpingmemo.ga/user/signup", registerData)
-        .then((response) => {
-          alert(response.data);
+      axios
+        // .post("http://192.168.10.74/api/auth/signup", JSON.stringify(data))
+        .post("/api/auth/signup", {
+          email: data.Email,
+          name: data.Username,
+          password: data.PW,
+        })
+        .then((res) => {
+          alert(res.data);
           window.location.replace("/");
         })
         .catch((err) => {
           console.log(err);
-          alert("사용자가 이미 있습니다!");
+          alert("사용자가 이미 존재합니다.");
         });
     }
-  }
+  };
   return (
     <S.RegisterContainer>
       <MainHeader />
-      <S.InputForm onSubmit={register}>
+      <S.InputForm onSubmit={handleSubmit(onValid)}>
         <S.RegisterInput
-          type={"text"}
-          placeholder="아이디"
-          value={registerData.id}
-          onChange={(e) => {
-            setRegisterData({ ...registerData, id: e.target.value });
-          }}
+          {...register("Email", {
+            required: "이메일을 입력해 주세요",
+            pattern: {
+              value:
+                /^[A-Za-z0-9._%+-]+@bssm.hs.kr$/ ||
+                /^[A-Za-z0-9._%+-]+@bssm.teacher.hs.kr$/,
+              message: "오직 소마고의 학생 또는 선생님만 가입할 수 있습니다.",
+            },
+          })}
+          placeholder="이메일"
         />
         <S.RegisterInput
-          type={"password"}
+          {...register("Username", {
+            required: "유저네임을 입력해 주세요.",
+          })}
+          placeholder="유저네임"
+        />
+        <S.RegisterInput
+          {...register("PW", {
+            required: "비밀번호를 입력해 주세요.",
+          })}
+          type="password"
           placeholder="비밀번호"
-          className="pw"
-          value={registerData.password1}
-          onChange={(e) => {
-            setRegisterData({ ...registerData, password1: e.target.value });
-          }}
         />
         <S.RegisterInput
-          type={"password"}
-          placeholder="비밀번호 재입력"
-          value={registerData.password2}
-          onChange={(e) => {
-            setRegisterData({ ...registerData, password2: e.target.value });
-          }}
+          {...register("PWcheck", {
+            required: "비밀번호를 확인해 주세요.",
+          })}
+          type="password"
+          placeholder="비밀번호 확인"
         />
-        <S.Submit type={"submit"} value="회원가입" />
+        <S.ErrorMsg>{errors.Email?.message}</S.ErrorMsg>
+        {!errors.Email?.message && (
+          <S.ErrorMsg>{errors.Username?.message}</S.ErrorMsg>
+        )}
+        {!errors.Username?.message && (
+          <S.ErrorMsg>{errors.PW?.message}</S.ErrorMsg>
+        )}
+        {!errors.PW?.message && (
+          <S.ErrorMsg>{errors.PWcheck?.message}</S.ErrorMsg>
+        )}
+        <S.Submit
+        // onClick={() => {
+        //   console.log(errors);
+        // }}
+        >
+          회원가입
+        </S.Submit>
         <Link to="/login">
           <S.ToLogin>계정이 이미 있으신가요? 로그인 하기</S.ToLogin>
         </Link>

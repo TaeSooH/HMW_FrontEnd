@@ -17,7 +17,7 @@ export default function Login() {
   async function login(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     await axios
-      .post("https://helpingmemo.ga/user/login", loginData)
+      .post("https://192.168.10.74/user/login", loginData)
       .then((response) => {
         if (response.data.result !== "error") {
           localStorage.setItem("token", response.data.result);
