@@ -30,26 +30,6 @@ export default function Login() {
       })
       .catch((err) => alert(err));
   };
-  // const [loginData, setLoginData] = useState<ILoginData>({
-  //   id: "",
-  //   password: "",
-  // });
-  // async function login(e: React.FormEvent<HTMLFormElement>) {
-  //   e.preventDefault();
-  //   await axios
-  //     .post("https://192.168.10.74/user/login", loginData)
-  //     .then((response) => {
-  //       if (response.data.result !== "error") {
-  //         localStorage.setItem("token", response.data.result);
-  //         window.location.replace("/");
-  //       } else {
-  //         alert("아이디 또는 비밀번호를 확인하세요");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       alert(err);
-  //     });
-  // }
   return (
     <S.LoginContainer>
       <MainHeader />

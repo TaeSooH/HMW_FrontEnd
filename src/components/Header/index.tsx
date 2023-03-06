@@ -3,16 +3,23 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HeaderContainer, Logo } from "./style";
 import * as S from "./style";
+import { useCookies } from "react-cookie";
+import axios from "axios";
 
 interface IProps {
   username: string;
 }
 
 export default function Header(props: IProps) {
-  function logout() {
-    localStorage.removeItem("token");
-    window.location.replace("/");
-  }
+  const logOut = () => {
+    axios
+      .get("/api/auth/logout")
+      .then((res) => {
+        console.log(res.data);
+        window.location.replace("/");
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <S.HeaderContainer>
       <Link to="/" style={{ textDecoration: "none" }} className="logo">
@@ -42,8 +49,8 @@ export default function Header(props: IProps) {
       >
         단어 세트 공유
       </S.NavMenu>
-      {props.username !== "" ? (
-        <S.User onClick={logout}>{props.username}(로그아웃)</S.User>
+      {props.username ? (
+        <S.User onClick={logOut}>{props.username}(로그아웃)</S.User>
       ) : (
         <>
           <S.LinkMenu as={Link} marginValue="23%" to="/login" className="login">
