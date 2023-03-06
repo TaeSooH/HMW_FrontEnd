@@ -29,8 +29,20 @@ export default function SignUp() {
         { message: "비밀번호를 다시 확인해주세요." },
         { shouldFocus: true }
       );
+    } else {
+      axios
+        .post("http://127.0.0.1:8000/api/auth/signup", JSON.stringify(data))
+        .then((res) => {
+          alert(res.data);
+          window.location.replace("/");
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("사용자가 이미 존재합니다.");
+        });
     }
   };
+
   // const [registerData, setRegisterData] = useState({
   //   id: "",
   //   password1: "",
