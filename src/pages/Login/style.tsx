@@ -30,6 +30,7 @@ export const Submit = styled.button`
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
+  margin-top: 1.5%;
 `;
 export const LoginForm = styled.form`
   height: 70%;
@@ -43,4 +44,8 @@ export const ToJoin = styled.p`
   margin-top: 20px;
   text-decoration: underline;
   color: #1f8bf7;
+`;
+
+export const ErrorMsg = styled.span`
+  color: red;
 `;
