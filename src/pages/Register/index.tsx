@@ -31,7 +31,12 @@ export default function SignUp() {
       );
     } else {
       axios
-        .post("http://127.0.0.1:8000/api/auth/signup", JSON.stringify(data))
+        // .post("http://192.168.10.74/api/auth/signup", JSON.stringify(data))
+        .post("/api/auth/signup", {
+          email: data.Email,
+          name: data.Username,
+          password: data.PW,
+        })
         .then((res) => {
           alert(res.data);
           window.location.replace("/");
@@ -42,29 +47,6 @@ export default function SignUp() {
         });
     }
   };
-
-  // const [registerData, setRegisterData] = useState({
-  //   id: "",
-  //   password1: "",
-  //   password2: "",
-  // });
-  // async function goRegister(e: React.FormEvent<HTMLFormElement>) {
-  //   e.preventDefault();
-  //   if (registerData.password1 !== registerData.password2) {
-  //     alert("패스워드가 일치하지 않습니다.");
-  //   } else {
-  //     await axios
-  //       .post("https://192.168.10.74/api/auth/signup", registerData)
-  //       .then((response) => {
-  //         alert(response.data);
-  //         window.location.replace("/");
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         alert("사용자가 이미 있습니다!");
-  //       });
-  //   }
-  // }
   return (
     <S.RegisterContainer>
       <MainHeader />
@@ -91,12 +73,14 @@ export default function SignUp() {
           {...register("PW", {
             required: "비밀번호를 입력해 주세요.",
           })}
+          type="password"
           placeholder="비밀번호"
         />
         <S.RegisterInput
           {...register("PWcheck", {
             required: "비밀번호를 확인해 주세요.",
           })}
+          type="password"
           placeholder="비밀번호 확인"
         />
         <S.ErrorMsg>{errors.Email?.message}</S.ErrorMsg>
@@ -110,9 +94,9 @@ export default function SignUp() {
           <S.ErrorMsg>{errors.PWcheck?.message}</S.ErrorMsg>
         )}
         <S.Submit
-          onClick={() => {
-            console.log(errors);
-          }}
+        // onClick={() => {
+        //   console.log(errors);
+        // }}
         >
           회원가입
         </S.Submit>
