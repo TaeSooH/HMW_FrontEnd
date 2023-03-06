@@ -20,7 +20,7 @@ export const LoginInput = styled.input`
   }
 `;
 
-export const Submit = styled.input`
+export const Submit = styled.button`
   width: 15%;
   height: 11%;
   border: none;
@@ -28,6 +28,7 @@ export const Submit = styled.input`
   box-shadow: 0 5px 5px gray;
   font-size: 3vh;
   border-radius: 10px;
+  text-align: center;
   cursor: pointer;
 `;
 export const LoginForm = styled.form`
