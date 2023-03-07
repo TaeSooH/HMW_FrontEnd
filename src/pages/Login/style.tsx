@@ -31,6 +31,7 @@ export const Submit = styled.button`
   text-align: center;
   cursor: pointer;
   margin-top: 1.5%;
+  color: white;
 `;
 export const LoginForm = styled.form`
   height: 70%;

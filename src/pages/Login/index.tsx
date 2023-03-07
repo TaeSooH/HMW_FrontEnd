@@ -51,9 +51,9 @@ export default function Login() {
         {!errors.name?.message && (
           <S.ErrorMsg>{errors.password?.message}</S.ErrorMsg>
         )}
-        <S.Submit>회원가입</S.Submit>
-        <Link to="/login">
-          <S.ToJoin>계정이 이미 있으신가요? 로그인 하기</S.ToJoin>
+        <S.Submit>로그인</S.Submit>
+        <Link to="/register">
+          <S.ToJoin>계정이 없으신가요? 회원가입하기</S.ToJoin>
         </Link>
       </S.LoginForm>
     </S.LoginContainer>

@@ -11,32 +11,30 @@ interface IWord {
   setId?: string;
 }
 
-const Index = (props: IWord) => {
+const Index = ({ idx, word, mean, id, setId }: IWord) => {
   const [modalOpened, setModalOpened] = useState<boolean>();
-  const [modifiedWord, setModifiedWord] = useState(props.word);
-  const [modifiedMeaning, setModifiedMeaning] = useState(props.mean);
+  const [modifiedWord, setModifiedWord] = useState(word);
+  const [modifiedMeaning, setModifiedMeaning] = useState(mean);
 
   async function deleteWord() {
-    const response = await axios.put(
-      `https://192.168.10.74/word/deleteWord/${props.id}`
-    );
+    const response = await axios.put(`/api/word/deleteWord/${id}`);
     alert(response.data);
-    window.location.replace(`/memoset/wordlist/${props.setId}`);
+    window.location.replace(`/memoset/wordlist/${setId}`);
   }
 
   return (
     <S.WordContainer>
-      <S.Times>{props.idx + 1}</S.Times>
+      <S.Times>{idx + 1}</S.Times>
       <S.WordBox>
-        <S.Word>{props.word}</S.Word>
-        <S.Word>{props.mean}</S.Word>
+        <S.Word>{word}</S.Word>
+        <S.Word>{mean}</S.Word>
       </S.WordBox>
       <S.RightSide>
         <S.FuncBtn
           onClick={() => {
             setModalOpened(true);
-            setModifiedWord(props.word);
-            setModifiedMeaning(props.mean);
+            setModifiedWord(word);
+            setModifiedMeaning(mean);
           }}
         >
           수정
@@ -58,7 +56,7 @@ const Index = (props: IWord) => {
               meaning: modifiedMeaning,
             };
             const response = await axios.put(
-              `https://192.168.10.74/word/modifyWord/${props.id}`,
+              `https://192.168.10.74/word/modifyWord/${id}`,
               form
             );
             setModalOpened(false);

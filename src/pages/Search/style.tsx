@@ -71,21 +71,9 @@ export const SerResult = styled.div`
   margin-top: 2%;
 `;
 export const Mean = styled.div`
-  line-height: 130%;
-  text-align: start;
-  width: 25%;
-  margin-left: 15%;
-`;
-export const Example = styled.div`
-  margin-right: 5%;
-  width: 55%;
-`;
-export const InputValueBox = styled.div``;
-export const InputValue = styled.div`
-  color: black;
+  margin-top: 5%;
+  text-align: center;
   width: 100%;
-  font-size: 400%;
-  margin-top: 0.8%;
-  padding-left: 15%;
-  padding-bottom: 1%;
+  color: white;
+  font-size: 5vh;
 `;

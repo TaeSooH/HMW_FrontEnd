@@ -18,34 +18,16 @@ export default function Search(props: IProp) {
   const searchWord = () => {
     setIsLoading(true);
     axios
-      .get("https://192.168.10.74/search?word=" + ser_text)
+      .get("/api/search/searchWord?word=" + ser_text)
       .then((res) => {
-        setSearchData(res);
-        if (searchData?.data[0] !== undefined) {
-          searchData.data[0] = searchData?.data[0].replace(
-            /\(Edu times\)/g,
-            ""
-          );
-          searchData.data[0] = searchData?.data[0].replace(
-            /\(Kids Edu times\)/g,
-            ""
-          );
-          searchData.data[0] = searchData?.data[0].replace(/\n/g, "<br/>");
-        }
-        if (searchData?.data[1] !== undefined)
-          searchData.data[1] = searchData?.data[1].replace(/\n/g, "<br/>");
-        setPrText(ser_text);
-        setText("");
-        setMean(searchData?.data[1]);
-        setExample(searchData?.data[0]);
+        console.log(res.data);
+        setMean(res.data);
+        console.log(mean);
         setIsLoading(false);
       })
       .catch((err) => {
         alert("잘못된 단어");
         setIsLoading(false);
-        setPrText("");
-        setMean("");
-        setExample("");
         setText("");
       });
     // const response = await axios
@@ -98,23 +80,11 @@ export default function Search(props: IProp) {
         {isLoading ? (
           <S.Loading>로딩중 ...</S.Loading>
         ) : (
-          <>
-            {prText === "" ? (
-              <></>
-            ) : (
-              <>
-                <S.InputValueBox>
-                  <S.InputValue>{prText}</S.InputValue>
-                </S.InputValueBox>
-                <S.SerResult>
-                  <S.Mean dangerouslySetInnerHTML={{ __html: mean }}></S.Mean>
-                  <S.Example
-                    dangerouslySetInnerHTML={{ __html: example }}
-                  ></S.Example>
-                </S.SerResult>
-              </>
-            )}
-          </>
+          <S.SerResult>
+            <S.Mean>
+              {ser_text} : {mean}
+            </S.Mean>
+          </S.SerResult>
         )}
       </S.WordMean>
     </S.Container>
