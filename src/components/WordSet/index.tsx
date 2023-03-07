@@ -58,7 +58,7 @@ const WordSet = ({ id, name, length }: IWordSet) => {
         }}
       >
         <S.SetName>{name}</S.SetName>
-        <span>단어 {length}개</span>
+        {length === 0 ? <span>단어 없음</span> : <span>단어 {length}개</span>}
       </S.MainBox>
       <S.BottomBox></S.BottomBox>
 

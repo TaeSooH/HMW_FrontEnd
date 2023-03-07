@@ -17,8 +17,7 @@ const Index = ({ idx, word, mean, id, setId }: IWord) => {
   const [modifiedMeaning, setModifiedMeaning] = useState(mean);
 
   async function deleteWord() {
-    const response = await axios.put(`/api/word/deleteWord/${id}`);
-    alert(response.data);
+    const response = await axios.delete(`/api/word/deleteWord/${id}`);
     window.location.replace(`/memoset/wordlist/${setId}`);
   }
 
@@ -47,48 +46,47 @@ const Index = ({ idx, word, mean, id, setId }: IWord) => {
           setModalOpened(false);
         }}
       >
-        <form
-          className="popup_word_container"
+        <S.PopupContainer
           onSubmit={async (e) => {
             e.preventDefault();
             const form = {
               word: modifiedWord,
               meaning: modifiedMeaning,
             };
-            const response = await axios.put(
-              `https://192.168.10.74/word/modifyWord/${id}`,
+            const response = await axios.patch(
+              `/api/word/modifyWord/${id}`,
               form
             );
             setModalOpened(false);
-            alert(response.data);
-            window.location.replace("/memoset/wordlist");
+            // alert(response.data);
+            window.location.replace(`/memoset/wordlist/${setId}`);
           }}
         >
-          <p>수정할 단어 입력</p>
-          <div className="popup_bot">
-            <div className="popup_top">
-              <span>단어</span>
-              <input
+          <S.PopupSetName>수정할 단어 입력</S.PopupSetName>
+          <S.PopupBottom>
+            <S.PopupTop>
+              <S.Title>단어</S.Title>
+              <S.PopupInput
                 value={modifiedWord}
                 onChange={(e) => {
                   setModifiedWord(e.target.value);
                 }}
                 type="text"
               />
-            </div>
-            <div className="popup_top">
-              <span>의미</span>
-              <input
+            </S.PopupTop>
+            <S.PopupTop>
+              <S.Title>의미</S.Title>
+              <S.PopupInput
                 value={modifiedMeaning}
                 onChange={(e) => {
                   setModifiedMeaning(e.target.value);
                 }}
                 type="text"
               />
-            </div>
-          </div>
-          <input className="popup_word_submit" type="submit" value="수정하기" />
-        </form>
+            </S.PopupTop>
+          </S.PopupBottom>
+          <S.PopupSubmit type="submit" value="수정하기" />
+        </S.PopupContainer>
       </Popup>
     </S.WordContainer>
   );
