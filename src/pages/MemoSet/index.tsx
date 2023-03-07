@@ -17,7 +17,7 @@ interface ISetData {
   word_length: number;
 }
 
-export default function MemoSet(props: IProp) {
+export default function MemoSet({ name }: IProp) {
   const [names, setNames] = useState([]);
   const [listName, setListName] = useState("");
   const nameList = names.map((data: ISetData, idx: number) => (
@@ -34,19 +34,17 @@ export default function MemoSet(props: IProp) {
   const scrollRef: any = useHorizontalScroll();
   useEffect(() => {
     setIsLoading(true);
-    console.log(props.name);
-    if (localStorage.getItem("isLogged") === "true") {
+    console.log(name);
+    if (name) {
       setIsLogged(true);
-      async function GetWordSet() {
-        await axios
-          .get(`https://192.168.10.74/wordSet/getWordSet?owner=${props.name}`)
-          .then((response) => {
-            console.log(response.data);
-            setNames(response.data);
-          });
-        setIsLoading(false);
-      }
-      GetWordSet();
+      axios
+        .get("/api/wordSet/getWordSets")
+        .then((response) => {
+          console.log(response.data);
+          setNames(response.data);
+        })
+        .catch((error) => console.log(error));
+      setIsLoading(false);
     } else {
       alert("로그인이 필요한 작업입니다.");
       window.location.replace("/login");
@@ -55,18 +53,13 @@ export default function MemoSet(props: IProp) {
   const setWordSet = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (listName) {
-      const form = new FormData();
-      form.append("title", listName);
-      form.append("owner", props.name);
       axios
-        .post("https://helpingmemo.ga/wordSet/setWordSet", form)
+        .post("/api/wordSet/create", { title: listName })
         .then((response) => {
           setListName("");
           setModalOpened(false);
           axios
-            .get(
-              `https://helpingmemo.ga/wordSet/getWordSet?owner=${props.name}`
-            )
+            .get("/api/wordSet/getWordSets")
             .then((response) => {
               console.log(response.data);
               setNames(response.data);
@@ -86,7 +79,7 @@ export default function MemoSet(props: IProp) {
   return (
     <>
       <S.MemoSetContainer>
-        <Header username={props.name} />
+        <Header username={name} />
         {names.length < 1 ? (
           <S.NoSet> 아직 세트가 없습니다 . . .</S.NoSet>
         ) : names.length <= 6 ? (
@@ -103,7 +96,7 @@ export default function MemoSet(props: IProp) {
         >
           <S.PopupInput>
             <S.InputText>단어장의 이름을 입력해주세요.</S.InputText>
-            <form onSubmit={setWordSet}>
+            <S.PopupForm onSubmit={setWordSet}>
               <S.SetNameInput
                 value={listName}
                 onChange={(e) => {
@@ -112,7 +105,7 @@ export default function MemoSet(props: IProp) {
                 type="text"
               />
               <S.PopSubmit type="submit" value="enter" />
-            </form>
+            </S.PopupForm>
           </S.PopupInput>
         </Popup>
         <S.AddMemoSet

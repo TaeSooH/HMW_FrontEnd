@@ -54,13 +54,6 @@ export const OptionButton = styled.button`
   margin: 10px 0;
   border: none;
 `;
-export const ModifyBtn = styled.button`
-  width: 7%;
-  height: 5%;
-  font-size: 15px;
-  background-color: #ccecf9;
-  padding-left: 0;
-`;
 export const PopupContainer = styled.form`
   width: 800px;
   height: 250px;

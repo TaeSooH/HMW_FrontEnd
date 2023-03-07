@@ -17,7 +17,7 @@ interface IWord {
   id: number;
 }
 
-const WordList = (props: IProp) => {
+const WordList = ({ name }: IProp) => {
   const { id } = useParams<string>();
   const [modalOpened, setModalOpened] = useState(false);
   const [word, setWord] = useState("");
@@ -36,14 +36,12 @@ const WordList = (props: IProp) => {
   ));
   useEffect(() => {
     async function getWords() {
-      const response = await axios.get(
-        `https://192.168.10.74/word/getWords/?setId=${id}`
-      );
+      const response = await axios.get(`/api/word/getWords/?setId=${id}`);
       setWords(response.data);
       setLoading(false);
     }
     axios
-      .get(`https://192.168.10.74/wordSet/getWordSetTitle/?setId=${id}`)
+      .get(`api/wordSet/getWordSetTitle/?setId=${id}`)
       .then((response) => {
         setSet_name(response.data);
       })
@@ -63,7 +61,7 @@ const WordList = (props: IProp) => {
   if (loading) return <div>...</div>;
   return (
     <S.Container>
-      <Header username={props.name} />
+      <Header username={name} />
       <S.ListContainer>
         <S.ListBox>
           <S.ListHeader>
