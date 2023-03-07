@@ -6,6 +6,7 @@ export const WordSetBox = styled.div`
   flex-direction: column;
   box-shadow: 10px 10px 10px 10px #dcdcdc;
   background-color: white;
+  cursor: pointer;
 `;
 export const SetName = styled.p`
   font-size: 40px !important;

@@ -18,7 +18,7 @@ interface IWord {
 }
 
 const WordList = ({ name }: IProp) => {
-  const { id } = useParams<string>();
+  const { setId } = useParams<string>();
   const [modalOpened, setModalOpened] = useState(false);
   const [word, setWord] = useState("");
   const [meaning, setMeaning] = useState("");
@@ -31,27 +31,27 @@ const WordList = ({ name }: IProp) => {
       mean={word.meaning}
       id={word.id}
       idx={idx}
-      setId={id}
+      setId={setId}
     />
   ));
   useEffect(() => {
-    async function getWords() {
-      const response = await axios.get(`/api/word/getWords/?setId=${id}`);
-      setWords(response.data);
-      setLoading(false);
-    }
-    axios
-      .get(`api/wordSet/getWordSetTitle/?setId=${id}`)
-      .then((response) => {
-        setSet_name(response.data);
-      })
-      .catch((err) => {
-        alert("서버 오류");
-        window.location.replace("/");
-      });
     document.addEventListener("keydown", enter, true);
-    console.log(id);
-    getWords();
+    console.log(setId);
+    axios
+      .get(`/api/wordSet/getOneWordSet?wordSetId=${setId}`)
+      .then((res) => {
+        console.log(res.data);
+        setSet_name(res.data.title);
+      })
+      .catch((err) => console.log(err));
+    axios
+      .get(`/api/word/getWords?setId=${setId}`)
+      .then((res) => {
+        console.log(res.data);
+        setWords(res.data);
+      })
+      .catch((err) => console.log(err));
+    setLoading(false);
   }, []);
   const enter = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -108,25 +108,18 @@ const WordList = ({ name }: IProp) => {
           onSubmit={async (e) => {
             e.preventDefault();
             if (word !== "" && meaning !== "") {
-              const form = {
+              const response = await axios.put(`/api/word/putWord/${setId}`, {
                 word: word,
                 meaning: meaning,
-              };
-              const response = await axios.put(
-                `https://192.168.10.74/word/setWords/${id}`,
-                form
-              );
+              });
               setModalOpened(false);
               setWord("");
               setMeaning("");
-              alert(response.data);
-              async function getWords() {
-                const response = await axios.get(
-                  `https://192.168.10.74/word/getWords/?setId=${id}`
-                );
-                setWords(response.data);
-              }
-              getWords();
+              // alert(response.data);
+              axios
+                .get(`/api/word/getWords?setId=${setId}`)
+                .then((res) => setWords(res.data))
+                .catch((err) => console.log(err));
             } else {
               alert("단어나 의미가 없습니다!");
             }
@@ -160,18 +153,15 @@ const WordList = ({ name }: IProp) => {
       </Popup>
       <S.BottomMenu>
         <S.InnerBox>
-          <S.Start as={Link} to={`/memoset/wordlist/memorize/${id}/`}>
+          <S.Start as={Link} to={`/memoset/wordlist/memorize/${setId}/`}>
             암기학습
           </S.Start>
           <S.MemorizeWay>단어 또는 의미를 보고 맞추기</S.MemorizeWay>
         </S.InnerBox>
         <S.InnerBox>
-          <Link
-            className="start_memorizing"
-            to={`/memoset/wordlist/spelling/${id}/`}
-          >
+          <S.Start as={Link} to={`/memoset/wordlist/spelling/${setId}/`}>
             스펠학습
-          </Link>
+          </S.Start>
           <S.MemorizeWay>의미를 보고 단어의 스펠링을 맞추기</S.MemorizeWay>
         </S.InnerBox>
       </S.BottomMenu>
