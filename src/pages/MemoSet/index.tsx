@@ -14,7 +14,7 @@ interface IProp {
 interface ISetData {
   title: string;
   id: number;
-  word_length: number;
+  wordsLength: number;
 }
 
 export default function MemoSet({ name }: IProp) {
@@ -25,7 +25,7 @@ export default function MemoSet({ name }: IProp) {
       key={idx}
       name={data.title}
       id={data.id}
-      length={data.word_length}
+      length={data.wordsLength}
     />
   ));
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +35,7 @@ export default function MemoSet({ name }: IProp) {
   useEffect(() => {
     setIsLoading(true);
     console.log(name);
-    if (name) {
+    if (name !== " ") {
       setIsLogged(true);
       axios
         .get("/api/wordSet/getWordSets")
