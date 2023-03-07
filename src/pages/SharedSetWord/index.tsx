@@ -14,7 +14,7 @@ interface IWord {
   id: number;
 }
 
-const SharedSetWord = (props: IProp) => {
+const SharedSetWord = ({ name }: IProp) => {
   const params = useParams();
   const id = params.setId;
   const [words, setWords] = useState([]);
@@ -24,29 +24,26 @@ const SharedSetWord = (props: IProp) => {
     <SharedWord word={word.word} mean={word.meaning} idx={idx} />
   ));
   useEffect(() => {
-    async function getWords() {
-      const response = await axios.get(
-        `https://192.168.10.74/word/getWords/?setId=${id}`
-      );
-      setWords(response.data);
-      setLoading(false);
-    }
     axios
-      .get(`https://192.168.10.74/wordSet/getWordSetTitle/?setId=${id}`)
-      .then((response) => {
-        setSet_name(response.data);
+      .get(`/api/wordSet/getOneWordSet?wordSetId=${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setSet_name(res.data.title);
       })
-      .catch((err) => {
-        alert("서버 오류");
-        window.location.replace("/");
-      });
-    console.log(id);
-    getWords();
+      .catch((err) => console.log(err));
+    axios
+      .get(`/api/word/getWords?setId=${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setWords(res.data);
+      })
+      .catch((err) => console.log(err));
+    setLoading(false);
   }, []);
   if (loading) return <div>...</div>;
   return (
     <S.Container>
-      <Header username={props.name} />
+      <Header username={name} />
       <S.ListContainer>
         <S.ListBox>
           <S.ListHeader>
