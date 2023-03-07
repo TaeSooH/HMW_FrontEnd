@@ -60,13 +60,14 @@ export const InputText = styled.p`
   margin-bottom: 3%;
 `;
 export const SetNameInput = styled.input`
-  padding-left: 5%;
+  margin-top: 2%;
+  padding-left: 3%;
   height: 40%;
   width: 80%;
   font-size: 7vh;
   border-radius: 30px;
   border: none;
-  margin-bottom: 3%;
+  /* margin-bottom: 3%; */
 
   &:focus {
     border: none;
@@ -83,7 +84,14 @@ export const SetNameInput = styled.input`
 //     font-size: 3vh;
 //     cursor: pointer;
 // }
+export const PopupForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 export const PopSubmit = styled.input`
+  margin-top: 2%;
   width: fit-content;
   font-size: 70px;
   background-color: transparent;
