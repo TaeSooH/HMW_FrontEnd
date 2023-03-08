@@ -13,6 +13,7 @@ export const SharedSet = styled.div`
   margin-top: 60px;
 `;
 export const RowBox = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -32,6 +33,7 @@ export const MainBox = styled.div`
   background-color: white;
   font-size: 1.15vw;
   font-weight: 700;
+  /* margin-right: 3%; */
 `;
 export const BottomBox = styled.div`
   width: 200px;
@@ -39,21 +41,20 @@ export const BottomBox = styled.div`
   background-color: #1f8bf7;
 `;
 export const RightSetBox = styled.div`
-  width: calc(80% - 200px);
+  width: calc(80% - 250px);
   height: 80%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  /* margin-left: 3%; */
+  /* align-items: center; */
+  /* justify-content: space-evenly; */
 `;
 export const SetName = styled.p`
+  width: 100%;
   font-weight: bold;
   font-size: 1.1vw;
-`;
-export const Owner = styled.span`
-  color: rgb(77, 77, 77);
-  font-weight: 700;
-  font-size: 1vw;
+  text-align: center;
 `;
 export const Download = styled.button`
   font-size: 20px;
@@ -61,4 +62,5 @@ export const Download = styled.button`
   width: 50%;
   border-radius: 5px;
   cursor: pointer;
+  border: none;
 `;

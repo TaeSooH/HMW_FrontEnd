@@ -22,6 +22,7 @@ const Share = (props: IProp) => {
       .get("/api/wordSet/getSharedWordSet")
       .then((res) => {
         setSharedSet(res.data);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
