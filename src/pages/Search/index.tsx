@@ -81,9 +81,7 @@ export default function Search(props: IProp) {
           <S.Loading>로딩중 ...</S.Loading>
         ) : (
           <S.SerResult>
-            <S.Mean>
-              {ser_text} : {mean}
-            </S.Mean>
+            <S.Mean>{mean}</S.Mean>
           </S.SerResult>
         )}
       </S.WordMean>

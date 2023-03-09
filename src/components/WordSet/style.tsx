@@ -46,6 +46,7 @@ export const OptionButton = styled.button`
   width: 80%;
   height: 15%;
   background-color: white;
+  color: black;
   border-radius: 1000px;
   text-align: center;
   line-height: 350%;
@@ -60,12 +61,14 @@ export const PopupContainer = styled.form`
   height: 250px;
   background-color: #1f8bf7;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   border-radius: 30px;
 `;
 export const PopupSetName = styled.span`
   font-size: 25px;
   margin-bottom: 20px;
+  color: white;
 `;
 export const Title = styled.p`
   font-size: 30px;
@@ -82,8 +85,10 @@ export const SetInput = styled.input`
   border-radius: 15px;
   font-size: 25px;
   padding-left: 20px;
+  border: none;
 `;
 export const PopupSubmit = styled.input`
   background-color: transparent;
   font-size: 40px;
+  border: none;
 `;

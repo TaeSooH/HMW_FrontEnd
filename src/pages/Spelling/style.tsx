@@ -35,7 +35,6 @@ export const NextBtn = styled(S.NextBtn)``;
 
 export const BeforeBtn = styled(S.BeforeBtn)``;
 export const ToBack = styled(S.ToBack)``;
-export const FinishBox = styled(S.FinishBox)``;
 
 export const FinishText = styled(S.FinishText)``;
 

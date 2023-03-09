@@ -19,8 +19,8 @@ const WordSet = ({ id, name, length }: IWordSet) => {
     const check = window.confirm("정말로 삭제하시겠습니까?");
     if (check) {
       console.log(id);
-      const response = await axios.put(
-        `https://192.168.10.74/wordSet/deleteWordSet/${id}`
+      const response = await axios.delete(
+        `/api/wordSet/deleteWordSet?wordSetId=${id}`
       );
       setModalOpened(false);
       window.location.replace("/memoset");
@@ -28,9 +28,7 @@ const WordSet = ({ id, name, length }: IWordSet) => {
   }
   async function shareSet() {
     try {
-      const response = await axios.put(
-        `https://192.168.10.74/wordSet/shareWordSet/${id}`
-      );
+      const response = await axios.patch(`/api/wordSet/shareWordSet/${id}`);
       alert(response.data);
       window.location.replace("/memoset");
     } catch (error) {
@@ -40,10 +38,9 @@ const WordSet = ({ id, name, length }: IWordSet) => {
   async function modifySetName(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-      const response = await axios.put(
-        `https://192.168.10.74/wordSet/modifyWordSet/${id}`,
-        { title: modifiedSetName }
-      );
+      const response = await axios.patch(`/api/wordSet/modifyWordSet/${id}`, {
+        title: modifiedSetName,
+      });
       setSet_nameModal(false);
       window.location.replace("/memoset");
     } catch (error) {
@@ -58,7 +55,7 @@ const WordSet = ({ id, name, length }: IWordSet) => {
         }}
       >
         <S.SetName>{name}</S.SetName>
-        {length === 0 ? <span>단어 없음</span> : <span>단어 {length}개</span>}
+        <span>단어 {length}개</span>
       </S.MainBox>
       <S.BottomBox></S.BottomBox>
 

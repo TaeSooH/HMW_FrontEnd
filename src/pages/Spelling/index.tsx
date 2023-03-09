@@ -383,12 +383,12 @@ const Spelling = () => {
                 ))}
           </>
           <S.MContainer>
-            <S.FinishBox>
+            <S.ContentBox>
               <S.FinishText>finish!</S.FinishText>
               <S.ToBack as={Link} to="/memoset">
                 돌아가기
               </S.ToBack>
-            </S.FinishBox>
+            </S.ContentBox>
           </S.MContainer>
         </Carousel>
       ) : (

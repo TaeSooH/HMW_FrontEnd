@@ -11,7 +11,7 @@ interface IProp {
 interface ISharedSet {
   id: number;
   title: string;
-  word_length: number;
+  wordsLength: number;
   owner: string;
 }
 
@@ -19,7 +19,7 @@ const Share = (props: IProp) => {
   const [sharedSets, setSharedSet] = useState([]);
   useEffect(() => {
     axios
-      .get("https://192.168.10.74/wordSet/getSharedWordSet")
+      .get("/api/wordSet/getSharedWordSet")
       .then((res) => {
         setSharedSet(res.data);
       })
@@ -37,7 +37,7 @@ const Share = (props: IProp) => {
               <SharedSet
                 id={data.id}
                 title={data.title}
-                word_length={data.word_length}
+                word_length={data.wordsLength}
                 owner={data.owner}
               />
             ))}
