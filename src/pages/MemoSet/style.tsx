@@ -10,7 +10,7 @@ export const MemoSetBox = styled.div`
   width: auto;
   height: 45%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: auto;
   &::-webkit-scrollbar {
     display: none;

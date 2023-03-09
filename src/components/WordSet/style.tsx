@@ -7,6 +7,7 @@ export const WordSetBox = styled.div`
   box-shadow: 10px 10px 10px 10px #dcdcdc;
   background-color: white;
   cursor: pointer;
+  margin-left: 5%;
 `;
 export const SetName = styled.p`
   font-size: 40px !important;

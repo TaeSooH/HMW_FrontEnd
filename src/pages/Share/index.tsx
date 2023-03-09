@@ -10,9 +10,18 @@ interface IProp {
 }
 interface ISharedSet {
   id: number;
+  isShared: boolean;
+  owner: {
+    email: string;
+    id: number;
+    password: string;
+    role: number;
+    signupVerifyToken: string;
+    username: string;
+    verified: number;
+  };
   title: string;
   wordsLength: number;
-  owner: string;
 }
 
 const Share = (props: IProp) => {
@@ -26,6 +35,7 @@ const Share = (props: IProp) => {
       })
       .catch((err) => {
         console.log(err);
+        alert(err);
       });
   }, []);
   return (
@@ -36,10 +46,12 @@ const Share = (props: IProp) => {
           <S.FlexBox>
             {sharedSets.map((data: ISharedSet, index: number) => (
               <SharedSet
+                key={index}
                 id={data.id}
                 title={data.title}
-                word_length={data.wordsLength}
+                wordsLength={data.wordsLength}
                 owner={data.owner}
+                isShared={data.isShared}
               />
             ))}
           </S.FlexBox>

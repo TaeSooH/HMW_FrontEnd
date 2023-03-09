@@ -13,7 +13,9 @@ export const Switch = styled.label`
   width: 20%;
   height: 5%;
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 // export const CarouselBox = styled.div`
 //   display: flex;
@@ -35,10 +37,16 @@ export const ShuffleCheck = styled.input`
 `;
 
 export const SetMode = styled.div`
-  height: 10%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: red; */
 `;
 
 export const SliderRound = styled.span`
+  margin-top: 8px;
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -78,7 +86,8 @@ export const MemorizeWay = styled.div`
   margin-left: 20px;
   margin-right: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 export const StartMemo = styled.button`
   align-self: center;
@@ -89,6 +98,7 @@ export const StartMemo = styled.button`
   background-color: #1f8bf7;
   border-radius: 10px;
   margin-bottom: 10px;
+  border: none;
 `;
 // .index{
 //     opacity: 1;
@@ -142,6 +152,7 @@ export const InnerBox = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  box-sizing: border-box;
 `;
 export const Words = styled.p`
   font-size: 60px;

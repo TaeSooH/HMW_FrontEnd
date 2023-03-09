@@ -27,7 +27,7 @@ interface Props {
 const Index = () => {
   const [playing, setPlaying] = useState<boolean>(false);
   const { messages, speak } = useSpeech();
-  const [isClick, setIsClick] = useState<boolean>(false);
+  const [isClick, setIsClick] = useState<boolean>(true);
   const [way, setWay] = useState("word");
   const [start, setStart] = useState<boolean>(false);
   const [shuffle, setShuffle] = useState<boolean>(false);
@@ -62,23 +62,6 @@ const Index = () => {
   }
 
   useEffect(() => {
-    // async function getWords() {
-    //   const response = await axios.get(
-    //     `/api/word/getWords?setId=${id}`
-    //   );
-    //   setWordList(response.data);
-    // }
-    // async function getShuffles() {
-    //   console.log("enter");
-    //   const response = await axios.get(
-    //     `/api/word/getWords?setId=${id}`
-    //   );
-    //   setShuffleList(response.data);
-    //   setLoad(false);
-    // }
-    // document.addEventListener("keydown", space, true);
-    // getWords();
-    // getShuffles();
     document.addEventListener("keydown", space, true);
     axios
       .get(`/api/word/getWords?setId=${id}`)
@@ -130,13 +113,13 @@ const Index = () => {
               <S.ShuffleCheck
                 type={"checkbox"}
                 onClick={() => {
+                  implShuffle(shuffleList);
                   setShuffle(!shuffle);
                 }}
               />
-              <S.SliderRound></S.SliderRound>
+              <S.SliderRound />
             </S.Switch>
           </S.SetMode>
-
           <S.MemorizeWay>
             <p>학습 방법</p>
             <select
@@ -260,7 +243,7 @@ const Index = () => {
                     </S.ContentBox>
                     <S.SpaceButton
                       onClick={() => {
-                        setIsClick(true);
+                        setIsClick(false);
                       }}
                     >
                       space
