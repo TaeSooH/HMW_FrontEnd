@@ -39,15 +39,22 @@ const SharedSet = ({ id, title, word_length, owner }: ISharedSet) => {
           <Link to={`/share/sharedSetWord/${id}/`}>
             <S.SetBox>
               <S.MainBox>
-                <p>세트이름: {title}</p>
-                <span>단어 개수: {word_length}개</span>
+                <p>눌러서 미리보기</p>
               </S.MainBox>
               <S.BottomBox></S.BottomBox>
             </S.SetBox>
           </Link>
           <S.RightSetBox>
-            <S.SetName>세트이름 : {title}</S.SetName>
-            <S.Owner>유저이름 : {owner}</S.Owner>
+            <S.SetName>
+              세트이름
+              <br />
+              {title}
+            </S.SetName>
+            <S.SetName>
+              유저이름
+              <br />
+              {owner}
+            </S.SetName>
           </S.RightSetBox>
         </S.RowBox>
         <S.Download onClick={download}>세트 다운로드</S.Download>
