@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const MContainer = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,11 @@ export const Switch = styled.label`
   position: relative;
   display: inline-block;
 `;
-
+// export const CarouselBox = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   flex-flow: row;
+// `;
 export const ShuffleCheck = styled.input`
   opacity: 0;
   width: 0;
@@ -122,6 +126,10 @@ export const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &:last-of-type {
+    margin-top: 7%;
+  }
 `;
 
 export const InnerBox = styled.div`
@@ -146,8 +154,8 @@ export const Meanings = styled.span`
 export const NonClickedBox = styled.div`
   position: fixed;
   background-color: #1f8bf7;
-  width: 65%;
-  height: 33%;
+  width: 65vw;
+  height: 33vh;
   top: 55.5%;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
@@ -155,8 +163,8 @@ export const NonClickedBox = styled.div`
 export const ClickedBox = styled.div`
   position: fixed;
   background-color: #1f8bf7;
-  width: 65%;
-  height: 33%;
+  width: 65vw !important;
+  height: 33vh;
   top: 50.5%;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
@@ -168,15 +176,15 @@ export const ClickedBox = styled.div`
     from {
       position: fixed;
       top: 55.5%;
-      height: 33%;
+      height: 33vh;
     }
     50% {
-      width: 65%;
+      width: 65vw;
     }
     to {
       position: fixed;
       top: 88.5%;
-      width: 59%;
+      width: 59vw;
       height: 0;
     }
   }
@@ -195,7 +203,7 @@ export const SpaceButton = styled.div`
 export const NextBtn = styled.svg`
   position: fixed;
   right: 12%;
-  top: 46%;
+  top: 51%;
 `;
 
 export const BeforeBtn = styled.svg`
@@ -205,13 +213,13 @@ export const BeforeBtn = styled.svg`
   z-index: 7;
 `;
 export const ToBack = styled.a`
-  font-size: 30px;
-`;
-export const FinishBox = styled.div`
-  justify-content: space-around;
+  font-size: 35px;
+  text-decoration: none;
+  color: #3434ff;
 `;
 
 export const FinishText = styled.span`
+  line-height: 400%;
   font-size: 80px;
   color: black;
 `;
@@ -236,4 +244,7 @@ export const LinkTabs = styled.a`
 export const VoiceBtn = styled.button`
   background-color: transparent;
   margin-top: 30px;
+  border: none;
 `;
+
+export const StyledSlider = styled.div``;

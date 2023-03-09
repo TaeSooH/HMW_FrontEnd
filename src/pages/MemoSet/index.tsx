@@ -35,7 +35,7 @@ export default function MemoSet({ name }: IProp) {
   useEffect(() => {
     setIsLoading(true);
     console.log(name);
-    if (name !== " ") {
+    if (name) {
       setIsLogged(true);
       axios
         .get("/api/wordSet/getWordSets")
