@@ -7,25 +7,32 @@ import { user } from "../states";
 
 interface ISharedSet {
   id: number;
+  isShared: boolean;
+  owner: {
+    email: string;
+    id: number;
+    password: string;
+    role: number;
+    signupVerifyToken: string;
+    username: string;
+    verified: number;
+  };
   title: string;
-  word_length: number;
-  owner: string;
+  wordsLength: number;
 }
 
-const SharedSet = ({ id, title, word_length, owner }: ISharedSet) => {
+const SharedSet = ({ id, title, wordsLength, owner }: ISharedSet) => {
   const [userName, setUserName] = useRecoilState(user);
   const download = () => {
-    if (userName === owner) {
+    if (userName === owner.username) {
       alert("본인이 공유한 세트입니다.");
     } else {
       const form = { owner: userName };
       console.log(userName);
       axios
-        .post(
-          `https://192.168.10.74/wordSet/downloadSharedWordSet/${id}?owner=${userName}`
-        )
+        .get(`/api/wordSet/downloadSharedWordSet?setId=${id}`)
         .then((res) => {
-          alert(res.data);
+          console.log(res);
         })
         .catch((err) => {
           alert("다운로드 실패");
@@ -53,7 +60,7 @@ const SharedSet = ({ id, title, word_length, owner }: ISharedSet) => {
             <S.SetName>
               유저이름
               <br />
-              {owner}
+              {owner.username}
             </S.SetName>
           </S.RightSetBox>
         </S.RowBox>
