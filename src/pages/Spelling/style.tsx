@@ -24,8 +24,14 @@ export const CheckTitle = styled(S.CheckTitle)``;
 export const ContainerText = styled(S.ContainerText)``;
 export const ContentBox = styled(S.ContentBox)``;
 
-export const InnerBox = styled(S.InnerBox)``;
-export const Words = styled(S.Words)``;
+export const InnerBox = styled(S.InnerBox)`
+  p {
+    font-size: 60px;
+  }
+`;
+export const Word = styled.p`
+  font-size: 60px;
+`;
 export const Meanings = styled(S.Meanings)``;
 export const NonClickedBox = styled(S.NonClickedBox)``;
 export const ClickedBox = styled(S.ClickedBox)``;
@@ -53,6 +59,9 @@ export const SpellingInput = styled.input`
   border-radius: 10px;
   font-size: 20px;
   padding-left: 10px;
+  &:focus {
+    outline: none;
+  }
 `;
 export const SpellingRight = styled(SpellingInput)`
   color: #1f8bf7;
@@ -102,7 +111,7 @@ export const SpellingWrong = styled(SpellingInput)`
 `;
 export const InnerSpan = styled.span<{ tColor: string }>`
   position: absolute;
-  top: 73%;
+  top: 76%;
   font-size: 30px !important;
   color: ${(props) => props.tColor};
 `;
@@ -110,4 +119,7 @@ export const SubmitForm = styled.form`
   width: 100%;
   height: 15%;
   margin-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

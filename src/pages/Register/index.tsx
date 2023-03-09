@@ -54,12 +54,6 @@ export default function SignUp() {
         <S.RegisterInput
           {...register("Email", {
             required: "이메일을 입력해 주세요",
-            pattern: {
-              value:
-                /^[A-Za-z0-9._%+-]+@bssm.hs.kr$/ ||
-                /^[A-Za-z0-9._%+-]+@bssm.teacher.hs.kr$/,
-              message: "오직 소마고의 학생 또는 선생님만 가입할 수 있습니다.",
-            },
           })}
           placeholder="이메일"
         />
