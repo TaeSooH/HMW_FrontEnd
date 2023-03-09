@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as S from "./style";
-import { MdOutlineNavigateNext } from "react-icons/md";
+import { MdOutlineNavigateNext as Next } from "react-icons/md";
 import { MdOutlineNavigateBefore } from "react-icons/md";
 import { GiSpeaker } from "react-icons/gi";
 import { CgPlayPause } from "react-icons/cg";
@@ -10,51 +10,86 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { useSpeech } from "react-web-voice";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+
 interface IData {
-  word: string;
+  id: number;
   meaning: string;
+  word: string;
+  wordSetId: number;
+}
+interface Props {
+  children: React.ReactChild;
 }
 
 const Index = () => {
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState<boolean>(false);
   const { messages, speak } = useSpeech();
-  const [isClick, setIsClick] = useState(false);
+  const [isClick, setIsClick] = useState<boolean>(false);
   const [way, setWay] = useState("word");
-  const [start, setStart] = useState(false);
-  const [shuffle, setShuffle] = useState(false);
+  const [start, setStart] = useState<boolean>(false);
+  const [shuffle, setShuffle] = useState<boolean>(false);
   const { setId } = useParams();
   const id = setId;
   const [set_name, setSet_name] = useState("");
   const [wordList, setWordList] = useState([]);
-  const [load, setLoad] = useState(true);
-  const [shuffleList, setShuffleList] = useState([]);
+  const [load, setLoad] = useState<boolean>(true);
+  const [shuffleList, setShuffleList] = useState<IData[]>([]);
+
+  const settings = {
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+  };
+
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <S.NextBtn
+        as={Next}
+        size={70}
+        color="white"
+        onClick={() => {
+          onClick();
+          setIsClick(true);
+        }}
+      />
+    );
+  }
+
   useEffect(() => {
-    async function getWords() {
-      const response = await axios.get(
-        `https://192.168.10.74/word/getWords/?setId=${id}`
-      );
-      setWordList(response.data);
-    }
-    async function getShuffles() {
-      console.log("enter");
-      const response = await axios.get(
-        `https://helpingmemo.ga/word/getWords/?setId=${id}`
-      );
-      setShuffleList(response.data);
-      setLoad(false);
-    }
-    axios
-      .get(`https://helpingmemo.ga/wordSet/getWordSetTitle/?setId=${id}`)
-      .then((response) => {
-        setSet_name(response.data);
-      })
-      .catch((err) => {
-        alert("서버 오류");
-        window.location.replace("/");
-      });
+    // async function getWords() {
+    //   const response = await axios.get(
+    //     `/api/word/getWords?setId=${id}`
+    //   );
+    //   setWordList(response.data);
+    // }
+    // async function getShuffles() {
+    //   console.log("enter");
+    //   const response = await axios.get(
+    //     `/api/word/getWords?setId=${id}`
+    //   );
+    //   setShuffleList(response.data);
+    //   setLoad(false);
+    // }
+    // document.addEventListener("keydown", space, true);
+    // getWords();
+    // getShuffles();
     document.addEventListener("keydown", space, true);
-    getWords();
-    getShuffles();
+    axios
+      .get(`/api/word/getWords?setId=${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setShuffleList(res.data);
+        implShuffle(shuffleList);
+        setWordList(res.data);
+      })
+      .catch((err) => console.log(err));
+    setLoad(false);
   }, []);
 
   async function speech(text: string) {
@@ -69,7 +104,7 @@ const Index = () => {
   }
   const space = (e: KeyboardEvent) => {
     if (e.key === " ") {
-      setIsClick(true);
+      setIsClick(false);
     }
   };
   const implShuffle = (array: IData[]) => {
@@ -95,7 +130,6 @@ const Index = () => {
               <S.ShuffleCheck
                 type={"checkbox"}
                 onClick={() => {
-                  implShuffle(shuffleList);
                   setShuffle(!shuffle);
                 }}
               />
@@ -132,38 +166,8 @@ const Index = () => {
         <IoMdArrowRoundBack size="20" /> 학습 종료
       </S.GoBack>
       {wordList.length !== 0 ? (
-        <Carousel
-          showThumbs={false}
-          showIndicators={false}
-          showStatus={false}
-          renderArrowNext={(clickHandler, hasNext, labelNext) =>
-            hasNext && (
-              <S.NextBtn
-                as={MdOutlineNavigateNext}
-                onClick={() => {
-                  clickHandler();
-                  setIsClick(false);
-                }}
-                color="white"
-                size="70"
-              />
-            )
-          }
-          renderArrowPrev={(clickHandler, hasPrev, labelPrev) =>
-            hasPrev && (
-              <S.BeforeBtn
-                as={MdOutlineNavigateBefore}
-                onClick={() => {
-                  clickHandler();
-                  setIsClick(false);
-                }}
-                color="white"
-                size="70"
-              />
-            )
-          }
-        >
-          <>
+        <>
+          <Slider {...settings}>
             {shuffle
               ? shuffleList.map((data: IData, index: number) => (
                   <S.MContainer>
@@ -202,16 +206,12 @@ const Index = () => {
                         <S.Meanings>
                           {way === "word" ? data.meaning : data.word}
                         </S.Meanings>
-                        {isClick ? (
-                          <S.NonClickedBox></S.NonClickedBox>
-                        ) : (
-                          <S.ClickedBox></S.ClickedBox>
-                        )}
+                        {isClick ? <S.ClickedBox /> : <S.NonClickedBox />}
                       </S.InnerBox>
                     </S.ContentBox>
                     <S.SpaceButton
                       onClick={() => {
-                        setIsClick(true);
+                        setIsClick(false);
                       }}
                     >
                       space
@@ -255,11 +255,7 @@ const Index = () => {
                         <S.Meanings>
                           {way === "word" ? data.meaning : data.word}
                         </S.Meanings>
-                        {isClick ? (
-                          <S.NonClickedBox></S.NonClickedBox>
-                        ) : (
-                          <S.ClickedBox></S.ClickedBox>
-                        )}
+                        {isClick ? <S.NonClickedBox /> : <S.ClickedBox />}
                       </S.InnerBox>
                     </S.ContentBox>
                     <S.SpaceButton
@@ -271,16 +267,16 @@ const Index = () => {
                     </S.SpaceButton>
                   </S.MContainer>
                 ))}
-          </>
-          <S.MContainer>
-            <S.FinishBox>
-              <S.FinishText>finish!</S.FinishText>
-              <S.ToBack as={Link} to="/memoset">
-                돌아가기
-              </S.ToBack>
-            </S.FinishBox>
-          </S.MContainer>
-        </Carousel>
+            <S.MContainer>
+              <S.ContentBox>
+                <S.FinishText>finish!</S.FinishText>
+                <S.ToBack as={Link} to="/memoset">
+                  돌아가기
+                </S.ToBack>
+              </S.ContentBox>
+            </S.MContainer>
+          </Slider>
+        </>
       ) : (
         <S.MContainer>
           <S.ContentBox>

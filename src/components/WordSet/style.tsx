@@ -46,7 +46,7 @@ export const OptionButton = styled.button`
   width: 80%;
   height: 15%;
   background-color: white;
-  /* color: white; */
+  color: black;
   border-radius: 1000px;
   text-align: center;
   line-height: 350%;
