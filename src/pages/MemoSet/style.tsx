@@ -58,6 +58,7 @@ export const InputText = styled.p`
   font-size: 3.5vh;
   font-weight: 700;
   margin-bottom: 3%;
+  color: white;
 `;
 export const SetNameInput = styled.input`
   margin-top: 2%;
@@ -70,7 +71,7 @@ export const SetNameInput = styled.input`
   /* margin-bottom: 3%; */
 
   &:focus {
-    border: none;
+    outline: none;
   }
 `;
 // .popup_input div {
@@ -93,10 +94,11 @@ export const PopupForm = styled.form`
 export const PopSubmit = styled.input`
   margin-top: 2%;
   width: fit-content;
-  font-size: 70px;
+  font-size: 60px;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: white;
 `;
 
 export const NoSet = styled.div`
@@ -104,5 +106,5 @@ export const NoSet = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px;
+  font-size: 50px;
 `;

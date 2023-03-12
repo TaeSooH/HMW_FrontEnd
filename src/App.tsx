@@ -15,6 +15,7 @@ import Share from "./pages/Share";
 import SharedSetWord from "./pages/SharedSetWord";
 import Spelling from "./pages/Spelling";
 import WordList from "./pages/WordList";
+import MyClass from "./pages/MyClass";
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -145,6 +146,7 @@ function App() {
           path="/share/sharedSetWord/:setId"
           element={<SharedSetWord name={userName} />}
         />
+        <Route path="/myclass" element={<MyClass name={userName} />} />
       </Routes>
     </>
   );

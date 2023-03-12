@@ -49,6 +49,14 @@ export default function Header(props: IProps) {
       >
         단어 세트 공유
       </S.NavMenu>
+      <S.NavMenu
+        marginValue={"4%"}
+        as={Link}
+        to="/myclass"
+        state={{ username: props.username }}
+      >
+        내 수업
+      </S.NavMenu>
       {props.username ? (
         <>
           <S.User>{props.username}</S.User>
