@@ -5,12 +5,34 @@ import ClassList from "../../components/ClassList";
 import Header from "../../components/Header";
 import * as S from "./style";
 
+interface IClass {
+  id: number;
+  joinToken: string;
+  name: string;
+  owner: {
+    email: string;
+    id: number;
+    password: string;
+    role: number;
+    signupVerifyToken: string;
+    username: string;
+    verified: 2;
+  };
+}
+
 const Index = ({ name }) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [token, setToken] = useState("");
+  const [classes, setClasses] = useState([]);
   useEffect(() => {
     if (name) {
-      console.log("good");
+      axios
+        .get("api/class/getJoinedClasses")
+        .then((res) => {
+          setClasses(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => alert(err));
     } else {
       console.log("no good");
     }
@@ -24,25 +46,14 @@ const Index = ({ name }) => {
   return (
     <S.Container>
       <Header username={name} />
-      {/* <S.NoClass> 아직 수업이 없습니다 . . .</S.NoClass> */}
       <S.ClassListBox>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
-        <ClassList></ClassList>
+        {classes.length < 1 ? (
+          <S.NoClass> 아직 수업이 없습니다 . . .</S.NoClass>
+        ) : (
+          classes.map((data: IClass) => (
+            <ClassList classId={data.id} owner={data.owner} title={data.name} />
+          ))
+        )}
       </S.ClassListBox>
       <Popup
         open={modalOpened}

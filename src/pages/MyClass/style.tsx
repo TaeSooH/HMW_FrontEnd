@@ -6,7 +6,9 @@ export const Container = styled.div`
   height: 100vh;
   background-color: #f5f7fb;
 `;
-export const NoClass = styled(S.NoSet)``;
+export const NoClass = styled(S.NoSet)`
+  text-align: center;
+`;
 export const PopupInput = styled(S.PopupInput)``;
 export const InputText = styled(S.InputText)``;
 export const SetNameInput = styled(S.SetNameInput)``;
@@ -16,9 +18,9 @@ export const AddClass = styled(S.AddMemoSet)`
   margin-top: 2.5%;
 `;
 export const ClassListBox = styled(S.MemoSetBox)`
-  margin-top: 3%;
+  margin-top: 1%;
   width: 100vw;
-  height: 62vh;
+  height: 70vh;
   flex-wrap: wrap;
   &::-webkit-scrollbar {
     display: block;

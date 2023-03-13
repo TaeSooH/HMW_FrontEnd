@@ -1,14 +1,32 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import * as S from "./style";
 
-const index = () => {
+interface IClass {
+  classId: number;
+  title: string;
+  owner: {
+    email: string;
+    id: number;
+    password: string;
+    role: number;
+    signupVerifyToken: string;
+    username: string;
+    verified: 2;
+  };
+}
+
+const index = ({ classId, owner, title }: IClass) => {
   return (
-    <S.ClassBox>
-      <S.TopBox>
-        <S.Title>영어수업임</S.Title>
-      </S.TopBox>
-      <S.SubTitle>누구누구의 수업</S.SubTitle>
-    </S.ClassBox>
+    <S.LinkTo as={Link} to={`/myclass/inclass/${classId}`}>
+      <S.ClassBox>
+        <S.TopBox>
+          <S.Title>{title}</S.Title>
+        </S.TopBox>
+        <S.SubTitle>{owner.username}의 수업</S.SubTitle>
+      </S.ClassBox>
+    </S.LinkTo>
   );
 };
 
