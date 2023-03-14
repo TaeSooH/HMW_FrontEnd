@@ -5,6 +5,9 @@ import Header from "../../components/Header";
 import WordSet from "../../components/WordSet";
 import Classroom from "../../components/Classroom";
 import * as S from "./style";
+import { useRecoilValue } from "recoil";
+import { classInfo } from "../../components/states";
+import { IClass } from "../../components/ClassList/index";
 
 interface IProps {
   name: string;
@@ -27,6 +30,7 @@ interface IWordSet {
 
 const Index = ({ name }: IProps) => {
   const { classId } = useParams();
+  const data = useRecoilValue<IClass>(classInfo);
   const [list, setList] = useState<IWordSet[]>([]);
   useEffect(() => {
     axios
@@ -41,7 +45,18 @@ const Index = ({ name }: IProps) => {
     <S.Container>
       <Header username={name} />
       <S.Content>
-        <S.ClassInfo>as</S.ClassInfo>
+        <S.ClassInfo>
+          <S.ClassName>{data.title}</S.ClassName>
+          <S.Teacher>{data.owner.username} 선생님의 수업</S.Teacher>
+          {data.owner.role === 1 ? (
+            <S.TokenBox>
+              <S.Text>버튼을 눌러 학생들에게 수업 코드를 보여주세요!</S.Text>
+              <S.Token>수업 코드</S.Token>
+            </S.TokenBox>
+          ) : (
+            ""
+          )}
+        </S.ClassInfo>
         <S.ListBox>
           {/* {list.map((data) => (
             <Classroom

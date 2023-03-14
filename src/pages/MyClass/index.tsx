@@ -68,7 +68,12 @@ const Index = ({ username }) => {
           <S.NoClass> 아직 수업이 없습니다 . . .</S.NoClass>
         ) : (
           classes.map((data: IClass) => (
-            <ClassList classId={data.id} owner={data.owner} title={data.name} />
+            <ClassList
+              classId={data.id}
+              token={data.joinToken}
+              owner={data.owner}
+              title={data.name}
+            />
           ))
         )}
       </S.ClassListBox>

@@ -41,6 +41,10 @@ export const NavMenu = styled.a<IMargin>`
   font-size: 1.25vw;
   margin-left: ${(props) => props.marginValue};
   text-decoration: none;
+  &:hover {
+    color: #888;
+    transition: 0.2s;
+  }
 `;
 export const LinkMenu = styled.a<IMargin>`
   margin-left: ${(props) => props.marginValue};

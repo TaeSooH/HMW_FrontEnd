@@ -57,7 +57,7 @@ const WordSet = ({ id, name, length, owner }: IWordSet) => {
     }
   }
   return (
-    <S.WordSetBox>
+    <S.WordSetBox className="hvr-sink">
       <S.MainBox
         onClick={() => {
           setModalOpened(true);

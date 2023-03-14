@@ -8,3 +8,9 @@ export const user = atom({
   default: "",
   effects_UNSTABLE: [persistAtom],
 });
+
+export const classInfo = atom({
+  key: "class",
+  default: {},
+  effects_UNSTABLE: [persistAtom],
+});
