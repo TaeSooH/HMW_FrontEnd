@@ -8,9 +8,18 @@ interface IWordSet {
   id: number;
   name: string;
   length: number;
+  owner: {
+    email: string;
+    id: number;
+    password: string;
+    role: number;
+    signupVerifyToken: string;
+    username: string;
+    verified: number;
+  };
 }
 
-const WordSet = ({ id, name, length }: IWordSet) => {
+const WordSet = ({ id, name, length, owner }: IWordSet) => {
   const [modalOpened, setModalOpened] = useState(false);
   const [set_nameModal, setSet_nameModal] = useState(false);
   const [modifiedSetName, setModifiedSetName] = useState(name);

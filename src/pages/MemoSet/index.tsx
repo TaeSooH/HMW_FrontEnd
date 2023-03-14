@@ -15,6 +15,15 @@ interface ISetData {
   title: string;
   id: number;
   wordsLength: number;
+  owner: {
+    email: string;
+    id: number;
+    password: string;
+    role: number;
+    signupVerifyToken: string;
+    username: string;
+    verified: number;
+  };
 }
 
 export default function MemoSet({ name }: IProp) {
@@ -26,6 +35,7 @@ export default function MemoSet({ name }: IProp) {
       name={data.title}
       id={data.id}
       length={data.wordsLength}
+      owner={data.owner}
     />
   ));
   const [isLoading, setIsLoading] = useState(true);
