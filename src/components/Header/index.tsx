@@ -10,7 +10,7 @@ interface IProps {
   username: string;
 }
 
-export default function Header(props: IProps) {
+export default function Header({ username }: IProps) {
   const logOut = () => {
     axios
       .get("/api/auth/logout")
@@ -29,7 +29,7 @@ export default function Header(props: IProps) {
         marginValue={"16%"}
         as={Link}
         to="/search"
-        state={{ username: props.username }}
+        state={{ username: username }}
       >
         사전 검색하러 가기
       </S.NavMenu>
@@ -37,7 +37,7 @@ export default function Header(props: IProps) {
         marginValue={"4%"}
         as={Link}
         to="/memoset"
-        state={{ username: props.username }}
+        state={{ username: username }}
       >
         단어 세트
       </S.NavMenu>
@@ -45,7 +45,7 @@ export default function Header(props: IProps) {
         marginValue={"4%"}
         as={Link}
         to="/share"
-        state={{ username: props.username }}
+        state={{ username: username }}
       >
         단어 세트 공유
       </S.NavMenu>
@@ -53,13 +53,13 @@ export default function Header(props: IProps) {
         marginValue={"4%"}
         as={Link}
         to="/myclass"
-        state={{ username: props.username }}
+        state={{ username: username }}
       >
         내 수업
       </S.NavMenu>
-      {props.username ? (
+      {username ? (
         <>
-          <S.User>{props.username}</S.User>
+          <S.User>{username}</S.User>
           <S.User onClick={logOut}>로그아웃</S.User>
         </>
       ) : (

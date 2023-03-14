@@ -5,8 +5,12 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
   background-color: #f5f7fb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 export const NoClass = styled(S.NoSet)`
+  width: 100%;
   text-align: center;
 `;
 export const PopupInput = styled(S.PopupInput)``;

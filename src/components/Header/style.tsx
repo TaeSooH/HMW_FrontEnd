@@ -24,7 +24,7 @@ export const Logo = styled.span`
 
 export const User = styled.div`
   font-size: 1.25vw;
-  margin-left: 30%;
+  margin-left: 25%;
   &:not(:first-of-type) {
     margin-left: 2%;
     cursor: pointer;

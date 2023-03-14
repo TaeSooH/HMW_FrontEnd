@@ -86,35 +86,6 @@ function App() {
         logOut();
       });
   };
-  // console.log(userName);
-  // useEffect(() => {
-  //   autoCheck();
-
-  // if (localStorage.getItem("token") != null) {
-  //   console.log(localStorage.getItem("token"));
-  //   async function checkLogged() {
-  //     const token = localStorage.getItem("token");
-  //     await axios
-  //       .get("https://helpingmemo.ga/user/getUser", {
-  //         params: {
-  //           token: token,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         setUserName(response.data.name);
-  //         localStorage.setItem("isLogged", JSON.stringify(true));
-  //       })
-  //       .catch((error) => {
-  //         localStorage.setItem("isLogged", JSON.stringify(false));
-  //         localStorage.removeItem("token");
-  //       });
-  //   }
-  //   checkLogged();
-  // } else {
-  //   localStorage.setItem("isLogged", JSON.stringify(false));
-  // }
-  //   setLoading(false);
-  // });
   useEffect(() => {
     authCheck();
     setLoading(false);
@@ -147,7 +118,7 @@ function App() {
           path="/share/sharedSetWord/:setId"
           element={<SharedSetWord name={userName} />}
         />
-        <Route path="/myclass" element={<MyClass name={userName} />} />
+        <Route path="/myclass" element={<MyClass username={userName} />} />
         <Route
           path="/myclass/inclass/:classId"
           element={<InClass name={userName} />}
