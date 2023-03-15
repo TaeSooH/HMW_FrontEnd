@@ -48,7 +48,7 @@ const Index = ({ name }: IProps) => {
         <S.ClassInfo>
           <S.ClassName>{data.title}</S.ClassName>
           <S.Teacher>{data.owner.username} 선생님의 수업</S.Teacher>
-          {data.owner.role === 1 ? (
+          {data.owner.role === 2 ? (
             <S.TokenBox>
               <S.Text>버튼을 눌러 학생들에게 수업 코드를 보여주세요!</S.Text>
               <S.Token>수업 코드</S.Token>
@@ -58,20 +58,14 @@ const Index = ({ name }: IProps) => {
           )}
         </S.ClassInfo>
         <S.ListBox>
-          {/* {list.map((data) => (
+          {list.map((data) => (
             <Classroom
               title={data.title}
               owner={data.owner.username}
               wordLength={data.wordsLength}
               setId={data.id}
             />
-          ))} */}
-          <Classroom
-            title={"단어장"}
-            owner={"이태현"}
-            wordLength={20}
-            setId={10}
-          />
+          ))}
         </S.ListBox>
       </S.Content>
     </S.Container>

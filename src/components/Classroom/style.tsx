@@ -16,6 +16,7 @@ export const ClassBox = styled.div`
 export const Title = styled.p`
   font-size: 30px;
   font-weight: 600;
+  color: black;
 `;
 export const Owner = styled.span`
   font-size: 20px;

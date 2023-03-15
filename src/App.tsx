@@ -17,7 +17,7 @@ import Spelling from "./pages/Spelling";
 import WordList from "./pages/WordList";
 import MyClass from "./pages/MyClass";
 import InClass from "./pages/InClass";
-
+import ClassWordList from "./pages/ClassWordList";
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -122,6 +122,10 @@ function App() {
         <Route
           path="/myclass/inclass/:classId"
           element={<InClass name={userName} />}
+        />
+        <Route
+          path="/myclass/inclass/wordList/:setId"
+          element={<ClassWordList name={userName} />}
         />
       </Routes>
     </>
