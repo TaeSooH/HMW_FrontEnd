@@ -59,3 +59,24 @@ export const Text = styled.p`
   font-size: 2.3vh;
   text-align: center;
 `;
+export const PopBox = styled.div`
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 5px 5px 1000px 1000px rgb(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-left: 20px solid #1f8bf7;
+`;
+export const TokenText = styled.p`
+  font-size: 4vh;
+`;
+export const ClassToken = styled.p`
+  font-size: 8vh;
+`;

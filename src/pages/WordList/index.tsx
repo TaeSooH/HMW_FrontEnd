@@ -6,7 +6,6 @@ import * as S from "./style";
 import Word from "../../components/Word/index";
 import Popup from "reactjs-popup";
 import axios from "axios";
-import { DefaultSerializer } from "v8";
 
 interface IProp {
   name: string;
@@ -85,7 +84,7 @@ const WordList = ({ name }: IProp) => {
             <S.AddIcon
               as={GrAddCircle}
               size="120"
-              color="black"
+              color={"black"}
               onKeyDown={() => {}}
               onClick={() => {
                 setModalOpened(true);
@@ -115,7 +114,6 @@ const WordList = ({ name }: IProp) => {
               setModalOpened(false);
               setWord("");
               setMeaning("");
-              // alert(response.data);
               axios
                 .get(`/api/word/getWords?setId=${setId}`)
                 .then((res) => setWords(res.data))
@@ -153,13 +151,21 @@ const WordList = ({ name }: IProp) => {
       </Popup>
       <S.BottomMenu>
         <S.InnerBox>
-          <S.Start as={Link} to={`/memoset/wordlist/memorize/${setId}/`}>
+          <S.Start
+            className="hvr-grow"
+            as={Link}
+            to={`/memoset/wordlist/memorize/${setId}/`}
+          >
             암기학습
           </S.Start>
           <S.MemorizeWay>단어 또는 의미를 보고 맞추기</S.MemorizeWay>
         </S.InnerBox>
         <S.InnerBox>
-          <S.Start as={Link} to={`/memoset/wordlist/spelling/${setId}/`}>
+          <S.Start
+            className="hvr-grow"
+            as={Link}
+            to={`/memoset/wordlist/spelling/${setId}/`}
+          >
             스펠학습
           </S.Start>
           <S.MemorizeWay>의미를 보고 단어의 스펠링을 맞추기</S.MemorizeWay>

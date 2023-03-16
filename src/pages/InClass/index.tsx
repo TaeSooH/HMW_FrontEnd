@@ -8,6 +8,7 @@ import * as S from "./style";
 import { useRecoilValue } from "recoil";
 import { classInfo } from "../../components/states";
 import { IClass } from "../../components/ClassList/index";
+import Popup from "reactjs-popup";
 
 interface IProps {
   name: string;
@@ -32,6 +33,7 @@ const Index = ({ name }: IProps) => {
   const { classId } = useParams();
   const data = useRecoilValue<IClass>(classInfo);
   const [list, setList] = useState<IWordSet[]>([]);
+  const [modalOpened, setModalOpened] = useState(false);
   useEffect(() => {
     axios
       .get(`/api/class/getWordSetInClass?classId=${classId}`)
@@ -44,6 +46,17 @@ const Index = ({ name }: IProps) => {
   return (
     <S.Container>
       <Header username={name} />
+      <Popup
+        open={modalOpened}
+        onClose={() => {
+          setModalOpened(false);
+        }}
+      >
+        <S.PopBox>
+          <S.ClassToken>{data.token}</S.ClassToken>
+          <S.TokenText>위 수업 코드를 학생들에게 보여주세요!</S.TokenText>
+        </S.PopBox>
+      </Popup>
       <S.Content>
         <S.ClassInfo>
           <S.ClassName>{data.title}</S.ClassName>
@@ -51,7 +64,12 @@ const Index = ({ name }: IProps) => {
           {data.owner.role === 2 ? (
             <S.TokenBox>
               <S.Text>버튼을 눌러 학생들에게 수업 코드를 보여주세요!</S.Text>
-              <S.Token>수업 코드</S.Token>
+              <S.Token
+                className="hvr-glow"
+                onClick={() => setModalOpened(true)}
+              >
+                수업 코드
+              </S.Token>
             </S.TokenBox>
           ) : (
             ""

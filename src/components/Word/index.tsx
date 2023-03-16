@@ -30,6 +30,7 @@ const Index = ({ idx, word, mean, id, setId }: IWord) => {
       </S.WordBox>
       <S.RightSide>
         <S.FuncBtn
+          className="hvr-float"
           onClick={() => {
             setModalOpened(true);
             setModifiedWord(word);
@@ -38,7 +39,9 @@ const Index = ({ idx, word, mean, id, setId }: IWord) => {
         >
           수정
         </S.FuncBtn>
-        <S.FuncBtn onClick={deleteWord}>삭제</S.FuncBtn>
+        <S.FuncBtn className="hvr-sink" onClick={deleteWord}>
+          삭제
+        </S.FuncBtn>
       </S.RightSide>
       <Popup
         open={modalOpened}

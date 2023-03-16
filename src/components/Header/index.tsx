@@ -5,17 +5,20 @@ import { HeaderContainer, Logo } from "./style";
 import * as S from "./style";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { user } from "../states";
 
 interface IProps {
   username: string;
 }
 
 export default function Header({ username }: IProps) {
+  const [name, setName] = useRecoilState(user);
   const logOut = () => {
     axios
       .get("/api/auth/logout")
       .then((res) => {
-        console.log(res.data);
+        setName("");
         window.location.replace("/");
       })
       .catch((err) => console.log(err));

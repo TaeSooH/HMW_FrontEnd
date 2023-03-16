@@ -71,7 +71,7 @@ function App() {
     axios
       .get("/api/auth/logout")
       .then((res) => {
-        console.log(res.data);
+        setUserName("");
         window.location.replace("/");
       })
       .catch((err) => console.log(err));
@@ -80,6 +80,7 @@ function App() {
     axios
       .get("/api/auth/getUser") // 토큰으로 서버에 인증 요청
       .then((res) => {
+        console.log(res.data);
         setUserName(res.data.username);
       })
       .catch(() => {
